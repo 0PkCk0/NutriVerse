@@ -8,47 +8,46 @@ body {
     background-color: #b0e464;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
-    margin: auto;
+    height: 30vh; /* 30% of the viewport height */
     display: flex;
-    justify-content: center;
+    align-items: center; /* Vertically center the content */
+    justify-content: space-between; /* Distribute children evenly */
+    padding: 10px; /* Add a bit of margin from the border */
 }
 
-#Nutri_title { 
-    color: #58a43c;
-    font-size: 120px;
-    font-family: 'Stinger Fit Trial', sans-serif;
-    left: 35%;
+#div_title > :first-child {
+    align-self: flex-start; /* Align the first child to the left */
 }
 
-#Logo {
-    width: 100px;  /* Set the width of the image */
-    height: 100px; /* Set the height of the image */
-    position: absolute; 
-    top: 7.5%; /* Position from the top half of the parent */
-    left: 23.3%; /* Position from the left half of the parent */
+#div_title > :nth-child(2) {
+    align-self: center; /* Align the second child to the center */
+    margin-left: -100px; /* Move the element a bit to the left */
 }
 
-#login_menu {
-    background-color: #588c94;
-    width: 35%;
-    height: 100vh;
-    display: block;
-    justify-content: center;  
+#div_title > :last-child {
+    align-self: flex-end; /* Align the third child to the right */
 }
 
-#log_title{
-    color: #58a43c;
-    font-size: 50px;
-    font-family: 'Stinger Fit Trial', sans-serif;
-    text-align: center;
+#div_ham img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
 }
 
-#login_form {
-    background-color: #588c94;
-    width: 100%;
-    height: 100%;
+#div_logo_title {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+#div_logo_title img {
+    width: 120px;
+    height: auto;
+}
+
+#div_logo_title h1 {
+    color: #58a43c;
+    font-size: 10vh; /* Responsive font size */
+    font-family: 'Stinger Fit Trial', sans-serif;
+    margin: 0; /* Remove any default margin */
 }
