@@ -12,7 +12,7 @@ body {
     display: flex;
     align-items: center; /* Vertically center the content */
     justify-content: space-between; /* Distribute children evenly */
-    padding: 0 10px; /* Add a bit of margin from the border */
+    padding: 10px; /* Add a bit of margin from the border */
 }
 
 #div_title > :first-child {
@@ -21,6 +21,7 @@ body {
 
 #div_title > :nth-child(2) {
     align-self: center; /* Align the second child to the center */
+    margin-left: -100px; /* Move the element a bit to the left */
 }
 
 #div_title > :last-child {
