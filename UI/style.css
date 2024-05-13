@@ -28,3 +28,27 @@ body {
     top: 7.5%; /* Position from the top half of the parent */
     left: 23.3%; /* Position from the left half of the parent */
 }
+
+#login_menu {
+    background-color: #588c94;
+    width: 35%;
+    height: 100vh;
+    display: block;
+    justify-content: center;  
+}
+
+#log_title{
+    color: #58a43c;
+    font-size: 50px;
+    font-family: 'Stinger Fit Trial', sans-serif;
+    text-align: center;
+}
+
+#login_form {
+    background-color: #588c94;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
