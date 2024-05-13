@@ -29,8 +29,8 @@ router.post('/register', async (req, res) => {
     })
 
     try {
-        const token = jwt.sign({ _id: email._id }, process.env.TOKEN_SECRET);
-        res.header('auth-token', token).send(token);
+        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+        res.status(201).header('auth-token', token).send(token);
     } catch (err) {
         res.status(400).send(err)
     }
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
     if (!validPass) return res.status(400).send('Invalid password');
 
     const token = jwt.sign({ _id: email._id }, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
+    res.status(200).header('auth-token', token).send(token);
 })
 
 router.get('/logout', verify, async (req, res) => {
