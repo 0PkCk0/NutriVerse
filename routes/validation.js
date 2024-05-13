@@ -1,6 +1,6 @@
 // Validation
 const Joi = require('@hapi/joi')
-
+//prova
 //Register Validation
 const registerValidation = data => {
     const schema = Joi.object({
