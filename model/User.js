@@ -1,5 +1,3 @@
-
-const exp = require('constants');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -40,6 +38,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
         enum: ["Male", "Female", "Unspecified"]
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 
