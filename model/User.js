@@ -1,3 +1,4 @@
+const { Timestamp } = require('bson');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -39,7 +40,7 @@ const userSchema = new mongoose.Schema({
         required: false,
         enum: ["Male", "Female", "Unspecified"]
     },
-    date: {
+    Timestamp: {
         type: Date,
         default: Date.now
     }

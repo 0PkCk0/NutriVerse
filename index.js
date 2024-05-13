@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 // Import routes
 const authRoute = require('./routes/auth');
 const port = 3000;
+const postRoute = require('./routes/posts');
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 
 // Route Middleware
 app.use('/api/user', authRoute);
+app.use('/api/posts', postRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
