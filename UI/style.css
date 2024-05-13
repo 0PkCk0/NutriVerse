@@ -1,0 +1,30 @@
+body {
+    background-color: #e8f4fc;
+    margin: 0;
+    padding: 0;
+}
+
+#div_title {
+    background-color: #b0e464;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#Nutri_title { 
+    color: #58a43c;
+    font-size: 120px;
+    font-family: 'Stinger Fit Trial', sans-serif;
+    left: 35%;
+}
+
+#Logo {
+    width: 100px;  /* Set the width of the image */
+    height: 100px; /* Set the height of the image */
+    position: absolute; 
+    top: 7.5%; /* Position from the top half of the parent */
+    left: 23.3%; /* Position from the left half of the parent */
+}
