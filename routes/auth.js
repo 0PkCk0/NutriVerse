@@ -53,9 +53,10 @@ router.post('/login', async (req, res) => {
     res.status(200).header('auth-token', token).send(token);
 })
 
-router.get('/logout', verify, async (req, res) => {
-    res.cookie('jwt', '', { maxAge: 1 });
-    res.send('Logged out!');
+router.post('/logout', verify, async (req, res) => {
+    if (req.body._id !== req.userId) return res.status(400).send('Invalid user');
+    res.clearCookie('auth-token');
+    return res.status(200).send('Logged out');
 })
 
 module.exports = router;

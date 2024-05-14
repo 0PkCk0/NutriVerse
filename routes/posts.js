@@ -3,7 +3,8 @@ const User = require('../model/User');
 const verify = require('./verifyToken');
 
 router.get('/', verify,(req, res) => {
-    res.send(req.user); // USO USER PERCHE IN AUTH SEMPLICEMENTE HO MESSO NEL TOKEN SOLO L'ID
+    const userID = req.user;
+    res.send(userID);
 })
 
 module.exports = router;
