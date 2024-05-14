@@ -1,18 +1,41 @@
 <script>
 export default {
   name: "loginPage",
+  data() {
+    return {
+      signUp : false,
+      password: '',
+      retypePassword: ''
+    }
+  },
   methods: {
+    signupRequest() {
+      if(!this.signUp){
+        this.signUp = true;
+      }
+    },
+    loginRequest() {
+      if(this.signUp) {
+        this.signUp = false;
+      }
+    },
     hidePage() {
       this.$emit("hideLogin");
+    },
+    submitForm() {
+      if ((this.password !== this.retypePassword) && (this.signUp)) {
+        alert('Password and Retype Password should match');
+        return;
+      }
     }
   }
 }
 </script>
 
 <template>
-  <div id = "login_menu">
+  <div id = "login_menu" :class="{ 'signupBackground': signUp, 'loginBackground': !signUp }">
         <div>
-          <button @click="hidePage" id="closeButton">
+          <button @click="hidePage" id="closeButton" :class="{ 'closeSignupBG': signUp, 'closeLoginBG' : !signUp }">
             <img src="@/assets/closeButton.png" />
           </button>
 
@@ -27,21 +50,90 @@ export default {
             <div class = "outer_fdiv">
               <form id = "login_form">
                   <input type="text" name="username" placeholder="Username" required>
-                  <input type="password" name="password" placeholder="Password" required>
-                  <button class="menuButton">Login</button>
+                  <input type="password" name="password" placeholder="Password"  v-model="password" required>
+                  <div style="display: flex;">
+                  <div v-if="!signUp" style="height: 85px"></div>
+                  <transition name="slide">
+                    <input type="password" name="retpas" placeholder="Retype Password" v-if="signUp" v-model="retypePassword" required>
+                  </transition>
+                  </div>
+                  <button :class="{ 'smenuButton': signUp, 'lmenuButton' : !signUp }" @click="submitForm">Send</button>
               </form>
             </div>
             <div class = "outer_fdiv">
-              <div id = "div_butt_men">
-                <button class="menuButton">Signup</button>
-                <button class="menuButton">Google</button>
-              </div>
+                <div id = "div_butt_men">
+                    <button :class="{ 'smenuButton': signUp, 'lmenuButton' : !signUp }" @click="loginRequest" :id="!signUp ? 'rad_log' : ''">Login</button>
+                    <button :class="{ 'smenuButton': signUp, 'lmenuButton' : !signUp }" @click="signupRequest" :id="signUp ? 'rad_sign' : ''">Signup</button>
+                    <button :class="{ 'smenuButton': signUp, 'lmenuButton' : !signUp }">Google</button>
+                </div>
             </div>
         </div>
   </div>
 </template>
 
 <style scoped>
+
+  #rad_log {
+    background-color: #9064e4;
+  }
+
+  #rad_sign {
+    background-color: #946860;
+  }
+
+  .slide-enter-active {
+    animation: slide-in 0.5s ease;
+  }
+
+  .slide-leave-active {
+    animation: slide-out 0.5s ease;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(-150%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-150%);
+    }
+  }
+
+  .closeSignupBG {
+    background-color: #588c94;
+  }
+
+  .closeLoginBG {
+    background-color: #4d8330;
+  }
+
+  .closeSignupBG:hover {
+    background-color: #9bbabf;
+  }
+
+  .closeLoginBG:hover {
+    background-color: #79b663;
+  }
+
+  .loginBackground {
+    background-color: #4d8330;
+  }
+
+  .signupBackground {
+    background-color: #588c94;
+  }
+
+  .loginBackground, .signupBackground {
+    transition: background-color 0.5s ease;
+  }
 
   #div_butt_men{
     display: flex;
@@ -85,11 +177,11 @@ export default {
     background-color: #e8f4fc;
   }
 
-  .menuButton {
+  .lmenuButton {
     display: inline-block; /* Aggiunge un margine superiore per separare il bottone dal form */
     padding: 5px; /* Aggiunge un padding al bottone */
     margin-bottom: 30px;
-    width: 50%; /* Imposta la larghezza del bottone al 100% */
+    width: 33.3%; /* Imposta la larghezza del bottone al 100% */
     background-color: #e8f4fc; /* Imposta il colore di sfondo del bottone */
     border: 1px solid black;
     height: 70px;
@@ -100,8 +192,27 @@ export default {
     font-size: 20px;
   }
 
-  .menuButton:hover {
-    background-color: #293c3f; /* Cambia il colore di sfondo del bottone al passaggio del mouse */
+  .lmenuButton:hover {
+    background-color: #80b663; /* Cambia il colore di sfondo del bottone al passaggio del mouse */
+  }
+
+  .smenuButton {
+    display: inline-block; /* Aggiunge un margine superiore per separare il bottone dal form */
+    padding: 5px; /* Aggiunge un padding al bottone */
+    margin-bottom: 30px;
+    width: 33.3%; /* Imposta la larghezza del bottone al 100% */
+    background-color: #e8f4fc; /* Imposta il colore di sfondo del bottone */
+    border: 1px solid black;
+    height: 70px;
+    color: black; /* Imposta il colore del testo del bottone */
+    border-radius: 5px; /* Aggiunge un bordo arrotondato al bottone */
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse sopra il bottone */
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+  }
+
+  .smenuButton:hover {
+    background-color: #8aafb4; /* Cambia il colore di sfondo del bottone al passaggio del mouse */
   }
 
   #ico_container {
@@ -131,7 +242,6 @@ export default {
     top: 0; /* Allineamento in alto */
     left: 0; /* Allineamento a sinistra */
     margin: 10px; /* Margine per dare spazio dal bordo */
-    background-color: transparent;
     border: none;
     border-radius: 50%; /* Rende il bordo circolare */
     overflow: hidden;
@@ -139,10 +249,6 @@ export default {
     align-content: center;
   }
 
-  #closeButton:hover {
-    background-color: #97dce9; /* Colore di sfondo al passaggio del mouse */
-    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
-  }
 
   #closeButton img {
     width: 50px; /* Imposta la larghezza desiderata */
@@ -151,7 +257,6 @@ export default {
 
   #login_menu {
     position: absolute;
-    background-color: #588c94;
     justify-content: center;
     height: 100vh;
     width: 35%;
