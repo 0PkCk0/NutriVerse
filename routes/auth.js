@@ -14,6 +14,15 @@ router.post('/register', async (req, res) => {
     const email = await User.findOne({ email: req.body.email });
     if (email) return res.status(400).send('Email already exists');
 
+    // Check if the gender is valid
+    // Convert validGenders to lowercase for comparison
+    const validGenders = ['male', 'female', 'other'];
+
+    // Check if the gender is valid
+    if (!validGenders.includes(req.body.gender.toLowerCase())) {
+    return res.status(400).send('Invalid gender');
+    }
+
     //Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -27,6 +36,10 @@ router.post('/register', async (req, res) => {
         age: req.body.age,
         gender: req.body.gender
     })
+
+    const new_user = user.save()
+
+    if (!new_user) return res.status(400).send('Error creating user');
 
     try {
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
