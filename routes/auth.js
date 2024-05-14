@@ -7,21 +7,21 @@ const { registerValidation, loginValidation } = require('../routes/validation');
 
 router.post('/register', async (req, res) => {
     // Validate data before creating a user
-    const { error } = registerValidation(req.body);
+    const { error } = await registerValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     // Check if the user is already in the database
     const email = await User.findOne({ email: req.body.email });
     if (email) return res.status(400).send('Email already exists');
 
-    // Check if the gender is valid
-    // Convert validGenders to lowercase for comparison
+    //Check if the gender is valid
     const validGenders = ['male', 'female', 'other'];
 
     // Check if the gender is valid
-    if (!validGenders.includes(req.body.gender.toLowerCase())) {
-    return res.status(400).send('Invalid gender');
+    if (req.body.gender) {
+        if (!validGenders.includes(req.body.gender.toLowerCase())) return res.status(400).send('Invalid gender');
     }
+    
 
     //Hash password
     const salt = await bcrypt.genSalt(10);

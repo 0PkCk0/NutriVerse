@@ -1,5 +1,7 @@
 const { Timestamp } = require('bson');
 const mongoose = require('mongoose');
+const moment = require('moment-timezone');
+
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -41,8 +43,13 @@ const userSchema = new mongoose.Schema({
         enum: ["Male", "Female", "Unspecified"]
     },
     Timestamp: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: function() {
+            var time = moment.tz(new Date(), "Europe/Rome");
+            var timestring = time.format('YYYY/MM/DD HH:mm');
+            return timestring;
+        }
+        
     }
 });
 
