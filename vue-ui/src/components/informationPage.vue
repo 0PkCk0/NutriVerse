@@ -33,8 +33,8 @@ export default {
     hideLogin() {
       this.displayLogin = false;
     },
-    logged() {
-      this.$emit("logged");
+    logged(password) {
+      this.$emit("logged", password);
     }
   }
 }

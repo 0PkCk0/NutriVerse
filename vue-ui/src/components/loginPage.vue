@@ -29,7 +29,7 @@ export default {
         if(this.signUp) {
           alert('Sign Up');
         }else {
-          this.$emit("logged");
+          this.$emit("logged", this.password);
         }
       }
     }

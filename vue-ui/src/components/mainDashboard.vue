@@ -29,6 +29,9 @@ export default {
     removeSub(code) {
       this.professionist = this.professionist.filter(pro => pro.code !== code);
     }
+  },
+  props: {
+    typeAcc: Number
   }
 }
 </script>
@@ -36,13 +39,13 @@ export default {
 <template>
   <div id="out_containter">
 
-    <div id="div_profile">
-      <div id="div_logo">
+    <div id="div_profile" :class="{ 'prof_basic': typeAcc===0, 'prof_pro' : typeAcc===1 }">
+      <div id="div_logo" >
         <img style="width: 100%; height: 100%" src="@/assets/NutriverseLogo.png">
       </div>
       <div id="div_logut_pic">
         <div id="div_logout">
-          <button id="button_logout" @click="logout">
+          <button id="button_logout" :class="{ 'but_basic': typeAcc===0, 'but_pro' : typeAcc===1 }" @click="logout">
             <img id="img_logout" src="@/assets/logout.png">
           </button>
         </div>
@@ -55,7 +58,7 @@ export default {
           <form>
             <div id="div_upForm">
               <h2 id="h2_profile">Profile:</h2>
-              <button id="but_pi" @click="updateProfile" >UPDATE</button>
+              <button id="but_pi" :class="{ 'but_pi_basic': typeAcc===0, 'but_pi_pro' : typeAcc===1 }" @click="updateProfile" >UPDATE</button>
             </div>
             <div id="div_input_form">
               <div class="div_inner_form">
@@ -68,7 +71,8 @@ export default {
               </div>
               <div class="div_inner_form">
                 <h2 class="h2_form">Status: </h2>
-                <h2 class="h2_form"> Patient Basic </h2>
+                <h2 class="h2_form" v-if="typeAcc===0"> Patient Basic </h2>
+                <h2 class="h2_form"v-if="typeAcc===1"> Patient Pro </h2>
               </div>
               <h2 id="h2_profile" style="margin-top: -0.2vh"> Optional Personal Info: </h2>
               <div id="div_downForm">
@@ -109,14 +113,18 @@ export default {
         </div>
       </div>
       <div id="div_button_menu">
+        <button class="maindash_button" id="but_money" v-if="typeAcc!==0">
+          <img src="@/assets/catIcon.png" style="width: 80%; height: 80%">
+        </button>
         <button class="maindash_button" id="but_money">
-          <img src="@/assets/dollarIcon.png" style="width: 100%; height: 100%">
+          <img src="@/assets/dollarIcon.png" style="width: 80%; height: 80%" v-if="typeAcc===0">
+          <img src="@/assets/downgrade.png" style="width: 80%; height: 80%" v-if="typeAcc!==0">
         </button>
         <button class="maindash_button" id="but_report">
-          <img src="@/assets/reportIcon.png" style="width: 100%; height: 100%">
+          <img src="@/assets/reportIcon.png" style="width: 80%; height: 80%">
         </button>
         <button class="maindash_button" id="but_plus">
-          <img src="@/assets/plusIcon.png" style="width: 100%; height: 100%">
+          <img src="@/assets/plusIcon.png" style="width: 80%; height: 80%">
         </button>
       </div>
     </div>
@@ -127,13 +135,13 @@ export default {
 <style scoped>
 
   #but_money{
-    background-color: #f8f60a;
+    background-color: #ffdc5c;
     border: 1px solid black;
     transition: background-color 0.3s ease;
   }
 
   #but_money:hover{
-    background-color: #e0c705;
+    background-color: #ffac24;
     cursor: pointer;
   }
 
@@ -241,7 +249,6 @@ export default {
   }
 
   #but_pi{
-    background-color: #58a43c;
     border: 1px solid black;
     width: 53%;
     height: 5vh;
@@ -251,6 +258,15 @@ export default {
     margin-top: 3vh;
     transition: background-color 0.3s ease;
   }
+
+  .but_pi_basic{
+    background-color: #4d8330;
+  }
+
+  .but_pi_pro{
+    background-color: #ffac24;
+  }
+
 
   #but_pi:hover{
     background-color: #348478;
@@ -288,10 +304,17 @@ export default {
 
   #button_logout{
     width: 4vw;
-    background-color: #b0e464;
     border-radius: 20%;
     border: none;
     transition: background-color 0.3s ease;
+  }
+
+  .but_basic{
+    background-color: #b0e464;
+  }
+
+  .but_pro{
+    background-color: #ffdc5c;
   }
 
   #button_logout:hover{
@@ -340,8 +363,15 @@ export default {
     position: fixed;
     width: 30vw;
     height: 100%;
-    background-color: #b0e464;
     border-right: 2px solid black;
+  }
+
+  .prof_basic {
+    background-color: #b0e464;
+  }
+
+  .prof_pro  {
+    background-color: #ffdc5c;
   }
 
   #div_profile_space{

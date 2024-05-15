@@ -5,14 +5,19 @@ export default {
   name: 'App',
   data() {
     return {
-      logged: false
+      logged: false,
+      typeAcc: 0
     }
   },
   methods: {
-    login() {
+    login(password) {
       this.logged = true;
+      if(password==="premium"){
+        this.typeAcc = 1;
+      }
     },
     logout() {
+      this.typeAcc = 0;
       this.logged = false;
     }
   },
@@ -22,7 +27,7 @@ export default {
 
 <template>
   <information-page v-if="!logged" @logged="login"/>
-  <main-dashboard v-if="logged" @logout="logout" />
+  <main-dashboard v-if="logged" @logout="logout" :type-acc="typeAcc"/>
 </template>
 
 <style>
