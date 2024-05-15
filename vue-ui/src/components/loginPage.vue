@@ -25,7 +25,12 @@ export default {
     submitForm() {
       if ((this.password !== this.retypePassword) && (this.signUp)) {
         alert('Password and Retype Password should match');
-        return;
+      }else {
+        if(this.signUp) {
+          alert('Sign Up');
+        }else {
+          this.$emit("logged");
+        }
       }
     }
   }

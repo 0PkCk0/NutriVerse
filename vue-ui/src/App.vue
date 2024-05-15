@@ -1,13 +1,28 @@
 <script>
 import InformationPage from "@/components/informationPage.vue";
+import MainDashboard from "@/components/mainDashboard.vue";
 export default {
   name: 'App',
-  components: {InformationPage},
+  data() {
+    return {
+      logged: false
+    }
+  },
+  methods: {
+    login() {
+      this.logged = true;
+    },
+    logout() {
+      this.logged = false;
+    }
+  },
+  components: {MainDashboard, InformationPage},
 }
 </script>
 
 <template>
-  <information-page/>
+  <information-page v-if="!logged" @logged="login"/>
+  <main-dashboard v-if="logged" @logout="logout" />
 </template>
 
 <style>
