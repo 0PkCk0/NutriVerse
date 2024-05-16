@@ -3,7 +3,7 @@ const User = require('../model/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const verify = require('./verifyToken');
-const registerValidation = require('../routes/validation');
+const {registerValidation }= require('./validation');
 
 router.post('/', async (req, res) => {
     // Validate data before creating a user
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
         gender: req.body.gender
     })
 
-    const new_user = user.save()
+    const new_user = await user.save()
 
     if (!new_user) return res.status(400).send('Error creating user');
 
@@ -52,4 +52,6 @@ router.post('/', async (req, res) => {
 router.put('/:id', verify, async (req, res) => {
 
 })
+
+module.exports = router;
 

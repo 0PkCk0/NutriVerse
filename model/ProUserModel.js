@@ -20,7 +20,7 @@ const proUserSchema = new mongoose.Schema({
     Profession: {
         type: String,
         required: true,
-        enum: ["Personal Trainer", "Nutritionist"]
+        enum: ["Personal Trainer", "Nutritionist", "Premium User"]
     }
 });
 
