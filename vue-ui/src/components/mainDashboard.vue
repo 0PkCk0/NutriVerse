@@ -16,7 +16,20 @@ export default {
           {name: "tester", code: "ABADEFGHI", typeP: "PT/N"},
           {name: "tester", code: "ABCDHFGHI", typeP: "PT/N"},
           {name: "tester", code: "ABCEEFGHI", typeP: "PT/N"},
+      ],
+
+      patiets: [
+          {name: "gennaro", code: "AAAAAAAA", typeP: "N"},
+          {name: "tester", code: "AGCDEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "ASCDEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "AACDEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "ABGDEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "ABCHEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "ABADEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "ABCDHFGHI", typeP: "PT/N"},
+          {name: "tester", code: "ABCEEFGHI", typeP: "PT/N"},
       ]
+
     }
   },
   methods: {
@@ -26,8 +39,11 @@ export default {
     updateProfile() {
       alert('Update Profile');
     },
-    removeSub(code) {
+    removeSubscription(code) {
       this.professionist = this.professionist.filter(pro => pro.code !== code);
+    },
+    removeSubscriber(code) {
+      this.patiets = this.patiets.filter(pro => pro.code !== code);
     }
   },
   props: {
@@ -39,26 +55,36 @@ export default {
 <template>
   <div id="out_containter">
 
-    <div id="div_profile" :class="{ 'prof_basic': typeAcc===0, 'prof_pro' : typeAcc===1 }">
+    <div id="div_profile" :class="{ 'prof_basic': typeAcc===0, 'prof_pro' : typeAcc===1, 'prof_work' : typeAcc===2 }">
       <div id="div_logo" >
-        <img style="width: 100%; height: 100%" src="@/assets/NutriverseLogo.png">
+        <img alt="Error" style="width: 100%; height: 100%" src="@/assets/NutriverseLogo.png">
       </div>
       <div id="div_logut_pic">
         <div id="div_logout">
-          <button id="button_logout" :class="{ 'but_basic': typeAcc===0, 'but_pro' : typeAcc===1 }" @click="logout">
-            <img id="img_logout" src="@/assets/logout.png">
+          <button id="button_logout" :class="{ 'but_basic': typeAcc===0, 'but_pro' : typeAcc===1 , 'but_work' : typeAcc===2}" @click="logout">
+            <img alt="Error" id="img_logout" src="@/assets/logout.png">
           </button>
         </div>
         <div id="div_pic">
-          <img id="img_pic" src="@/assets/defaultPIC.png"  />
+          <img alt="Error" id="img_pic" src="@/assets/defaultPIC.png"  />
         </div>
+
+        <div id="radio_buttons" v-if="typeAcc===2">
+          <input type="radio" id="radio_N" name="account_type">
+          <label for="radio_basic">N</label><br>
+          <input type="radio" id="radio_PT" name="account_type">
+          <label for="radio_pro">PT</label><br>
+          <input type="radio" id="radio_A" name="account_type">
+          <label for="radio_work">N/PT</label><br>
+        </div>
+
       </div>
       <div id="div_personal_information">
         <div>
           <form>
             <div id="div_upForm">
               <h2 id="h2_profile">Profile:</h2>
-              <button id="but_pi" :class="{ 'but_pi_basic': typeAcc===0, 'but_pi_pro' : typeAcc===1 }" @click="updateProfile" >UPDATE</button>
+              <button id="but_pi" :class="{ 'but_pi_basic': typeAcc===0, 'but_pi_pro' : typeAcc===1 , 'but_pi_work' : typeAcc===2}" @click="updateProfile" >UPDATE</button>
             </div>
             <div id="div_input_form">
               <div class="div_inner_form">
@@ -72,7 +98,8 @@ export default {
               <div class="div_inner_form">
                 <h2 class="h2_form">Status: </h2>
                 <h2 class="h2_form" v-if="typeAcc===0"> Patient Basic </h2>
-                <h2 class="h2_form"v-if="typeAcc===1"> Patient Pro </h2>
+                <h2 class="h2_form" v-if="typeAcc===1"> Patient Pro </h2>
+                <h2 class="h2_form" v-if="typeAcc===2"> Professionals </h2>
               </div>
               <h2 id="h2_profile" style="margin-top: -0.2vh"> Optional Personal Info: </h2>
               <div id="div_downForm">
@@ -101,38 +128,86 @@ export default {
 
     <div id="div_profile_space"></div>
 
-    <div id="div_subscriptions">
+    <div :class="{ 'div_subscriptions': typeAcc===0 || typeAcc===1, 'div_subscriptions_pro' : typeAcc===2 }">
       <div style="height: 8vh">
         <div id="h1_subscriptions_div">
           <h1 id="h1_subscriptions">Subscriptions:</h1>
         </div>
       </div>
       <div id="div_info_card">
-        <div v-for="pro in professionist" :key="pro.code" class="card_div">
-          <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSub"/>
-        </div>
-      </div>
-      <div id="div_button_menu">
-        <button class="maindash_button" id="but_money" v-if="typeAcc!==0">
-          <img src="@/assets/catIcon.png" style="width: 80%; height: 80%">
-        </button>
-        <button class="maindash_button" id="but_money">
-          <img src="@/assets/dollarIcon.png" style="width: 80%; height: 80%" v-if="typeAcc===0">
-          <img src="@/assets/downgrade.png" style="width: 80%; height: 80%" v-if="typeAcc!==0">
-        </button>
-        <button class="maindash_button" id="but_report">
-          <img src="@/assets/reportIcon.png" style="width: 80%; height: 80%">
-        </button>
-        <button class="maindash_button" id="but_plus">
-          <img src="@/assets/plusIcon.png" style="width: 80%; height: 80%">
-        </button>
+          <div v-for="pro in professionist" :key="pro.code" class="card_div">
+            <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSubscription"/>
+          </div>
       </div>
     </div>
+
+    <div id="div_subscriber" v-if="typeAcc===2">
+      <div style="height: 8vh">
+        <div id="h1_subscriptions_div">
+            <h1 id="h1_subscriptions">Subscriber:</h1>
+        </div>
+      </div>
+      <div id="div_info_card">
+          <div v-for="pro in patiets" :key="pro.code" class="card_div">
+            <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSubscriber"/>
+          </div>
+      </div>
+    </div>
+
+    <div id="div_button_menu">
+        <button class="maindash_button" id="but_money" v-if="typeAcc!==0">
+          <img alt="Error" src="@/assets/catIcon.png" style="width: 80%; height: 80%">
+        </button>
+        <button class="maindash_button" id="but_money">
+          <img alt="Error" src="@/assets/dollarIcon.png" style="width: 80%; height: 80%" v-if="typeAcc===0">
+          <img alt="Error" src="@/assets/downgrade.png" style="width: 80%; height: 80%" v-if="typeAcc!==0">
+        </button>
+        <button class="maindash_button" id="but_report">
+          <img alt="Error" src="@/assets/reportIcon.png" style="width: 80%; height: 80%">
+        </button>
+        <button class="maindash_button" id="but_plus">
+          <img alt="Error" src="@/assets/plusIcon.png" style="width: 80%; height: 80%">
+        </button>
+      </div>
 
   </div>
 </template>
 
 <style scoped>
+
+  #radio_buttons{
+    margin-left: 9vh;
+    font-size: 20px;
+    font-family: 'Stinger Fit Trial', sans-serif;
+  }
+
+  #div_profile_space{
+    width: 30vw;
+    margin-left: 4px;
+    height: 100%;
+  }
+
+  #div_subscriber{
+    width: 35vw;
+    height: 100%;
+    background-color: #e8f4fc;
+    overflow: scroll;
+    border-left: 2px solid black;
+  }
+
+  .div_subscriptions {
+    width: 70vw;
+    height: 100%;
+    overflow: scroll;
+    background-color: #e8f4fc;
+  }
+
+  .div_subscriptions_pro {
+    width: 35vw;
+    height: 100%;
+    overflow: scroll;
+    background-color: #e8f4fc;
+  }
 
   #but_money{
     background-color: #ffdc5c;
@@ -187,8 +262,9 @@ export default {
   #h1_subscriptions_div{
     position: fixed;
     background-color: #e8f4fc;
-    width: 100%;
-    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 100%
   }
 
   .card_div {
@@ -267,6 +343,10 @@ export default {
     background-color: #ffac24;
   }
 
+  .but_pi_work{
+    background-color: #5a72a7;
+  }
+
 
   #but_pi:hover{
     background-color: #348478;
@@ -315,6 +395,10 @@ export default {
 
   .but_pro{
     background-color: #ffdc5c;
+  }
+
+  .but_work{
+    background-color: #83aefc;
   }
 
   #button_logout:hover{
@@ -374,14 +458,8 @@ export default {
     background-color: #ffdc5c;
   }
 
-  #div_profile_space{
-    width: 30vw;
-    height: 100%;
+  .prof_work{
+    background-color: #83aefc;
   }
 
-  #div_subscriptions {
-    width: 70vw;
-    height: 100%;
-    background-color: #e8f4fc;
-  }
 </style>

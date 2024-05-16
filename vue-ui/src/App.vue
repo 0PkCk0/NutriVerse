@@ -15,6 +15,9 @@ export default {
       if(password==="premium"){
         this.typeAcc = 1;
       }
+      if(password==="pro"){
+        this.typeAcc = 2;
+      }
     },
     logout() {
       this.typeAcc = 0;
