@@ -1,10 +1,14 @@
 <script>
 import InformationPage from "@/components/informationPage.vue";
 import MainDashboard from "@/components/mainDashboard.vue";
+import InteractionDashboard from "@/components/interactionDashboard.vue";
 export default {
   name: 'App',
   data() {
     return {
+      interacting: false,
+      IdCode : "ALDKSIFN",
+      interactionCode : "",
       logged: false,
       typeAcc: 0
     }
@@ -22,15 +26,23 @@ export default {
     logout() {
       this.typeAcc = 0;
       this.logged = false;
+    },
+    openInteractionDashboard(code) {
+      this.interacting = true;
+      this.interactionCode = code;
+    },
+    exitInteraction() {
+      this.interacting = false;
     }
   },
-  components: {MainDashboard, InformationPage},
+  components: {InteractionDashboard, MainDashboard, InformationPage},
 }
 </script>
 
 <template>
   <information-page v-if="!logged" @logged="login"/>
-  <main-dashboard v-if="logged" @logout="logout" :type-acc="typeAcc"/>
+  <main-dashboard v-if="logged && !interacting" @logout="logout" @openInteractionDashboard="openInteractionDashboard" :type-acc="typeAcc" :id-code="IdCode"/>
+  <interaction-dashboard v-if="interacting" :IdCode="IdCode" :interactionCode="interactionCode" @back="exitInteraction"/>
 </template>
 
 <style>

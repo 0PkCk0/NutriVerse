@@ -44,10 +44,14 @@ export default {
     },
     removeSubscriber(code) {
       this.patiets = this.patiets.filter(pro => pro.code !== code);
+    },
+    openInteractionDashboard(code) {
+      this.$emit("openInteractionDashboard", code);
     }
   },
   props: {
-    typeAcc: Number
+    typeAcc: Number,
+    IdCode: String
   }
 }
 </script>
@@ -134,11 +138,11 @@ export default {
           <h1 id="h1_subscriptions">Subscriptions:</h1>
         </div>
       </div>
-      <div id="div_info_card">
-          <div v-for="pro in professionist" :key="pro.code" class="card_div">
-            <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSubscription"/>
-          </div>
-      </div>
+        <div id="div_info_card">
+            <div v-for="pro in professionist" :key="pro.code" class="card_div">
+                <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSubscription" @openInteractionDashboard="openInteractionDashboard"/>
+            </div>
+        </div>
     </div>
 
     <div id="div_subscriber" v-if="typeAcc===2">
@@ -149,7 +153,7 @@ export default {
       </div>
       <div id="div_info_card">
           <div v-for="pro in patiets" :key="pro.code" class="card_div">
-            <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSubscriber"/>
+              <cardProfile :name-p="pro.name" :code="pro.code" :type-p="pro.typeP" @removeSub="removeSubscriber" @openInteractionDashboard="openInteractionDashboard"/>
           </div>
       </div>
     </div>
@@ -179,6 +183,7 @@ export default {
     margin-left: 9vh;
     font-size: 20px;
     font-family: 'Stinger Fit Trial', sans-serif;
+    margin-top: 3vh;
   }
 
   #div_profile_space{
