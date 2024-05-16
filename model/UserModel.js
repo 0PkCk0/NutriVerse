@@ -1,56 +1,56 @@
-const { Timestamp } = require('bson');
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
-
 
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        min: 6,
-        max: 255
+        minlength: 6,
+        maxlength: 255
     },
     email: {
         type: String,
         required: true,
-        min: 6,
-        max: 255
+        minlength: 6,
+        maxlength: 255
     },
     password: {
         type: String,
         required: true,
-        min: 6,
-        max: 1024
+        minlength: 6,
+        maxlength: 1024
     },
     weight: {
         type: Number,
-        required: false,
         min: 0
     },
     height: {
         type: Number,
-        required: false,
         min: 0
     },
     age: {
         type: Number,
-        required: false,
         min: 18
     },
     gender: {
         type: String,
-        required: false,
         enum: ["Male", "Female", "Unspecified"]
     },
-    Timestamp: {
+    timestamp: {
         type: String,
         default: function() {
             var time = moment.tz(new Date(), "Europe/Rome");
-            var timestring = time.format('YYYY/MM/DD HH:mm');
-            return timestring;
+            return time.format('YYYY/MM/DD HH:mm');
         }
-        
     }
+}, {
+    discriminatorKey: 'userType', // Key to differentiate between different user types
+    collection: 'users' // Store all user types in the same collection
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
+
+    
+
