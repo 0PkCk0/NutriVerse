@@ -1,19 +1,19 @@
 const User = require('./UserModel');
 const mongoose = require('mongoose');
+const moment = require('moment-timezone');
 
-const proUserSchema = new mongoose.Schema({
+const proUserSchema = mongoose.Schema({
     subscriptionStartDate: {
-        type: Date,
+        type: String,
         default: function() {
             var time = moment.tz(new Date(), "Europe/Rome");
             return time.format('YYYY/MM/DD HH:mm');
         }
     },
     subscriptionEndDate: {
-        type: Date,
+        type: String,
         default: function() {
             var time = moment.tz(new Date(), "Europe/Rome");
-            time.add(1, 'years');
             return time.format('YYYY/MM/DD HH:mm');
         }
     },
@@ -24,4 +24,6 @@ const proUserSchema = new mongoose.Schema({
     }
 });
 
-module.exports = User.discriminator('ProUser', proUserSchema);
+const ProUser = User.discriminator('ProUser', proUserSchema);
+
+module.exports = ProUser;

@@ -21,7 +21,6 @@ router.post('/', async (req, res) => {
     if (req.body.gender) {
         if (!validGenders.includes(req.body.gender.toLowerCase())) return res.status(400).send('Invalid gender');
     }
-    
 
     //Hash password
     const salt = await bcrypt.genSalt(10);
@@ -34,7 +33,8 @@ router.post('/', async (req, res) => {
         weight: req.body.weight,
         height: req.body.height,
         age: req.body.age,
-        gender: req.body.gender
+        gender: req.body.gender,
+        userType: 'User'
     })
 
     const new_user = await user.save()
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     if (!new_user) return res.status(400).send('Error creating user');
 
     try {
-        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
         res.status(201).header('auth-token', token).send(token);
     } catch (err) {
         res.status(400).send(err)

@@ -28,7 +28,7 @@ app.use(express.json());
 
 // Route Middleware
 app.use('/api/user', UserRoute);
-app.use('/api/proUser', ProUserRoute);
+app.use('/api/prouser', ProUserRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
 

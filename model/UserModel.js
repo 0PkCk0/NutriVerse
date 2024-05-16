@@ -20,10 +20,19 @@ const userSchema = new mongoose.Schema({
         minlength: 6,
         maxlength: 1024
     },
-    weight: {
-        type: Number,
-        min: 0
-    },
+    weight: [{
+        value: {
+            type: Number,
+            min: 30,
+        },
+        date: {
+            type: String,
+            default: function() {
+                var time = moment.tz(new Date(), "Europe/Rome");
+                return time.format('YYYY/MM/DD HH:mm');
+            }
+        }
+    }],
     height: {
         type: Number,
         min: 0
@@ -43,7 +52,7 @@ const userSchema = new mongoose.Schema({
             return time.format('YYYY/MM/DD HH:mm');
         }
     }
-}, {
+},{
     discriminatorKey: 'userType', // Key to differentiate between different user types
     collection: 'users' // Store all user types in the same collection
 });
