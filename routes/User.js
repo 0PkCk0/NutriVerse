@@ -114,6 +114,64 @@ router.put('/', verify, async (req, res) => {
 
 })
 
+
+// Get user's specific subscription personal information
+router.get('/:subscriptionId', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    //Check if the user exists
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    const subscriptionId = req.params.subscriptionId;
+
+    //Check if we get the subscriptionId in the request parameters
+    if (!subscriptionId){
+        return res.status(404).json({ message: 'Subscription not found' });
+    }
+
+    let exists=false;
+
+    //Check if we are subscribed to the user and viceversa
+    for (const id of user.subscriptionsId){
+        if (id===subscriptionId){
+            exists=true;
+        }
+    }
+
+
+    if (exists){
+        //If we are subscribed
+
+        // We get the subscription
+        const subUser = await User.findById(subscriptionId);
+
+        //JSON variable to return to the caller
+        const JSON_user= {
+            name:subUser.name,
+            weight:subUser.weight,
+            height:subUser.height,
+            age:subUser.age,
+            gender:subUser.gender,
+            timestap:subUser.timestamp,
+            Profession:subUser.Profession,
+            subscriptionEndDate:subUser.subscriptionEndDate,
+            subscriptionStartDate:subUser.subscriptionStartDate
+        };
+
+        // We set the header for returning the JSON variable
+        res.setHeader('Content-Type', 'application/json');
+        res.json(JSON_user);
+
+    }else{
+        //If we are not subscribed to him/her
+        return res.status(404).json({ message: 'You are not subscribed to him/her' });
+    }
+})
+
+
+
 // Get all the user's basic information
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
