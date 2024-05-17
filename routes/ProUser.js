@@ -16,6 +16,7 @@ const getFormattedDatePlusOneYear = function() {
     return time.add(1, 'year').format('YYYY/MM/DD HH:mm');
 }
 
+// Update a user to ProUser
 router.post('/', verify, async (req, res) => {
     try {
         const basicUser = await User.findById(req.user._id);
