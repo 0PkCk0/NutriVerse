@@ -34,6 +34,7 @@ router.post('/', async (req, res) => {
         height: req.body.height,
         age: req.body.age,
         gender: req.body.gender,
+        subscriptionsId: req.body.subscriptionsId,
         userType: 'User'
     })
 

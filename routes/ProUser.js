@@ -32,6 +32,7 @@ router.post('/', verify, async (req, res) => {
             Profession: req.body.Profession,
             subscriptionStartDate:getFormattedDate(),
             subscriptionEndDate: getFormattedDatePlusOneYear(),
+            subscribersId: [],
             userType: 'ProUser'
         };
 

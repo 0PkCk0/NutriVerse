@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
+const { id } = require('@hapi/joi/lib/base');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -51,7 +52,10 @@ const userSchema = new mongoose.Schema({
             var time = moment.tz(new Date(), "Europe/Rome");
             return time.format('YYYY/MM/DD HH:mm');
         }
-    }
+    },
+    subscriptionsId: [{
+        type : String
+    }]
 },{
     discriminatorKey: 'userType', // Key to differentiate between different user types
     collection: 'users' // Store all user types in the same collection
