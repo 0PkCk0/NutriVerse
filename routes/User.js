@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const verify = require('./verifyToken');
 const {registerValidation }= require('./validation');
+const moment = require("moment-timezone");
 
 router.post('/', async (req, res) => {
     // Validate data before creating a user
@@ -80,7 +81,15 @@ router.put('/', verify, async (req, res) => {
     }
 
     if (weigth!==undefined && weigth!==''){
-        pushField.weight=weigth;
+
+        var time = moment.tz(new Date(), "Europe/Rome");
+        const returnTime=time.format('YYYY/MM/DD HH:mm');
+
+        pushField.weight={
+            value:parseInt(weigth, 10),
+            date:returnTime
+        };
+        console.log(pushField);
     }
 
     User.findByIdAndUpdate(req.user,
@@ -91,6 +100,7 @@ router.put('/', verify, async (req, res) => {
             res.send("Updated data");
         })
         .catch(err=>{
+            console.log(err);
             res.send("Error updating");
         });
 

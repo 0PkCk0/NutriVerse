@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 // Import routes
 const authRoute = require('./routes/auth');
 const subUser = require('./routes/UserSubscription');
-const postRoute = require('./routes/posts');
 const UserRoute = require('./routes/User');
 const ProUserRoute = require('./routes/ProUser');
 
@@ -31,7 +30,6 @@ app.use(express.json());
 app.use('/api/user', UserRoute);
 app.use('/api/prouser', ProUserRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/posts', postRoute);
 app.use('/api/subscription',subUser);
 
 
