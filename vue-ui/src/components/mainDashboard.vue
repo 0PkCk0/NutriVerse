@@ -101,23 +101,28 @@ export default {
               </div>
               <div class="div_inner_form">
                 <h2 class="h2_form">Status: </h2>
-                <h2 class="h2_form" v-if="typeAcc===0"> Patient Basic </h2>
-                <h2 class="h2_form" v-if="typeAcc===1"> Patient Pro </h2>
-                <h2 class="h2_form" v-if="typeAcc===2"> Professionals </h2>
+                <h2 class="h2_form" style="width: auto" v-if="typeAcc===0"> Patient Basic </h2>
+                <h2 class="h2_form" style="width: auto" v-if="typeAcc===1"> Patient Pro </h2>
+                <h2 class="h2_form" style="width: auto" v-if="typeAcc===2"> Professionals </h2>
               </div>
               <h2 id="h2_profile" style="margin-top: -0.2vh"> Optional Personal Info: </h2>
               <div id="div_downForm">
                 <div class="div_inner_form">
                   <h2 class="h2_form_down">Weight: </h2>
-                  <input class="input_form_down" type="text" name="Weight" placeholder="Weight">
-                  <h2 class="h2_form_down" style="margin-left: -5vh">Height: </h2>
-                  <input class="input_form_down" type="text" name="Height" placeholder="Height">
+                  <input class="input_form_down"  style="margin-left: 1.1vw" type="text" name="Weight" placeholder="Weight">
+                  <h2 class="h2_form_down" style="margin-left: -2.5vw">Height: </h2>
+                  <input class="input_form_down" style="margin-left: 2vw" type="text" name="Height" placeholder="Height">
                 </div>
                 <div class="div_inner_form">
-                  <h2 class="h2_form_down">Age: </h2>
+                  <h2 class="h2_form_down" style="margin-right: 2.6vw">Age: </h2>
                   <input class="input_form_down" type="text" name="Age" placeholder="Age">
-                  <h2 class="h2_form_down" style="margin-left: -5vh">Country: </h2>
-                  <input class="input_form_down" type="text" name="Country" placeholder="Country">
+                  <h2 class="h2_form_down" style="margin-left: -2.4vw">Gender: </h2>
+                  <select class="input_form_down" style="width: 6vw; margin-left: 1.4vw" name="Gender">
+                    <option value="" disabled selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
                   <div class="div_inner_form">
                     <h2 class="h2_form">Description: </h2>
@@ -274,8 +279,8 @@ export default {
 
   .card_div {
     margin-top: 3vh;
-    margin-left: 3vh;
-    width: 30vh;
+    margin-left: 2vw;
+    width: 14vw;
     height: 40vh;
   }
 
@@ -283,12 +288,12 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-left: -2vh;
+    margin-left: -1vw;
   }
 
   #form_textarea{
-    width: 53%;
-    height: 13vh;
+    width: 17vw;
+    height: 10vh;
     font-size: 15px;
     text-align: left;
     resize: none;
@@ -300,28 +305,28 @@ export default {
 
   .h2_form{
     font-family: 'Stinger Fit Trial', sans-serif;
-    font-size: 2.5vh;
+    font-size: 20px;
     width: 29%;
   }
 
   .input_form{
-    width: 53%;
+    width: 16vw;
     height: 5vh;
     font-size: 20px;
     text-align: center;
   }
 
   .input_form_down{
-    width: 20%;
+    width: 5.5vw;
     height: 5vh;
-    margin-right: 10vh;
+    margin-right: 4vw;
     font-size: 20px;
     text-align: center;
   }
 
   .h2_form_down{
     font-family: 'Stinger Fit Trial', sans-serif;
-    font-size: 2.5vh;
+    font-size: 20px;
     width: 25%;
   }
 
@@ -331,11 +336,11 @@ export default {
 
   #but_pi{
     border: 1px solid black;
-    width: 53%;
+    width: 16vw;
     height: 5vh;
     font-size: 20px;
     font-family: 'Stinger Fit Trial', sans-serif;
-    margin-left: 4vh;
+    margin-left: 1.9vw;
     margin-top: 3vh;
     transition: background-color 0.3s ease;
   }
@@ -360,13 +365,14 @@ export default {
 
   #h2_profile{
     font-family: 'Stinger Fit Trial', sans-serif;
-    font-size: 4vh;
+    font-size: 29px;
+    margin-right: 0.2em;
   }
 
   #div_personal_information{
 
-    margin-left: 5vh;
-    margin-right: 5vh;
+    margin-left: 2vw;
+    margin-right: 1vw;
     width: 100%;
   }
 

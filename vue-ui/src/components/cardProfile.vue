@@ -78,7 +78,7 @@ export default {
 
   .h2_card {
     font-family: 'Stinger Fit Trial', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
   }
 
 
@@ -104,7 +104,7 @@ export default {
       width: 100%;
       height: 100%;
       margin-top: 5vh;
-      margin-left: 5vh;
+      margin-left: 2vw;
       background-color: #4d8330;
       border: 1px solid black;
       align-items: center; /* Per centrare verticalmente */

@@ -54,7 +54,7 @@ export default {
         <div id="div_form">
             <div class = "outer_fdiv">
               <form id = "login_form">
-                  <input type="text" name="username" placeholder="Username" required>
+                  <input type="text" name="username" placeholder="Email" required>
                   <input type="password" name="password" placeholder="Password"  v-model="password" required>
                   <div style="display: flex;">
                   <div v-if="!signUp" style="height: 85px"></div>
@@ -144,6 +144,7 @@ export default {
     display: flex;
     justify-content: space-around;
     width: 70%;
+    margin-top: -2%;
   }
 
   .outer_fdiv {
@@ -157,6 +158,7 @@ export default {
     justify-content: center;
     height: 55vh;
     width: 100%;
+    margin-top: -10%;
   }
 
   #login_form {
@@ -224,7 +226,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45vh;
+    height: 30vh;
+    margin-bottom: 17%;
+    margin-top: 8%;
   }
 
   #log_ico {
@@ -261,7 +265,7 @@ export default {
   }
 
   #login_menu {
-    position: absolute;
+    position: fixed;
     justify-content: center;
     height: 100vh;
     width: 35%;
