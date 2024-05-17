@@ -108,16 +108,16 @@ export default {
               <h2 id="h2_profile" style="margin-top: -0.2vh"> Optional Personal Info: </h2>
               <div id="div_downForm">
                 <div class="div_inner_form">
-                  <h2 class="h2_form_down">Weight: </h2>
-                  <input class="input_form_down"  style="margin-left: 1.1vw" type="text" name="Weight" placeholder="Weight">
-                  <h2 class="h2_form_down" style="margin-left: -2.5vw">Height: </h2>
-                  <input class="input_form_down" style="margin-left: 2vw" type="text" name="Height" placeholder="Height">
+                  <h2 class="h2_form_down" style="width: 20%">Weight: </h2>
+                  <input class="input_form_down" style="width: 20%"  type="text" name="Weight" placeholder="Weight">
+                  <h2 class="h2_form_down" style="width: 20%; margin-left: 1vw" >Height: </h2>
+                  <input class="input_form_down" style="width: 20%" type="text" name="Height" placeholder="Height">
                 </div>
                 <div class="div_inner_form">
-                  <h2 class="h2_form_down" style="margin-right: 2.6vw">Age: </h2>
-                  <input class="input_form_down" type="text" name="Age" placeholder="Age">
-                  <h2 class="h2_form_down" style="margin-left: -2.4vw">Gender: </h2>
-                  <select class="input_form_down" style="width: 6vw; margin-left: 1.4vw" name="Gender">
+                  <h2 class="h2_form_down" style="width: 20%">Age: </h2>
+                  <input class="input_form_down" style="width: 20%" type="text" name="Age" placeholder="Age">
+                  <h2 class="h2_form_down" style="width: 20%; margin-left: 1vw">Gender: </h2>
+                  <select class="input_form_down" style="width: 21.5%" name="Gender">
                     <option value="" disabled selected>Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -292,7 +292,7 @@ export default {
   }
 
   #form_textarea{
-    width: 17vw;
+    width: 16.85vw;
     height: 10vh;
     font-size: 15px;
     text-align: left;
@@ -301,6 +301,7 @@ export default {
 
   .div_inner_form{
     display: flex;
+    width: 100%;
   }
 
   .h2_form{
@@ -317,9 +318,7 @@ export default {
   }
 
   .input_form_down{
-    width: 5.5vw;
     height: 5vh;
-    margin-right: 4vw;
     font-size: 20px;
     text-align: center;
   }
