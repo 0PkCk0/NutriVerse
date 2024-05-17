@@ -51,9 +51,12 @@ router.post('/', async (req, res) => {
     }
 })
 
+
+// Change basic information of the user
 router.put('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
+    //Check if the user exists
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
@@ -67,6 +70,9 @@ router.put('/', verify, async (req, res) => {
     // Update of the fields of the user's schema.
     const updateField={};
     const pushField={};
+
+    // Next we are going to check if the variables sent
+    // in the body are empty or with some data:
 
     if (name!==undefined && name!==''){
         updateField.name=name;
@@ -92,6 +98,7 @@ router.put('/', verify, async (req, res) => {
         console.log(pushField);
     }
 
+    // We update or push the data on the schema
     User.findByIdAndUpdate(req.user,
         {$set:updateField,$push: pushField },
         { new:true }
@@ -107,27 +114,16 @@ router.put('/', verify, async (req, res) => {
 
 })
 
-
-router.get('/sub', verify, async (req, res) => {
-    const user = await User.findById(req.user);
-
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
-
-
-    res.setHeader('Content-Type', 'application/json');
-    res.json(JSON_user);
-})
-
-
+// Get all the user's basic information
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
+    //Check if the user exists
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
 
+    //JSON variable to return to the caller
     const JSON_user= {
         name:user.name,
         email:user.email,
@@ -138,6 +134,7 @@ router.get('/', verify, async (req, res) => {
         timestap:user.timestamp,
     };
 
+    // We set the header for returning the JSON variable
     res.setHeader('Content-Type', 'application/json');
     res.json(JSON_user);
 })
