@@ -33,21 +33,6 @@ const proUserSchema = mongoose.Schema({
     }
 });
 
-async function generateUniqueCode() {
-    let code;
-    let unique = false;
-
-    while (!unique) {
-        code = Math.floor(100000 + Math.random() * 900000).toString();
-        const existingUser = await mongoose.models["ProUser"].findOne({Code: code});
-        if (!existingUser) {
-            unique = true;
-        }
-    }
-
-    return code;
-}
-
 const ProUser = User.discriminator('ProUser', proUserSchema);
 
 module.exports = ProUser;

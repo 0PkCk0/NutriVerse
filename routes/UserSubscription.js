@@ -7,20 +7,24 @@ const mongoose = require('mongoose'); // Ensure mongoose is required
 //enroll to a professionist
 router.post('/', verify, async (req, res) => {
     try {
-        // Ensure the ID is a valid ObjectId
         if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
             return res.status(400).send('Invalid Professionist ID');
         }
-
+        
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
         
         const professionistId = req.body.subscriptionsId; // Retrieve professionist ID from req.body
         
         const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
-
+        
         if (!subscriber) return res.status(400).send('Subscriber not found');
         if (!professionist) return res.status(400).send('Professionist not found');
-
+        
+        // Check if the professionist is a premium user
+        if (professionist.Profession === 'Premium user') {
+            return res.status(400).send('Not a professionist');
+        }
+        
         // Check if the user is already subscribed
         if (subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) {
             return res.status(400).send('User is already subscribed');
