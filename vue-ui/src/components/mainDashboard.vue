@@ -8,7 +8,7 @@ export default {
     return {
       professionist: [
           {name: "patrick", code: "AAAAAAAA", typeP: "N"},
-          {name: "tester", code: "AGCDEFGHI", typeP: "PT/N"},
+          {name: "tester", code: "AGCDEFGHI", typeP: "PT"},
           {name: "tester", code: "ASCDEFGHI", typeP: "PT/N"},
           {name: "tester", code: "AACDEFGHI", typeP: "PT/N"},
           {name: "tester", code: "ABGDEFGHI", typeP: "PT/N"},
@@ -288,12 +288,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-left: -1vw;
   }
 
   #form_textarea{
     width: 16.85vw;
-    height: 10vh;
+    height: 11vh;
     font-size: 15px;
     text-align: left;
     resize: none;
@@ -335,7 +334,7 @@ export default {
 
   #but_pi{
     border: 1px solid black;
-    width: 16vw;
+    width: 16.45vw;
     height: 5vh;
     font-size: 20px;
     font-family: 'Stinger Fit Trial', sans-serif;
@@ -364,8 +363,7 @@ export default {
 
   #h2_profile{
     font-family: 'Stinger Fit Trial', sans-serif;
-    font-size: 29px;
-    margin-right: 0.2em;
+    font-size: 1.93vw;
   }
 
   #div_personal_information{

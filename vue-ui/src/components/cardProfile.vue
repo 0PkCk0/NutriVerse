@@ -50,11 +50,11 @@ export default {
 
   .close_button{
     margin-top: 1vh;
-    margin-left: -20vh;
+    margin-left: -11.5vw;
     border-radius: 30%;
     border:none;
     background-color: transparent;
-    width: 4vh;
+    width: 2vw;
     transition: background-color 0.3s ease;
   }
 
@@ -101,7 +101,7 @@ export default {
 
   #container_card {
       display: block;
-      width: 100%;
+      width: 14vw;
       height: 100%;
       margin-top: 5vh;
       margin-left: 2vw;
