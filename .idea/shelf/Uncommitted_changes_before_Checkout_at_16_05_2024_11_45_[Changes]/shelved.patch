@@ -1,0 +1,17 @@
+Index: index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const express = require('express');\r\nconst app = express();\r\nconst mongoose = require('mongoose');\r\nconst dotenv = require('dotenv');\r\nconst port = 3000;\r\ndotenv.config();\r\n\r\n//Used to parse JSON bodies\r\napp.use(express.json());\r\n\r\n\r\n\r\napp.listen(port, () => {\r\n    console.log(`Server is listening at http://localhost:${port}`);\r\n});\r\n\r\n\r\n
+===================================================================
+diff --git a/index.js b/index.js
+--- a/index.js	
++++ b/index.js	
+@@ -9,6 +9,8 @@
+ app.use(express.json());
+ 
+ 
++app.get
++
+ 
+ app.listen(port, () => {
+     console.log(`Server is listening at http://localhost:${port}`);

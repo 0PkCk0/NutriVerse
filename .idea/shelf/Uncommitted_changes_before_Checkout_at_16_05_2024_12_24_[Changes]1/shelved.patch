@@ -1,0 +1,82 @@
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+new file mode 100644
+--- /dev/null	(date 1715855061039)
++++ b/package.json	(date 1715855061039)
+@@ -0,0 +1,18 @@
++{
++  "name": "nutriverse",
++  "version": "1.0.0",
++  "description": "",
++  "main": "app.js",
++  "scripts": {
++    "test": "echo \"Error: no test specified\" && exit 1"
++  },
++  "repository": {
++    "type": "git",
++    "url": "https://github.com/0PkCk0/NutriVerse.git"
++  },
++  "private": true,
++  "dependencies": {
++    "dotenv": "^16.4.5",
++    "express": "^4.19.2"
++  }
++}
+Index: app.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app.js b/app.js
+new file mode 100644
+--- /dev/null	(date 1715855061055)
++++ b/app.js	(date 1715855061055)
+@@ -0,0 +1,43 @@
++const Path = require('path');
++const express = require('express');
++require('dotenv').config();
++
++const port = 8080;
++
++const app = express();
++/**
++ * Configure Express.js parsing middleware
++ */
++app.use(express.json());
++app.use(express.urlencoded({ extended: true }));
++
++
++/**
++ * Serve front-end static files
++ */
++
++const FRONTEND = process.env.FRONTEND;
++app.use('/TrentoJOB/', express.static( FRONTEND ));
++
++// If process.env.FRONTEND folder does not contain index.html then use the one from static
++app.use('/', express.static('static')); // expose also this folder
++
++
++
++/**
++ * Resource routing
++ */
++
++// Esempio
++
++// const authURL = require('./authentication/auth');
++
++// Quindi quando chiamo localhost:3000/auth/ etc.
++// Noi andiamo a chiamare il file.js di authURL
++// app.use('/auth', authURL);
++
++app.listen(port, () => {
++    console.log(`Server listening on port ${port}`);
++});
++
++module.exports = app;
+\ No newline at end of file
