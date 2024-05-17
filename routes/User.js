@@ -50,8 +50,74 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.put('/:id', verify, async (req, res) => {
+router.put('/', verify, async (req, res) => {
+    const user = await User.findById(req.user);
 
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    const name=req.body.name;
+    const weigth=req.body.weight;
+    const age=req.body.age;
+    const height=req.body.height;
+
+
+    // Update of the fields of the user's schema.
+    const updateField={};
+    const pushField={};
+
+    if (name!==undefined && name!==''){
+        updateField.name=name;
+    }
+
+    if (age!==undefined && age!==''){
+        updateField.age=age;
+    }
+
+    if (height!==undefined && height!==''){
+        updateField.height=height;
+    }
+
+    if (weigth!==undefined && weigth!==''){
+        pushField.weight=weigth;
+    }
+
+    User.findByIdAndUpdate(req.user,
+        {$set:updateField,$push: pushField },
+        { new:true }
+    )
+        .then(doc=>{
+            res.send("Updated data");
+        })
+        .catch(err=>{
+            res.send("Error updating");
+        });
+
+
+})
+
+
+
+router.get('/', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    const JSON_user= {
+        name:user.name,
+        email:user.email,
+        weight:user.weight,
+        height:user.height,
+        age:user.age,
+        gender:user.gender,
+        timestap:user.timestamp,
+    };
+
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON_user);
 })
 
 module.exports = router;
