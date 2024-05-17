@@ -4,117 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Index Creation">
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mime" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/nodemon" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/nodemon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/nodetouch" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/nodetouch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/nopt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/nopt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/src/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/src/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/.prettierrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/.prettierrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/bin/nodemon.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/bin/nodemon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/authors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/authors.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/help.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/help.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/logo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/logo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/options.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/options.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/topics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/topics.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/usage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/usage.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/whoami.txt" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/doc/cli/whoami.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/cli/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/cli/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/cli/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/cli/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/config/command.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/config/command.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/config/defaults.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/config/defaults.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/config/exec.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/config/exec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/config/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/config/load.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/help/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/help/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/match.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/match.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/run.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/run.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/signals.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/signals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/watch.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/watch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/nodemon.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/nodemon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/rules/add.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/rules/add.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/rules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/rules/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/rules/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/rules/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/spawn.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/spawn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/bus.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/bus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/clone.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/clone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/colour.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/colour.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/log.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/merge.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/utils/merge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/version.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/version.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/lib/nopt.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/lib/nopt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/bin/semver.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/bin/semver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/classes/comparator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/classes/comparator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/classes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/classes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/classes/range.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/classes/range.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/classes/semver.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/classes/semver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/clean.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/clean.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/cmp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/cmp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/coerce.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/coerce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/compare-build.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/compare-build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/compare-loose.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/compare-loose.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/compare.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/compare.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/diff.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/diff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/eq.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/eq.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/gt.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/gt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/gte.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/gte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/inc.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/inc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/lt.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/lt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/lte.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/lte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/major.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/major.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/minor.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/minor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/neq.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/neq.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/patch.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/patch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/prerelease.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/prerelease.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/rcompare.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/rcompare.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/rsort.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/rsort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/satisfies.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/satisfies.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/sort.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/sort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/functions/valid.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/functions/valid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/internal/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/internal/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/internal/debug.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/internal/debug.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/internal/identifiers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/internal/identifiers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/internal/lrucache.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/internal/lrucache.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/internal/parse-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/internal/parse-options.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/internal/re.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/internal/re.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/preload.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/preload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/range.bnf" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/range.bnf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/gtr.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/gtr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/intersects.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/intersects.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/ltr.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/ltr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/max-satisfying.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/max-satisfying.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/min-satisfying.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/min-satisfying.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/min-version.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/min-version.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/outside.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/outside.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/simplify.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/simplify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/subset.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/subset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/to-comparators.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/to-comparators.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/ranges/valid.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/ranges/valid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/touch/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/touch/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/touch/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/touch/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/touch/bin/nodetouch.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/touch/bin/nodetouch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/touch/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/touch/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/touch/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/touch/package.json" afterDir="false" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Retrieve of user information and update of them">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,27 +49,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Frigo__userData&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.13.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.12.12&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/nodejs/node_modules/npm&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;C:/Program Files/nodejs/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;C:\\Program Files\\nodejs\\node_modules\\npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "Node.js.app.js.executor": "Run",
+    "Node.js.index.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Frigo__sub__user",
+    "javascript.nodejs.core.library.configured.version": "20.13.1",
+    "javascript.nodejs.core.library.typings.version": "20.12.12",
+    "last_opened_file_path": "C:/Program Files/nodejs/node_modules/npm",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Program Files/nodejs/node",
+    "nodejs_package_manager_path": "C:\\Program Files\\nodejs\\node_modules\\npm",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\matte\WebstormProjects\NutriVerse\UI" />
@@ -217,7 +109,7 @@
       <workItem from="1715855233017" duration="29000" />
       <workItem from="1715866679923" duration="6569000" />
       <workItem from="1715891047625" duration="3008000" />
-      <workItem from="1715934811853" duration="6296000" />
+      <workItem from="1715934811853" duration="7866000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -251,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715855109990</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Retrieve of user information and update of them">
+      <option name="closed" value="true" />
+      <created>1715949320373</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715949320373</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,7 +168,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Frigo_userData" />
+                        <option value="Frigo_sub_user" />
                       </list>
                     </value>
                   </entry>
@@ -283,6 +183,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Testing changes" />
     <MESSAGE value="Index Creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Index Creation" />
+    <MESSAGE value="Retrieve of user information and update of them" />
+    <option name="LAST_COMMIT_MESSAGE" value="Retrieve of user information and update of them" />
   </component>
 </project>

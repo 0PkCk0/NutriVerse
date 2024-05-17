@@ -98,6 +98,18 @@ router.put('/', verify, async (req, res) => {
 })
 
 
+router.get('/sub', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON_user);
+})
+
 
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
