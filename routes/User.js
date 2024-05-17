@@ -94,7 +94,6 @@ router.put('/', verify, async (req, res) => {
             res.send("Error updating");
         });
 
-
 })
 
 

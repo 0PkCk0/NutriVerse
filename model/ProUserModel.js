@@ -1,7 +1,6 @@
-const User = require('./UserModel');
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
-const { Code } = require('mongodb');
+const User = require('./UserModel');
 
 const proUserSchema = mongoose.Schema({
     Code: {
@@ -49,6 +48,6 @@ async function generateUniqueCode() {
     return code;
 }
 
-const ProUser = mongoose.model('ProUser', proUserSchema);
+const ProUser = User.discriminator('ProUser', proUserSchema);
 
 module.exports = ProUser;
