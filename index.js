@@ -27,10 +27,10 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
 app.use(express.json());
 
 // Route Middleware
-app.use('/api/user', UserRoute);
-app.use('/api/prouser', ProUserRoute);
-app.use('/api/auth', authRoute);
-app.use('/api/subscription',subUser);
+app.use('/api/v1/user', UserRoute);
+app.use('/api/v1/prouser', ProUserRoute);
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/subscription',subUser);
 
 
 app.listen(port, () => {
