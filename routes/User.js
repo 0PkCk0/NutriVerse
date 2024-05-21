@@ -15,11 +15,10 @@ router.post('/', async (req, res) => {
     if (email) return res.status(400).send('Email already exists');
 
     //Check if the gender is valid
-    const validGenders = ['male', 'female', 'other'];
-
-    // Check if the gender is valid
     if (req.body.gender) {
-        if (!validGenders.includes(req.body.gender.toLowerCase())) return res.status(400).send('Invalid gender');
+        let gender = req.body.gender;
+        gender = gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase();
+        req.body.gender = gender;
     }
 
     //Hash password

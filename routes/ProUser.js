@@ -24,7 +24,7 @@ router.post('/', verify, async (req, res) => {
         if (!basicUser) return res.status(400).send('User not found');
 
         // Check if the user is already a ProUser
-        if (basicUser.Profession === 'Nutritionist' || basicUser.Profession === 'Personal Trainer') {
+        if (basicUser.Profession.includes('Nutritionist') || basicUser.Profession.includes('Personal Trainer')) {
             return res.status(400).send('User is already a Professionist and cannot update');
         }
 
