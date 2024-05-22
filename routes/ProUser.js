@@ -69,4 +69,55 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
+
+// Get my subscribers
+router.get('/', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    //Check if the user exists
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log(user.Profession);
+    // Check if the user is a ProUser
+    if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
+        return res.status(400).send('User is not a professionist');
+    }
+
+
+    let resultJSON={
+        subscribers:[]
+    };
+
+    for (const id of user.subscribersId){
+        const userSub=User.findById(id);
+
+        let insert_push={};
+
+        insert_push.name=userSub.name;
+
+        if (userSub.Profession === 'Nutritionist') {
+            insert_push.profession='N'
+        }else if(userSub.Profession === 'Personal Trainer'){
+            insert_push.profession='P'
+        }else{
+            insert_push.profession='B'
+        }
+
+        // Index for selecting the user image in the main dashboard
+        insert_push.index=1;
+
+        console.log(insert_push);
+
+        resultJSON.subscribers.push(insert_push);
+    }
+
+    // We set the header for returning the JSON variable
+    res.setHeader('Content-Type', 'application/json');
+    res.json(resultJSON);
+
+});
+
+
 module.exports = router;
