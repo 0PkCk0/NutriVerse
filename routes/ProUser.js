@@ -159,6 +159,7 @@ router.delete('/', verify, async (req, res) => {
 
 // Get my subscribers
 router.get('/', verify, async (req, res) => {
+    console.log("User: "+req.user);
     const user = await User.findById(req.user);
 
     //Check if the user exists
@@ -166,8 +167,12 @@ router.get('/', verify, async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    console.log(user.Profession);
     // Check if the user is a ProUser
+    if (!user.Profession) {
+        return res.status(400).send('User is not a ProUser');
+    }
+
+    // Check if he is a professionist
     if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
         return res.status(400).send('User is not a professionist');
     }
@@ -178,7 +183,7 @@ router.get('/', verify, async (req, res) => {
     };
 
     for (const id of user.subscribersId){
-        const userSub=User.findById(id);
+        const userSub=await User.findById(id);
 
         let insert_push={};
 
@@ -194,8 +199,6 @@ router.get('/', verify, async (req, res) => {
 
         // Index for selecting the user image in the main dashboard
         insert_push.index=1;
-
-        console.log(insert_push);
 
         resultJSON.subscribers.push(insert_push);
     }
