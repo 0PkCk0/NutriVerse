@@ -98,7 +98,7 @@ router.delete('/', verify, async (req, res) => {
     }
 });
 
-// Get all the user's subscription ids
+// Get all the user's subscription ids (9)
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 

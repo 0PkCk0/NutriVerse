@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const verify = require('./verifyToken');
 const {registerValidation }= require('./validation');
 const moment = require("moment-timezone");
+const ProUser = require("../model/ProUserModel");
 
 router.post('/', async (req, res) => {
     // Validate data before creating a user
@@ -51,7 +52,7 @@ router.post('/', async (req, res) => {
 })
 
 
-// Change basic information of the user
+// Change basic information of the user (5)
 router.put('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
@@ -64,6 +65,7 @@ router.put('/', verify, async (req, res) => {
     const weigth=req.body.weight;
     const age=req.body.age;
     const height=req.body.height;
+    const profession=req.body.profession;
 
 
     // Update of the fields of the user's schema.
@@ -72,6 +74,18 @@ router.put('/', verify, async (req, res) => {
 
     // Next we are going to check if the variables sent
     // in the body are empty or with some data:
+
+    // We check if the request parameter profession does exist, we check if the user is a prouser
+    // and we check if the variable "profession" is a Nutritionist or Personal trainer
+    if ((profession && profession!=='') && user.Profession && (profession==='Nutritionist' || profession==='Personal Trainer')){
+        ProUser.findByIdAndUpdate(req.user,
+            {$set: {Profession:profession}},
+            { new:true }
+        )
+            .catch(err=>{
+                res.send("Error updating");
+            });
+    }
 
     if (name!==undefined && name!==''){
         updateField.name=name;
@@ -113,7 +127,7 @@ router.put('/', verify, async (req, res) => {
 })
 
 
-// Get user's specific subscription personal information
+// Get user's specific subscription personal information (14)
 router.get('/:subscriptionId', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
@@ -131,8 +145,15 @@ router.get('/:subscriptionId', verify, async (req, res) => {
 
     let exists=false;
 
-    //Check if we are subscribed to the user and viceversa
+    //Check if we are subscribed to the user
     for (const id of user.subscriptionsId){
+        if (id===subscriptionId){
+            exists=true;
+        }
+    }
+
+    //Check if it is one of our subscriber
+    for (const id of user.subscribersId){
         if (id===subscriptionId){
             exists=true;
         }
