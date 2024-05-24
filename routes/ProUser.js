@@ -16,6 +16,28 @@ const getFormattedDatePlusOneYear = function () {
     return time.add(1, 'year').format('YYYY/MM/DD HH:mm');
 }
 
+const sendUpdateUser=async function (res,ID) {
+    // We get the subscription
+    const subUser = await User.findById(ID);
+
+    //JSON variable to return to the caller
+    const JSON_user = {
+        name: subUser.name,
+        weight: subUser.weight,
+        height: subUser.height,
+        age: subUser.age,
+        gender: subUser.gender,
+        timestap: subUser.timestamp,
+        Profession: subUser.Profession,
+        subscriptionEndDate: subUser.subscriptionEndDate,
+        subscriptionStartDate: subUser.subscriptionStartDate
+    };
+
+    // We set the header for returning the JSON variable
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON_user);
+}
+
 // Update a user to ProUser
 router.post('/', verify, async (req, res) => {
     try {
@@ -155,6 +177,44 @@ router.delete('/', verify, async (req, res) => {
     }
 });
 
+
+// Get subscription or subscriber of the users (14)
+router.get('/:userID', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    console.log("Entered ProUser ID");
+    //Check if the user exists
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    const userID = req.params.userID;
+
+    //Check if we get the subscriptionId in the request parameters
+    if (!userID){
+        return res.status(404).json({ message: 'Id not found' });
+    }
+
+
+    //Check if we are subscribed to the user
+    for (const id of user.subscriptionsId){
+        if (id===userID){
+            return await sendUpdateUser(res,userID);
+        }
+    }
+
+    //Check if it is one of our subscriber
+    for (const id of user.subscribersId){
+        if (id===userID){
+            return await sendUpdateUser(res,userID);
+        }
+    }
+
+
+    //If we are not subscribed to him/her
+    return res.status(404).json({ message: 'You are not subscribed to him/her or your subscription' });
+
+});
 
 
 // Get my subscribers

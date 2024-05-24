@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Get user's specific subscription personal information">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed update of profession from User">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_05_2024_12_24_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_05_2024_12_24_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_05_2024_12_24__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_05_2024_12_24__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_05_2024_18_31__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2024_16_45_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2024_16_45__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/ProUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/ProUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/User.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Pkck_index.js" />
+        <entry key="$PROJECT_DIR$" value="Frigo_pro_user" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,7 +63,7 @@
     &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Frigo__user__sub&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Pkck__index.js&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.13.1&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.12.12&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Program Files/nodejs/node_modules/npm&quot;,
@@ -65,7 +73,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;C:/Program Files/nodejs/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;C:\\Program Files\\nodejs\\node_modules\\npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -112,6 +120,7 @@
       <workItem from="1715934811853" duration="18788000" />
       <workItem from="1715962709773" duration="334000" />
       <workItem from="1716279642216" duration="262000" />
+      <workItem from="1716552997272" duration="1466000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -193,7 +202,31 @@
       <option name="project" value="LOCAL" />
       <updated>1715958690459</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Correction post of proUser">
+      <option name="closed" value="true" />
+      <created>1716370594914</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716370594914</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed get subscribers from professionists users">
+      <option name="closed" value="true" />
+      <created>1716371712326</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716371712326</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fixed update of profession from User">
+      <option name="closed" value="true" />
+      <created>1716386847872</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716386847872</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +264,9 @@
     <MESSAGE value="Get subscriptions and fixed weight-time put value inside the user update" />
     <MESSAGE value="Comments on previous code" />
     <MESSAGE value="Get user's specific subscription personal information" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get user's specific subscription personal information" />
+    <MESSAGE value="Correction post of proUser" />
+    <MESSAGE value="Fixed get subscribers from professionists users" />
+    <MESSAGE value="Fixed update of profession from User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed update of profession from User" />
   </component>
 </project>
