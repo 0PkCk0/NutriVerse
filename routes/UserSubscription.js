@@ -54,6 +54,7 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
+//unenroll from a professionist
 router.delete('/', verify, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {

@@ -55,7 +55,11 @@ const userSchema = new mongoose.Schema({
     },
     subscriptionsId: [{
         type : String
-    }]
+    }],
+    confirmed: {
+        type: Boolean,
+        default: false
+    },
 },{
     discriminatorKey: 'userType', // Key to differentiate between different user types
     collection: 'users' // Store all user types in the same collection

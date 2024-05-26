@@ -6,50 +6,73 @@ const verify = require('./verifyToken');
 const {registerValidation }= require('./validation');
 const moment = require("moment-timezone");
 const ProUser = require("../model/ProUserModel");
+const transporter = require('../config/transporter');
 
+//register
 router.post('/', async (req, res) => {
-    // Validate data before creating a user
-    const { error } = await registerValidation(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-
-    // Check if the user is already in the database
-    const email = await User.findOne({ email: req.body.email });
-    if (email) return res.status(400).send('Email already exists');
-
-    //Check if the gender is valid
-    if (req.body.gender) {
-        let gender = req.body.gender;
-        gender = gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase();
-        req.body.gender = gender;
-    }
-
-    //Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword,
-        weight: req.body.weight,
-        height: req.body.height,
-        age: req.body.age,
-        gender: req.body.gender,
-        subscriptionsId: req.body.subscriptionsId,
-        userType: 'User'
-    })
-
-    const new_user = await user.save()
-
-    if (!new_user) return res.status(400).send('Error creating user');
-
     try {
-        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-        res.status(201).header('auth-token', token).send(token);
+        // Validate data before creating a user
+        const { error } = await registerValidation(req.body);
+        if (error) return res.status(400).send(error.details[0].message);
+
+        // Check if the user is already in the database
+        const emailExist = await User.findOne({ email: req.body.email });
+        if (emailExist) return res.status(400).send('Email already exists');
+
+        // Check if the gender is valid
+        if (req.body.gender) {
+            let gender = req.body.gender;
+            gender = gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase();
+            req.body.gender = gender;
+        }
+
+        // Hash password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+        // Create new user object
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword,
+            weight: req.body.weight,
+            height: req.body.height,
+            age: req.body.age,
+            gender: req.body.gender,
+            subscriptionsId: req.body.subscriptionsId,
+            userType: 'User',
+            confirmed: false
+        });
+
+        // Save user to database
+        const new_user = await user.save();
+        if (!new_user) throw new Error('Error creating user');
+
+        // Create a confirmation token
+        const confirmationToken = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+
+        // Send confirmation email
+        let mailOptions = {
+            from: process.env.EMAIL_USERNAME,
+            to: req.body.email,
+            subject: 'Please confirm your email',
+            text: `Please confirm your email by clicking on the following link: 
+            \nhttps://www.chess.com/home`
+        };
+
+        transporter.sendMail(mailOptions, function(err) {
+            if (err) {
+                console.error('Error sending email: ', err);
+                return res.status(500).send({ msg: 'Technical Issue!, Please click on resend for verify your email.' });
+            }
+            res.status(200).send('A confirmation email has been sent to ' + req.body.email + '.');
+        });
     } catch (err) {
-        res.status(400).send(err)
+        console.error('Error in registration: ', err);
+        res.status(500).send('Internal Server Error');
     }
-})
+});
+
 
 
 // Change basic information of the user (5)
