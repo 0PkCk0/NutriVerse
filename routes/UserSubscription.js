@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../model/UserModel');
 const ProUser = require('../model/ProUserModel');
-const verify = require('./verifyToken');
+const verify = require('../config/verifyToken');
 const mongoose = require('mongoose'); // Ensure mongoose is required
 
 //enroll to a professionist
