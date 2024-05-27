@@ -54,6 +54,66 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
+
+// Accept new subscriber from a user (21)
+router.put('/:acceptId', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    // Check if the user exists
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if he is a professionist
+    if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
+        return res.status(400).send('User is not a professionist');
+    }
+
+
+    //Get a boolean value if I accept or deny the request of a user
+    const ADRequest=req.body.ADRequest;
+    const userID=req.params.acceptId;
+
+    console.log(userID);
+    if (user.requestId.includes(userID)){
+        if (user.subscribersId.includes(userID)){
+            await ProUser.findByIdAndUpdate(req.user,
+                {$pull: { requestId: userID }});
+            return res.status(404).json({ message: 'User already subscribed' });
+        }else{
+            if (ADRequest){
+                ProUser.findByIdAndUpdate(req.user,
+                    {$push: { subscribersId:userID }, $pull: { requestId: userID }},
+                    { new:true }
+                )
+                    .then(doc=>{
+                        return res.status(200).json({ message: 'User added' });
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        return res.status(200).json({ message: 'Error adding' });
+                    });
+            }
+
+            else{
+                ProUser.findByIdAndUpdate(req.user,
+                    {$pull: { requestId: userID }},
+                    { new:true }
+                )
+                    .then(doc=>{
+                        return res.status(200).json({ message: 'User denied' });
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        return res.status(200).json({ message: 'Error dening' });
+                    });
+            }
+        }
+    }else{
+        return res.status(404).json({ message: 'You don\'t have a request from this ID' });
+    }
+})
+
 //unenroll from a professionist
 router.delete('/', verify, async (req, res) => {
     try {

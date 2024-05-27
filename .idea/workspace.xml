@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed user and prouser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/ProUserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/ProUserModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
     "Node.js.app.js.executor": "Run",
     "Node.js.index.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Frigo-professions-ReqSub",
+    "git-widget-placeholder": "Pkck__index.js",
     "javascript.nodejs.core.library.configured.version": "20.13.1",
     "javascript.nodejs.core.library.typings.version": "20.12.12",
     "last_opened_file_path": "C:/Program Files/nodejs/node_modules/npm",
@@ -253,7 +253,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Pkck_index.js" />
+                        <option value="Pkck_index.js" />
                       </list>
                     </value>
                   </entry>
