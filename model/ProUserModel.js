@@ -30,6 +30,10 @@ const proUserSchema = mongoose.Schema({
     },
     subscribersId: {
         type: [String]
+    },
+
+    requestId:{
+        type: [String]
     }
 });
 
