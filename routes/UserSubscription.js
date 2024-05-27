@@ -4,7 +4,7 @@ const ProUser = require('../model/ProUserModel');
 const verify = require('../config/verifyToken');
 const mongoose = require('mongoose'); // Ensure mongoose is required
 
-//enroll to a professionist
+//request to enroll to a professionist
 router.post('/', verify, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
@@ -13,7 +13,7 @@ router.post('/', verify, async (req, res) => {
         
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
         
-        const professionistId = req.body.subscriptionsId; // Retrieve professionist ID from req.body
+        const professionistId = await req.body.subscriptionsId; // Retrieve professionist ID from req.body
         
         const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
         
@@ -39,7 +39,7 @@ router.post('/', verify, async (req, res) => {
 
         const updatedProUser = await ProUser.findByIdAndUpdate(
             professionistId,
-            { $push: { subscribersId: req.user._id } },
+            { $push: { requestId: req.user._id } },
             { new: true }
         );
 
