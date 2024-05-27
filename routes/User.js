@@ -176,7 +176,7 @@ router.get('/:subscriptionID', verify, async (req, res) => {
 
 
 
-// Get all the user's basic information
+// Get all the user's basic information (5)
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 

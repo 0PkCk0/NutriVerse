@@ -182,7 +182,6 @@ router.delete('/', verify, async (req, res) => {
 router.get('/:userID', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
-    console.log("Entered ProUser ID");
     //Check if the user exists
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
@@ -217,7 +216,7 @@ router.get('/:userID', verify, async (req, res) => {
 });
 
 
-// Get my subscribers
+// Get my subscribers (20)
 router.get('/', verify, async (req, res) => {
     console.log("User: "+req.user);
     const user = await User.findById(req.user);
