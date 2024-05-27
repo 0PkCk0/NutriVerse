@@ -10,24 +10,25 @@ router.post('/', verify, async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
             return res.status(400).send('Invalid Professionist ID');
         }
-        
+
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
-        
+
         const professionistId = await req.body.subscriptionsId; // Retrieve professionist ID from req.body
-        
+
         const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
-        
+
         if (!subscriber) return res.status(400).send('Subscriber not found');
         if (!professionist) return res.status(400).send('Professionist not found');
-        
+
         // Check if the professionist is a premium user
         if (professionist.Profession === 'Premium user') {
             return res.status(400).send('Not a professionist');
         }
-        
-        // Check if the user is already subscribed
-        if (subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) {
-            return res.status(400).send('User is already subscribed');
+
+        // Check if the user is already subscribed or has already sent a request
+        if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) ||
+            (professionist.requestId && professionist.requestId.includes(req.user._id))) {
+            return res.status(400).send('User is already subscribed or has already sent a request');
         }
 
         // Update the user document using the User model
@@ -44,7 +45,7 @@ router.post('/', verify, async (req, res) => {
         );
 
         res.status(200).json({
-            message: 'User subscribed to Professionist',
+            message: 'Request sent to Professionist',
             updatedUser,
             updatedProUser
         });
@@ -55,7 +56,7 @@ router.post('/', verify, async (req, res) => {
 });
 
 
-// Accept new subscriber from a user (21)
+// Accept or Deny new subscriber from a user (21)
 router.put('/:acceptId', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
@@ -71,65 +72,95 @@ router.put('/:acceptId', verify, async (req, res) => {
 
 
     //Get a boolean value if I accept or deny the request of a user
-    const ADRequest=req.body.ADRequest;
-    const userID=req.params.acceptId;
+    const ADRequest = req.body.ADRequest;
+    const userID = req.params.acceptId;
 
     console.log(userID);
-    if (user.requestId.includes(userID)){
-        if (user.subscribersId.includes(userID)){
+    if (user.requestId.includes(userID)) {
+        if (user.subscribersId.includes(userID)) {
             await ProUser.findByIdAndUpdate(req.user,
-                {$pull: { requestId: userID }});
+                { $pull: { requestId: userID } });
             return res.status(404).json({ message: 'User already subscribed' });
-        }else{
-            if (ADRequest){
+        } else {
+            if (ADRequest) {
                 ProUser.findByIdAndUpdate(req.user,
-                    {$push: { subscribersId:userID }, $pull: { requestId: userID }},
-                    { new:true }
+                    { $push: { subscribersId: userID }, $pull: { requestId: userID } },
+                    { new: true }
                 )
-                    .then(doc=>{
+                    .then(doc => {
                         return res.status(200).json({ message: 'User added' });
                     })
-                    .catch(err=>{
+                    .catch(err => {
                         console.log(err);
                         return res.status(200).json({ message: 'Error adding' });
                     });
             }
 
-            else{
+            else {
                 ProUser.findByIdAndUpdate(req.user,
-                    {$pull: { requestId: userID }},
-                    { new:true }
+                    { $pull: { requestId: userID } },
+                    { new: true }
                 )
-                    .then(doc=>{
+                    .then(doc => {
                         return res.status(200).json({ message: 'User denied' });
                     })
-                    .catch(err=>{
+                    .catch(err => {
                         console.log(err);
-                        return res.status(200).json({ message: 'Error dening' });
+                        return res.status(200).json({ message: 'Error denying' });
                     });
             }
         }
-    }else{
+    } else {
+        console.log(user.requestId);
         return res.status(404).json({ message: 'You don\'t have a request from this ID' });
     }
 })
 
-//unenroll from a professionist
-router.delete('/', verify, async (req, res) => {
+router.delete('/:userId', verify, async (req, res) => {
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
-            return res.status(400).send('Invalid Professionist ID');
+
+        const requester = await User.findById(req.user); // Retrieve user by ID from req.user
+
+        // Check if the request comes from a professional
+        if (requester.Profession === 'Nutritionist' || requester.Profession === 'Personal Trainer') {
+            // Retrieve the professional's ID from the request user
+            const professionalId = req.user._id;
+
+            // Retrieve the user's ID to be disenrolled from req.body
+            const userId = req.params.userId;
+
+            // Update the professional's document to remove the user from subscribers
+            const updatedProUser = await ProUser.findByIdAndUpdate(
+                professionalId,
+                { $pull: { subscribersId: userId } },
+                { new: true }
+            );
+
+            // Update the user's document to remove the professional from subscriptions
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { $pull: { subscriptionsId: professionalId } },
+                { new: true }
+            );
+
+            return res.status(200).json({
+                message: 'User disenrolled by Professional',
+                updatedUser,
+                updatedProUser
+            });
         }
-        
+
+        // If not a professional, proceed with the original function
+
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
-        
-        const professionistId = req.body.subscriptionsId; // Retrieve professionist ID from req.body
-        
+
+        const professionistId = req.params.userId; // Retrieve professionist ID from req.body
+
         const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
-        
+
         if (!subscriber) return res.status(400).send('Subscriber not found');
         if (!professionist) return res.status(400).send('Professionist not found');
-        
+
         // Check if the user is not subscribed
         if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistId)) {
             return res.status(400).send('User is not subscribed');
@@ -159,6 +190,7 @@ router.delete('/', verify, async (req, res) => {
     }
 });
 
+
 // Get all the user's subscription ids (9)
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
@@ -169,8 +201,8 @@ router.get('/', verify, async (req, res) => {
     }
 
     // JSON variable to return to the caller
-    const JSON_user= {
-        subscriptions:user.subscriptionsId,
+    const JSON_user = {
+        subscriptions: user.subscriptionsId,
     };
 
     res.setHeader('Content-Type', 'application/json');
