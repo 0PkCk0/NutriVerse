@@ -7,12 +7,14 @@ const {registerValidation }= require('../config/validation');
 const moment = require("moment-timezone");
 const ProUser = require("../model/ProUserModel");
 const transporter = require('../config/transporter');
+const sanitizeInput = require('../config/sanitize');
 
 //register
 router.post('/', async (req, res) => {
     try {
         // Validate data before creating a user
-        const { error } = await registerValidation(req.body);
+        const data = sanitizeInput(req.body);
+        const { error } = await registerValidation(data);
         if (error) return res.status(400).send(error.details[0].message);
 
         // Check if the user is already in the database

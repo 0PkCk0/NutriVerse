@@ -9,8 +9,7 @@ const registerValidation = data => {
         password: Joi.string().min(6).required(),
         weight: Joi.array().items(
             Joi.object({
-                value: Joi.number().min(30),
-                date: Joi.date()
+                value: Joi.number().min(30)
             })
         ),
         height: Joi.number().min(0),
