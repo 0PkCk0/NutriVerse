@@ -32,11 +32,13 @@ app.use('/api/v1/prouser', ProUserRoute);
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
-const cors = require('cors');
-app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend URL
-  credentials: true,
-}));
+
+// app.use((req, res, next) => {
+//  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+//  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//  next();
+//});
 
 
 app.listen(port, () => {
