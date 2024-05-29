@@ -218,6 +218,8 @@ router.get('/', verify, async (req, res) => {
         height:user.height,
         age:user.age,
         gender:user.gender,
+        userType:user.userType,
+        Profession:user.Profession,
         timestap:user.timestamp,
     };
 
