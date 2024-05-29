@@ -32,6 +32,12 @@ app.use('/api/v1/prouser', ProUserRoute);
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with your frontend URL
+  credentials: true,
+}));
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
