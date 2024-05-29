@@ -7,6 +7,7 @@ const authRoute = require('./routes/auth');
 const subUser = require('./routes/UserSubscription');
 const UserRoute = require('./routes/User');
 const ProUserRoute = require('./routes/ProUser');
+const uploadRoute = require('./routes/upload');
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use('/api/v1/user', UserRoute);
 app.use('/api/v1/prouser', ProUserRoute);
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
+app.use('/api/v1/upload', uploadRoute);
 
 
 app.listen(port, () => {

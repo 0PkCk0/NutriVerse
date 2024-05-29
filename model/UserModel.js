@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 const { id } = require('@hapi/joi/lib/base');
+const { type } = require('@hapi/joi/lib/extend');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -27,11 +28,13 @@ const userSchema = new mongoose.Schema({
         },
         date: {
             type: String,
-            default: function() {
+            default: function () {
                 var time = moment.tz(new Date(), "Europe/Rome");
                 return time.format('YYYY/MM/DD HH:mm');
             }
         }
+    }, {
+        _id: false 
     }],
     height: {
         type: Number,
@@ -47,19 +50,34 @@ const userSchema = new mongoose.Schema({
     },
     timestamp: {
         type: String,
-        default: function() {
+        default: function () {
             var time = moment.tz(new Date(), "Europe/Rome");
             return time.format('YYYY/MM/DD HH:mm');
         }
     },
     subscriptionsId: [{
-        type : String
+        type: String
     }],
     confirmed: {
         type: Boolean,
         default: false
     },
-},{
+    plansUrl: [{
+        professionalId: {
+            type: String
+        },
+        url: { 
+            type: String 
+        },
+        type: {
+            type: String,
+            enum: ["Diet", "Workout"]
+        },
+    }, {
+        _id: false 
+    }
+    ]
+}, {
     discriminatorKey: 'userType', // Key to differentiate between different user types
     collection: 'users' // Store all user types in the same collection
 });
@@ -68,5 +86,5 @@ const User = mongoose.model('User', userSchema);
 
 module.exports = User;
 
-    
+
 
