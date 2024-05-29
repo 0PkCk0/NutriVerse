@@ -5,6 +5,7 @@ const verify = require('../config/verifyToken');
 const router = require('express').Router();
 const moment = require('moment-timezone');
 const mongoose = require('mongoose');
+const {sendUpdateUser}=require('../config/updateUser');
 
 const getFormattedDate = function () {
     var time = moment.tz(new Date(), "Europe/Rome");
@@ -14,28 +15,6 @@ const getFormattedDate = function () {
 const getFormattedDatePlusOneYear = function () {
     var time = moment.tz(new Date(), "Europe/Rome");
     return time.add(1, 'year').format('YYYY/MM/DD HH:mm');
-}
-
-const sendUpdateUser=async function (res,ID) {
-    // We get the subscription
-    const subUser = await User.findById(ID);
-
-    //JSON variable to return to the caller
-    const JSON_user = {
-        name: subUser.name,
-        weight: subUser.weight,
-        height: subUser.height,
-        age: subUser.age,
-        gender: subUser.gender,
-        timestap: subUser.timestamp,
-        Profession: subUser.Profession,
-        subscriptionEndDate: subUser.subscriptionEndDate,
-        subscriptionStartDate: subUser.subscriptionStartDate
-    };
-
-    // We set the header for returning the JSON variable
-    res.setHeader('Content-Type', 'application/json');
-    res.json(JSON_user);
 }
 
 // Update a user to ProUser
@@ -177,7 +156,7 @@ router.delete('/', verify, async (req, res) => {
     }
 });
 
-// Get subscription or subscriber of the users (23)
+// Get subscriber of the Prousers (23)
 router.get('/:userID', verify, async (req, res) => {
     const user = await User.findById(req.user);
 

@@ -152,7 +152,7 @@ router.put('/', verify, async (req, res) => {
 })
 
 
-// Get user's specific subscription personal information (10)
+// Get subscription of the User (10)
 router.get('/:subscriptionID', verify, async (req, res) => {
     const user = await User.findById(req.user);
 

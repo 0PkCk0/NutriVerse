@@ -3,6 +3,7 @@ const User = require('../model/UserModel');
 const ProUser = require('../model/ProUserModel');
 const verify = require('../config/verifyToken');
 const mongoose = require('mongoose'); // Ensure mongoose is required
+const {sendUpdateUser}=require('../config/updateUser');
 
 //request to enroll to a professionist
 router.post('/', verify, async (req, res) => {
