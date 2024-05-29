@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 
         // Check if the user is already in the database
         const emailExist = await User.findOne({ email: req.body.email });
-        if (emailExist) return res.status(400).send('Email already exists');
+        if (emailExist) return res.status(400).send({message:'Email already exists'});
 
         // Check if the gender is valid
         if (req.body.gender) {
@@ -67,11 +67,11 @@ router.post('/', async (req, res) => {
                 console.error('Error sending email: ', err);
                 return res.status(500).send({ msg: 'Technical Issue!, Please click on resend for verify your email.' });
             }
-            res.status(200).send('A confirmation email has been sent to ' + req.body.email + '.');
+            res.status(200).send({message:'A confirmation email has been sent to ' + req.body.email + '.'});
         });
     } catch (err) {
         console.error('Error in registration: ', err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send({message:'Internal Server Error'});
     }
 });
 
@@ -108,7 +108,7 @@ router.put('/', verify, async (req, res) => {
             { new:true }
         )
             .catch(err=>{
-                res.send("Error updating");
+                res.send({ message: 'Error updating' });
             });
     }
 
@@ -142,11 +142,11 @@ router.put('/', verify, async (req, res) => {
         { new:true }
     )
         .then(doc=>{
-            res.send("Updated data");
+            res.send({ message: 'Updated data' });
         })
         .catch(err=>{
             console.log(err);
-            res.send("Error updating");
+            res.send({ message: 'Error updating' });
         });
 
 })
