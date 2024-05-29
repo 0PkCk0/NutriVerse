@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors=require('cors');
 // Import routes
 const authRoute = require('./routes/auth');
 const subUser = require('./routes/UserSubscription');
@@ -33,12 +34,10 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
 
- app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://nutriverse-b13w.onrender.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-   next();
-});
+ app.use(cors({
+     origin: 'https://nutriverse-b13w.onrender.com',
+     credentials:true,
+}));
 
 
 app.listen(port, () => {
