@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const morgan = require('morgan');
+const cors = require('cors');
+const body_parser = require('body-parser');
+
 // Import routes
 const authRoute = require('./routes/auth');
 const subUser = require('./routes/UserSubscription');
@@ -33,12 +37,13 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+app.use(morgan('dev'))
+app.use(cors({
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}))
+app.use(body_parser.json());
+app.use(body_parser.urlencoded({extended: true}))
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
