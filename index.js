@@ -33,12 +33,12 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
 
-// app.use((req, res, next) => {
-//  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-//  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//  next();
-//});
+ app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://nutriverse-b13w.onrender.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+   next();
+});
 
 
 app.listen(port, () => {
