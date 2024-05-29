@@ -34,11 +34,12 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
 
- app.use(cors({
-     origin: 'https://nutriverse-b13w.onrender.com',
-     credentials:true,
-}));
-
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
