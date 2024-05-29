@@ -177,8 +177,7 @@ router.delete('/', verify, async (req, res) => {
     }
 });
 
-
-// Get subscription or subscriber of the users (14)
+// Get subscription or subscriber of the users (23)
 router.get('/:userID', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
@@ -194,14 +193,6 @@ router.get('/:userID', verify, async (req, res) => {
         return res.status(404).json({ message: 'Id not found' });
     }
 
-
-    //Check if we are subscribed to the user
-    for (const id of user.subscriptionsId){
-        if (id===userID){
-            return await sendUpdateUser(res,userID);
-        }
-    }
-
     //Check if it is one of our subscriber
     for (const id of user.subscribersId){
         if (id===userID){
@@ -209,9 +200,8 @@ router.get('/:userID', verify, async (req, res) => {
         }
     }
 
-
     //If we are not subscribed to him/her
-    return res.status(404).json({ message: 'You are not subscribed to him/her or your subscription' });
+    return res.status(404).json({ message: 'He/she is not subscribed to you' });
 
 });
 
