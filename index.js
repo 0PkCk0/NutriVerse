@@ -37,11 +37,11 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 
 
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(cors({
     origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}))
+}));
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended: true}))
 
