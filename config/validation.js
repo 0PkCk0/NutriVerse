@@ -19,10 +19,7 @@ const registerValidation = data => {
 
     const { error } = schema.validate(data);
     if (error) {
-        return {
-            success: false,
-            message: error.details[0].message
-        };
+        throw new Error(error.details[0].message);
     }
 
     return {
@@ -38,10 +35,7 @@ const loginValidation = data => {
 
     const { error } = schema.validate(data);
     if (error) {
-        return {
-            success: false,
-            message: error.details[0].message
-        };
+        throw new Error(error.details[0].message);
     }
 
     return {
