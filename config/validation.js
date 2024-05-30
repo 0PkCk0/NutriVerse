@@ -15,18 +15,39 @@ const registerValidation = data => {
         height: Joi.number().min(0),
         age: Joi.number().min(18),
         gender: Joi.string().min(4)
-    })
-    return schema.validate(data)
+    });
+
+    const { error } = schema.validate(data);
+    if (error) {
+        return {
+            success: false,
+            message: error.details[0].message
+        };
+    }
+
+    return {
+        success: true
+    };
 }
 
 const loginValidation = data => {
     const schema = Joi.object({
         email: Joi.string().min(6).required().email(),
         password: Joi.string().min(6).required()
-    })
-    return schema.validate(data)
-}
+    });
 
+    const { error } = schema.validate(data);
+    if (error) {
+        return {
+            success: false,
+            message: error.details[0].message
+        };
+    }
+
+    return {
+        success: true
+    };
+}
 module.exports = {
     registerValidation,
     loginValidation

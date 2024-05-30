@@ -9,21 +9,21 @@ const { loginValidation } = require('../config/validation');
 router.post('/', async (req, res) => {
     // Validate data before logging in
     const { error } = loginValidation(req.body);
-    if (error) return res.status(400).send({message:error.details[0].message});
+    if (error) return res.status({status:400}).send({message:error.details[0].message});
 
     // Check if the email exists
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send({message:'Email not found'});
+    if (!user) return res.status({status:400}).send({message:'Email not found'});
 
     // Check if the user is confirmed
-    if (!user.confirmed) return res.status(400).send({message:'Please confirm your email before logging in'});
+    if (!user.confirmed) return res.status({status:400}).send({message:'Please confirm your email before logging in'});
 
     // Check if the password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password);
-    if (!validPass) return res.status(400).send({message:'Invalid password'});
+    if (!validPass) return res.status({status:400}).send({message:'Invalid password'});
 
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-    res.status(200).header('auth-token', token).send({token:token});
+    res.status({status:200}).header('auth-token', token).send({token:token});
 })
 
 router.get('/', async (req, res) => {
