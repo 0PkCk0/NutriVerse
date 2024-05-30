@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         // Validate data before creating a user
         const data = sanitizeInput(req.body);
         const { error } = await registerValidation(data);
-        if (error) return res.status(400).send(error.details[0].message);
+        if (error) return res.status(400).send({message:error.details[0].message});
 
         // Check if the user is already in the database
         const emailExist = await User.findOne({ email: req.body.email });

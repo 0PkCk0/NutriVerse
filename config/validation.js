@@ -15,33 +15,18 @@ const registerValidation = data => {
         height: Joi.number().min(0),
         age: Joi.number().min(18),
         gender: Joi.string().min(4)
-    });
-
-    const { error } = schema.validate(data);
-    if (error) {
-        throw new Error(error.details[0].message);
-    }
-
-    return {
-        success: true
-    };
+    })
+    return schema.validate(data)
 }
 
 const loginValidation = data => {
     const schema = Joi.object({
         email: Joi.string().min(6).required().email(),
         password: Joi.string().min(6).required()
-    });
-
-    const { error } = schema.validate(data);
-    if (error) {
-        throw new Error(error.details[0].message);
-    }
-
-    return {
-        success: true
-    };
+    })
+    return schema.validate(data)
 }
+
 module.exports = {
     registerValidation,
     loginValidation
