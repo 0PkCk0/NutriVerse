@@ -76,7 +76,7 @@ router.delete('/:planId', verify, async (req, res) => {
 
     console.log(user.Profession);
 
-    if (user.Profession && (user.Profession == 'Nutritionist' || user.Profession == 'Personal Trainer')) {
+    if (user.Profession && (user.Profession === 'Nutritionist' || user.Profession === 'Personal Trainer')) {
 
       client = await User.findById(req.body.userId);
       console.log(client);
