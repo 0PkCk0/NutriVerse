@@ -42,6 +42,42 @@ router.put('/', verify, async (req, res) => {
   }
 });
 
+
+//Get specific plan of the user (24)
+router.get('/:PlanID', verify, async (req, res) => {
+  const user = await User.findById(req.user);
+
+  URLsplan=user.plansUrl;
+
+  const PlanID = req.params.PlanID;
+
+  if (URLsplan){
+    for (const plan of URLsplan){
+      if (plan._id.toHexString()===PlanID){
+        return  res.status(200).json({ status: 200, Plans:plan});
+      }
+    }
+    return res.status(404).json({ status: 404, message:'Error on searching the specific ID' });
+  }else{
+    return res.status(500).json({ status: 500, message: 'Internal server error' });
+  }
+});
+
+
+// Get all the plans of the User (11)
+router.get('/', verify, async (req, res) => {
+  const user = await User.findById(req.user);
+
+  URLsplan=user.plansUrl;
+
+  if (URLsplan){
+    return res.status(200).json({ status: 200, Plans:URLsplan });
+  }else{
+    return res.status(500).json({ status: 500, message: 'Internal server error' });
+  }
+});
+
+
 router.delete('/', verify, async (req, res) => {
   const { professionalId, url } = req.body;
 
