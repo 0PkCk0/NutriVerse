@@ -4,26 +4,41 @@ const User = require('../model/UserModel'); // Assuming your user model is defin
 const verify = require('../config/verifyToken');
 
 // Route to handle uploading PDF URLs
-router.post('/',verify, async (req, res) => {
+router.post('/', verify, async (req, res) => {
   const { professionalId, url, type } = req.body;
 
   try {
-    // Find the user by ID
     const userId = req.user._id;
     const user = await User.findById(userId);
 
-    // Push the new PDF URL to the plansUrl array
     user.plansUrl.push({ professionalId, url, type });
 
-    // Save the updated user
     await user.save();
 
-    res.send('PDF URL uploaded successfully');
+    res.status(200).json({ status: 200, message: 'PDF URL uploaded successfully' });
   } catch (error) {
     console.error('Error uploading PDF URL', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ status: 500, message: 'Internal Server Error' });
   }
 });
+
+router.delete('/', verify, async (req, res) => {
+  const { professionalId, url } = req.body;
+
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+
+    user.plansUrl.pull({ professionalId, url });
+
+    await user.save();
+
+    res.status(200).json({ status: 200, message: 'PDF URL deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting PDF URL', error);
+    res.status(500).json({ status: 500, message: 'Internal Server Error' });
+  }
+})
 
 // Export the router
 module.exports = router;

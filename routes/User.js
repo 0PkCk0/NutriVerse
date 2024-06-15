@@ -15,11 +15,11 @@ router.post('/', async (req, res) => {
         // Validate data before creating a user
         const data = sanitizeInput(req.body);
         const { error } = await registerValidation(data);
-        if (error) return res.status(400).send(error.details[0].message);
+        if (error) return res.status(400).json({ status: 400, message: error.details[0].message });
 
         // Check if the user is already in the database
         const emailExist = await User.findOne({ email: req.body.email });
-        if (emailExist) return res.status(400).send('Email already exists');
+        if (emailExist) return res.status(400).json({ status: 400, message: 'Email already exists' });
 
         // Check if the gender is valid
         if (req.body.gender) {
@@ -65,13 +65,13 @@ router.post('/', async (req, res) => {
         transporter.sendMail(mailOptions, function(err) {
             if (err) {
                 console.error('Error sending email: ', err);
-                return res.status(500).send({ msg: 'Technical Issue!, Please click on resend for verify your email.' });
+                return res.status(500).json({ status: 500, message: 'Technical Issue!, Please click on resend for verify your email.' });
             }
-            res.status(200).send('A confirmation email has been sent to ' + req.body.email + '.');
+            res.status(200).json({ status: 200, message: 'A confirmation email has been sent to ' + req.body.email + '.' });
         });
     } catch (err) {
         console.error('Error in registration: ', err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ status: 500, message: 'Internal Server Error' });
     }
 });
 
@@ -91,6 +91,8 @@ router.put('/', verify, async (req, res) => {
     const age=req.body.age;
     const height=req.body.height;
     const profession=req.body.profession;
+    const plansUrl=req.body.plansUrl;
+    const confirmed = req.body.confirmed;
 
 
     // Update of the fields of the user's schema.
@@ -108,7 +110,7 @@ router.put('/', verify, async (req, res) => {
             { new:true }
         )
             .catch(err=>{
-                res.send("Error updating");
+                res.send({ message: 'Error updating' });
             });
     }
 
@@ -122,6 +124,31 @@ router.put('/', verify, async (req, res) => {
 
     if (height!==undefined && height!==''){
         updateField.height=height;
+    }
+
+    if (confirmed!==undefined && confirmed!==''){
+        updateField.confirmed=confirmed;
+    }
+
+    if (plansUrl !== undefined && plansUrl !== '') {
+        try {
+            pushField.plansUrl = await Promise.all(plansUrl.map(async (plan) => {
+                // Check if professionalId exists and is a professional
+                const professional = await ProUser.findById({ _id: plan.professionalId});
+                if (!professional) {
+                    throw new Error(`No professional found with id: ${plan.professionalId}`);
+                }
+        
+                return {
+                    professionalId: plan.professionalId,
+                    url: plan.url,
+                    type: plan.type
+                };
+            }));
+        } catch (error) {
+            console.error('Error:', error);
+            return res.status(400).json({ status: 400, message: error.message });
+        }
     }
 
     if (weigth!==undefined && weigth!==''){
@@ -142,11 +169,11 @@ router.put('/', verify, async (req, res) => {
         { new:true }
     )
         .then(doc=>{
-            res.send("Updated data");
+            res.send({ message: 'Updated data' });
         })
         .catch(err=>{
             console.log(err);
-            res.send("Error updating");
+            res.send({ message: 'Error updating' });
         });
 
 })
@@ -218,12 +245,66 @@ router.get('/', verify, async (req, res) => {
         height:user.height,
         age:user.age,
         gender:user.gender,
+        userType:user.userType,
+        Profession:user.Profession,
         timestap:user.timestamp,
     };
 
     // We set the header for returning the JSON variable
     res.setHeader('Content-Type', 'application/json');
     res.json(JSON_user);
+})
+
+router.delete('/:planId', verify, async (req, res) => {
+    try {
+        const planId = req.params.planId;
+        const userId = req.user;
+
+        // Find the user
+        const user = await User.findById(userId);
+
+        // Check if the user was found
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if the plan exists
+        const planExists = user.plansUrl.some(plan => plan._id.toString() === planId);
+        if (!planExists) {
+            return res.status(404).json({ message: 'Plan not found' });
+        }
+
+        // Use $pull to remove the plan from the plansUrl array
+        await User.findByIdAndUpdate(
+            userId,
+            { $pull: { plansUrl: { _id: planId } } },
+            { new: true }
+        );
+
+        res.status(200).json({ message: 'Plan deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting plan:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+router.delete('/', verify, async (req, res) => {
+    const user = await User.findById(req.user);
+
+    //Check if the user exists
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    User.findByIdAndDelete(req.user)
+        .then(doc=>{
+            res.send({ message: 'Deleted data' });
+        })
+        .catch(err=>{
+            console.log(err);
+            res.send({ message: 'Error deleting' });
+        });
+
 })
 
 module.exports = router;
