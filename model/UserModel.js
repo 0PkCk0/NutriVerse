@@ -74,6 +74,17 @@ const userSchema = new mongoose.Schema({
         url: { 
             type: String 
         },
+        comment:[{
+                comment: String,
+                date: {
+                    type: String,
+                    default: function () {
+                        var time = moment.tz(new Date(), "Europe/Rome");
+                        return time.format('YYYY/MM/DD HH:mm');
+                    }
+                }
+            }
+        ],
         type: {
             type: String,
             enum: ["Diet", "Workout"]

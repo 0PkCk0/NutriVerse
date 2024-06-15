@@ -11,7 +11,7 @@ router.post('/', verify, async (req, res) => {
     const userId = req.user._id;
     const user = await User.findById(userId);
 
-    user.plansUrl.push({ professionalId, url, type });
+    user.plansUrl.push({ professionalId, url, type});
 
     await user.save();
 
