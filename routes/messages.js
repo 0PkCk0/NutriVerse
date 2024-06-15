@@ -24,4 +24,20 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
+router.get('/', verify, async (req, res) => {
+    try {
+        const messages = await Message.find({
+            $or: [
+                { receiver: req.user._id },
+                { sender: req.user._id }
+            ]
+        }).select('message -_id');
+    
+        res.status(200).json(messages);
+    } catch (error) {
+        console.error('Error getting messages', error);
+        res.status(500).json({ status: 500, message: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;
