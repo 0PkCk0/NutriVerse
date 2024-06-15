@@ -31,14 +31,14 @@ router.get('/:PlanID', verify, async (req, res) => {
   const PlanID = req.params.PlanID;
 
   if (URLsplan){
-    for (const plan of URLsplan){
-      if (plan._id.toHexString()===PlanID){
-        return  res.status(200).json({ status: 200, Plans:plan});
+      for (const plan of URLsplan){
+          if (plan._id.toHexString()===PlanID){
+              return  res.status(200).json({ status: 200, Plans:plan});
+          }
       }
-    }
-    return res.status(404).json({ status: 404, message:'Error on searching the specific ID' });
+      return res.status(404).json({ status: 404, message:'Error on searching the specific ID' });
   }else{
-    return res.status(500).json({ status: 500, message: 'Internal server error' });
+      return res.status(500).json({ status: 500, message: 'Internal server error' });
   }
 });
 
@@ -50,9 +50,9 @@ router.get('/', verify, async (req, res) => {
   URLsplan=user.plansUrl;
 
   if (URLsplan){
-    return res.status(200).json({ status: 200, Plans:URLsplan });
+      return res.status(200).json({ status: 200, Plans:URLsplan });
   }else{
-    return res.status(500).json({ status: 500, message: 'Internal server error' });
+      return res.status(500).json({ status: 500, message: 'Internal server error' });
   }
 });
 

@@ -75,7 +75,7 @@ const userSchema = new mongoose.Schema({
             type: String 
         },
         comment:[{
-                comment: String,
+                message: String,
                 date: {
                     type: String,
                     default: function () {
@@ -89,10 +89,7 @@ const userSchema = new mongoose.Schema({
             type: String,
             enum: ["Diet", "Workout"]
         },
-    }, {
-        _id: false 
-    }
-    ]
+    }]
 }, {
     discriminatorKey: 'userType', // Key to differentiate between different user types
     collection: 'users' // Store all user types in the same collection
