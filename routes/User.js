@@ -91,6 +91,7 @@ router.put('/', verify, async (req, res) => {
     const age=req.body.age;
     const height=req.body.height;
     const profession=req.body.profession;
+    const confirmed = req.body.confirmed;
 
 
     // Update of the fields of the user's schema.
@@ -122,6 +123,10 @@ router.put('/', verify, async (req, res) => {
 
     if (height!==undefined && height!==''){
         updateField.height=height;
+    }
+
+    if (confirmed!==undefined && confirmed!==''){
+        updateField.confirmed=confirmed;
     }
 
     if (weigth!==undefined && weigth!==''){

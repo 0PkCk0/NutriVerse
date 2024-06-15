@@ -9,6 +9,7 @@ const subUser = require('./routes/UserSubscription');
 const UserRoute = require('./routes/User');
 const ProUserRoute = require('./routes/ProUser');
 const uploadRoute = require('./routes/upload');
+const reportRoute = require('./routes/report');
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use('/api/v1/prouser', ProUserRoute);
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
 app.use('/api/v1/upload', uploadRoute);
+app.use('/api/v1/report', reportRoute);
 
 
 
