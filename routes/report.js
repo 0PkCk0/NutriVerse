@@ -8,7 +8,7 @@ router.post('/', verify, async (req, res) => {
     const {text} = req.body;
     try {
         const user = await User.findById(req.user._id);
-        if (!user) return res.status(400).send('User not found');
+        if (!user) return res.status(400).json({ status: 400, message: 'User not found' });
         const email = user.email;
 
         let mailOptions = {
@@ -29,7 +29,7 @@ router.post('/', verify, async (req, res) => {
         res.send('Report sent!');
     } catch (error) {
         console.error('Errors sending the report', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ status: 500, message: 'Internal Server Error' });
     }
 })
 
