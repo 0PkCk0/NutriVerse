@@ -22,26 +22,6 @@ router.post('/', verify, async (req, res) => {
   }
 });
 
-router.put('/', verify, async (req, res) => {
-  const { professionalId, url, type } = req.body;
-
-  try {
-    const userId = req.user._id;
-    const user = await User.findById(userId);
-
-    const index = user.plansUrl.findIndex((plan) => plan.professionalId === professionalId && plan.url === url);
-
-    user.plansUrl[index].type = type;
-
-    await user.save();
-
-    res.status(200).json({ status: 200, message: 'PDF URL updated successfully' });
-  } catch (error) {
-    console.error('Error updating PDF URL', error);
-    res.status(500).json({ status: 500, message: 'Internal Server Error' });
-  }
-});
-
 router.delete('/', verify, async (req, res) => {
   const { professionalId, url } = req.body;
 
