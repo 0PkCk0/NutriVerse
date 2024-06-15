@@ -43,6 +43,8 @@ app.use('/api/v1/user', UserRoute);
 app.use('/api/v1/prouser', ProUserRoute);
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/subscription',subUser);
+app.use('/api/v1/upload', uploadRoute);
+app.use('/api/v1/report', reportRoute);
 
 
 app.listen(port, () => {
