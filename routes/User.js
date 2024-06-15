@@ -15,11 +15,11 @@ router.post('/', async (req, res) => {
         // Validate data before creating a user
         const data = sanitizeInput(req.body);
         const { error } = await registerValidation(data);
-        if (error) return res.status(400).send(error.details[0].message);
+        if (error) return res.status(400).json({ status: 400, message: error.details[0].message });
 
         // Check if the user is already in the database
         const emailExist = await User.findOne({ email: req.body.email });
-        if (emailExist) return res.status(400).send({message:'Email already exists'});
+        if (emailExist) return res.status(400).json({ status: 400, message: 'Email already exists' });
 
         // Check if the gender is valid
         if (req.body.gender) {
@@ -65,13 +65,13 @@ router.post('/', async (req, res) => {
         transporter.sendMail(mailOptions, function(err) {
             if (err) {
                 console.error('Error sending email: ', err);
-                return res.status(500).send({ msg: 'Technical Issue!, Please click on resend for verify your email.' });
+                return res.status(500).json({ status: 500, message: 'Technical Issue!, Please click on resend for verify your email.' });
             }
-            res.status(200).send({message:'A confirmation email has been sent to ' + req.body.email + '.'});
+            res.status(200).json({ status: 200, message: 'A confirmation email has been sent to ' + req.body.email + '.' });
         });
     } catch (err) {
         console.error('Error in registration: ', err);
-        res.status(500).send({message:'Internal Server Error'});
+        res.status(500).json({ status: 500, message: 'Internal Server Error' });
     }
 });
 
@@ -91,6 +91,7 @@ router.put('/', verify, async (req, res) => {
     const age=req.body.age;
     const height=req.body.height;
     const profession=req.body.profession;
+    const confirmed = req.body.confirmed;
 
 
     // Update of the fields of the user's schema.
@@ -122,6 +123,10 @@ router.put('/', verify, async (req, res) => {
 
     if (height!==undefined && height!==''){
         updateField.height=height;
+    }
+
+    if (confirmed!==undefined && confirmed!==''){
+        updateField.confirmed=confirmed;
     }
 
     if (weigth!==undefined && weigth!==''){
