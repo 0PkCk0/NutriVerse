@@ -255,39 +255,6 @@ router.get('/', verify, async (req, res) => {
     res.json(JSON_user);
 })
 
-router.delete('/:planId', verify, async (req, res) => {
-    try {
-        const planId = req.params.planId;
-        const userId = req.user;
-
-        // Find the user
-        const user = await User.findById(userId);
-
-        // Check if the user was found
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Check if the plan exists
-        const planExists = user.plansUrl.some(plan => plan._id.toString() === planId);
-        if (!planExists) {
-            return res.status(404).json({ message: 'Plan not found' });
-        }
-
-        // Use $pull to remove the plan from the plansUrl array
-        await User.findByIdAndUpdate(
-            userId,
-            { $pull: { plansUrl: { _id: planId } } },
-            { new: true }
-        );
-
-        res.status(200).json({ message: 'Plan deleted successfully' });
-    } catch (error) {
-        console.error('Error deleting plan:', error);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
 router.delete('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
