@@ -192,27 +192,6 @@ router.put('/', verify, async (req, res) => {
         updateField.confirmed=confirmed;
     }
 
-    if (plansUrl !== undefined && plansUrl !== '') {
-        try {
-            pushField.plansUrl = await Promise.all(plansUrl.map(async (plan) => {
-                // Check if professionalId exists and is a professional
-                const professional = await ProUser.findById({ _id: plan.professionalId});
-                if (!professional) {
-                    throw new Error(`No professional found with id: ${plan.professionalId}`);
-                }
-        
-                return {
-                    professionalId: plan.professionalId,
-                    url: plan.url,
-                    type: plan.type
-                };
-            }));
-        } catch (error) {
-            console.error('Error:', error);
-            return res.status(400).json({ status: 400, message: error.message });
-        }
-    }
-
     if (weigth!==undefined && weigth!==''){
 
         var time = moment.tz(new Date(), "Europe/Rome");
