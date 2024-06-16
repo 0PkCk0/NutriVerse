@@ -8,6 +8,7 @@ const moment = require("moment-timezone");
 const ProUser = require("../model/ProUserModel");
 const transporter = require('../config/transporter');
 const sanitizeInput = require('../config/sanitize');
+const blackList=require('../model/blackListModel');
 
 //register
 router.post('/', async (req, res) => {
@@ -20,6 +21,12 @@ router.post('/', async (req, res) => {
         // Check if the user is already in the database
         const emailExist = await User.findOne({ email: req.body.email });
         if (emailExist) return res.status(400).json({ status: 400, message: 'Email already exists' });
+
+        //Check if the email is black listed
+        const result = await BlackList.findOne({ email: req.body.email });
+        if (result!==null) return res.status(400).json({ status: 400, message: 'The email is black listed' });
+
+
 
         // Check if the gender is valid
         if (req.body.gender) {
