@@ -66,7 +66,7 @@ router.put('/:acceptId', verify, async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if he is a professionist
+    // Check if he/she is a professionist
     if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
         return res.status(400).send('User is not a professionist');
     }

@@ -30,6 +30,11 @@ router.post('/', verify, async (req, res) => {
 router.get('/:PlanID', verify, async (req, res) => {
   const user = await User.findById(req.user);
 
+  //Check if the user exists
+  if (!user) {
+    return res.status(404).json({ status:404, message: 'User not found' });
+  }
+
   URLsplan = user.plansUrl;
 
   const PlanID = req.params.PlanID;
@@ -50,6 +55,11 @@ router.get('/:PlanID', verify, async (req, res) => {
 // Get all the plans of the User (11)
 router.get('/', verify, async (req, res) => {
   const user = await User.findById(req.user);
+
+  //Check if the user exists
+  if (!user) {
+    return res.status(404).json({ status:404, message: 'User not found' });
+  }
 
   URLsplan = user.plansUrl;
 

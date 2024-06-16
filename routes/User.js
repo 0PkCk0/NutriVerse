@@ -22,8 +22,8 @@ router.post('/', async (req, res) => {
         const emailExist = await User.findOne({ email: req.body.email });
         if (emailExist) return res.status(400).json({ status: 400, message: 'Email already exists' });
 
-        //Check if the email is black listed
-        const result = await BlackList.findOne({ email: req.body.email });
+        //Check if the email is blacklisted
+        const result = await blackList.findOne({ email: req.body.email });
         if (result!==null) return res.status(400).json({ status: 400, message: 'The email is black listed' });
 
 
