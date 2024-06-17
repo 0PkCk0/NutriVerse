@@ -7,7 +7,7 @@ const app = require('../index');
 app.use(express.json());
 app.use('/api/v1/auth', authRoute);
 
-describe('POST /login', () => {
+describe('POST /auth', () => {
     it('should respond with 404 status if credentials are missing', async () => {
         const res = await request(app)
             .post('/api/v1/auth')
