@@ -209,8 +209,11 @@ router.get('/', verify, async (req, res) => {
         subscribers:[]
     };
 
+
     for (const id of user.subscribersId){
         const userSub=await User.findById(id);
+
+        insert_push={}
 
         insert_push.name=userSub.name;
 

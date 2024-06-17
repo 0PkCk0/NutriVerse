@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed send enroll to professionist">
-      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed accept or deny new subscriber">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -434,7 +434,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718634208460</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Fixed accept or deny new subscriber">
+      <option name="closed" value="true" />
+      <created>1718634684141</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1718634684141</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed get subscribers from professionists users" />
     <MESSAGE value="Fixed update of profession from User" />
     <MESSAGE value="Fixed user and prouser get subscribers and subscriptions" />
     <MESSAGE value="Fixed user and prouser" />
@@ -489,6 +496,7 @@
     <MESSAGE value="Fixed proUser get subscribers" />
     <MESSAGE value="fixed usersubscription" />
     <MESSAGE value="Fixed send enroll to professionist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed send enroll to professionist" />
+    <MESSAGE value="Fixed accept or deny new subscriber" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed accept or deny new subscriber" />
   </component>
 </project>
