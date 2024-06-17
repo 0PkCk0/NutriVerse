@@ -294,7 +294,7 @@ router.get('/', verify, async (req, res) => {
         userType:user.userType,
         Profession:user.Profession,
         timestap:user.timestamp,
-        code:user.code,
+        code:user.Code,
     };
 
     // We set the header for returning the JSON variable
