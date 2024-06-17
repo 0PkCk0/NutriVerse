@@ -227,13 +227,12 @@ router.get('/', verify, async (req, res) => {
 
         // Index for selecting the user image in the main dashboard
         insert_push.index=1;
+        insert_push.code=userSub.Code;
 
         resultJSON.subscribers.push(insert_push);
     }
 
-    // We set the header for returning the JSON variable
-    res.setHeader('Content-Type', 'application/json');
-    res.json(resultJSON);
+    return res.status(200).json({ status: 200, subscribers:resultJSON});
 
 });
 

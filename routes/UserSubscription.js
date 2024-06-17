@@ -238,7 +238,6 @@ router.get('/', verify, async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    // JSON variable to return to the caller
     const JSON_user = {
         subscriptions: user.subscriptionsId,
     };
