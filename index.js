@@ -15,9 +15,6 @@ const messagesRoute = require('./routes/messages');
 dotenv.config();
 
 
-const port = 3000;
-
-
 // Connect to DB
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -47,8 +44,4 @@ app.use('/api/v1/upload', uploadRoute);
 app.use('/api/v1/report', reportRoute);
 app.use('/api/v1/messages', messagesRoute);
 
-
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-})
+module.exports = app;
