@@ -10,18 +10,26 @@ router.post('/', async (req, res) => {
     try {
         // Validate data before logging in
         const { error } = loginValidation(req.body);
-        if (error) return res.status(404).json({ status: 404, message: 'Missing user and/or password' });
+        if (error) {
+            return res.status(404).json({ status: 404, message: 'Missing user and/or password' });
+        }
 
         // Check if the email exists
         const user = await User.findOne({ email: req.body.email });
-        if (!user) return res.status(404).json({ status: 400, message: 'User not found' });
+        if (!user) {
+            return res.status(404).json({ status: 404, message: 'User not found' });
+        }
 
         // Check if the user is confirmed
-        if (!user.confirmed) return res.status(400).json({ status: 400, message: 'Please confirm your email before logging in' });
+        if (!user.confirmed) {
+            return res.status(404).json({ status: 404, message: 'Please confirm your email before logging in' });
+        }
 
         // Check if the password is correct
         const validPass = await bcrypt.compare(req.body.password, user.password);
-        if (!validPass) return res.status(401).json({ status: 400, message: 'Incorrect credentials' });
+        if (!validPass) {
+            return res.status(401).json({ status: 401, message: 'Incorrect credentials' });
+        }
 
         // Create and sign the token
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
@@ -39,31 +47,31 @@ router.get('/', async (req, res) => {
     try {
         // Extract the token from the query parameters
         const token = req.query.token;
-        if (!token) return res.status(400).send({message:'Token is missing'});
+        if (!token) return res.status(400).send({ message: 'Token is missing' });
 
         // Verify the token
         const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-        if (!verified) return res.status(400).send({message:'Invalid token'});
+        if (!verified) return res.status(400).send({ message: 'Invalid token' });
 
         // Find the user and update their confirmed status
         const user = await User.findById(verified._id);
-        if (!user) return res.status(400).send({message:'User not found'});
+        if (!user) return res.status(400).send({ message: 'User not found' });
 
         user.confirmed = true;
         await user.save();
 
-        res.status(200).send({message:'Email successfully confirmed. You can now log in.'});
+        res.status(200).send({ message: 'Email successfully confirmed. You can now log in.' });
     } catch (err) {
         console.error('Error confirming email: ', err);
-        res.status(500).send({message:'Internal Server Error'});
+        res.status(500).send({ message: 'Internal Server Error' });
     }
 });
 
 //logout
 router.delete('/', verify, async (req, res) => {
-    if (req.body._id !== req.userId) return res.status(400).send({message:'Invalid user'});
+    if (req.body._id !== req.userId) return res.status(400).send({ message: 'Invalid user' });
     res.clearCookie('auth-token');
-    return res.status(200).send({message:'Logged out'});
+    return res.status(200).send({ message: 'Logged out' });
 })
 
 module.exports = router;
