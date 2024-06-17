@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/statistics.js" afterDir="false" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Show statistics of the user or of the subscriber">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +120,8 @@
       <workItem from="1716996784609" duration="765000" />
       <workItem from="1718460038334" duration="3800000" />
       <workItem from="1718542266975" duration="2271000" />
-      <workItem from="1718544857570" duration="1708000" />
+      <workItem from="1718544857570" duration="2204000" />
+      <workItem from="1718614364040" duration="2529000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -405,7 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718544139233</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Show statistics of the user or of the subscriber">
+      <option name="closed" value="true" />
+      <created>1718546799510</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718546799510</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +441,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Get subscriptions and fixed weight-time put value inside the user update" />
     <MESSAGE value="Comments on previous code" />
     <MESSAGE value="Get user's specific subscription personal information" />
     <MESSAGE value="Correction post of proUser" />
@@ -460,6 +465,7 @@
     <MESSAGE value="Put method to add a comment to a plan" />
     <MESSAGE value="Fixed a condition" />
     <MESSAGE value="Configuration of the BlackList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Configuration of the BlackList" />
+    <MESSAGE value="Show statistics of the user or of the subscriber" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show statistics of the user or of the subscriber" />
   </component>
 </project>

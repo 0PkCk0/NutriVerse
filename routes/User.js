@@ -128,7 +128,7 @@ router.put('/:PlanID', verify, async (req, res) => {
                     .catch(err=>{
 
                         console.log(err);
-                        return res.status(404).json({ status: 404, message:'Internal error on adding the comment'});
+                        return res.status(500).json({ status: 500, message:'Internal error on adding the comment'});
 
                     });
             }
@@ -152,7 +152,7 @@ router.put('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({  status: 404 ,message: 'User not found' });
     }
 
     const name=req.body.name;
@@ -160,7 +160,6 @@ router.put('/', verify, async (req, res) => {
     const age=req.body.age;
     const height=req.body.height;
     const profession=req.body.profession;
-    const plansUrl=req.body.plansUrl;
     const confirmed = req.body.confirmed;
 
 
@@ -179,7 +178,7 @@ router.put('/', verify, async (req, res) => {
             { new:true }
         )
             .catch(err=>{
-                res.send({ message: 'Error updating' });
+                return res.status(500).json({ status: 500, message: 'Error updating' });
             });
     }
 
@@ -217,11 +216,11 @@ router.put('/', verify, async (req, res) => {
         { new:true }
     )
         .then(doc=>{
-            res.send({ message: 'Updated data' });
+            return res.status(200).json({ status: 200, message: 'Updated data' });
         })
         .catch(err=>{
             console.log(err);
-            res.send({ message: 'Error updating' });
+            return res.status(500).json({ status: 500, message: 'Error updating' });
         });
 
 })
@@ -264,14 +263,13 @@ router.get('/:subscriptionID', verify, async (req, res) => {
             };
 
             // We set the header for returning the JSON variable
-            res.setHeader('Content-Type', 'application/json');
-            res.json(JSON_user);
+            return res.status(200).json({ status: 200, user:JSON_user});
 
         }
     }
 
     //If we are not subscribed to him/her
-    return res.status(404).json({ message: 'You are not subscribed to him/her or your subscription' });
+    return res.status(404).json({ status:404, message: 'You are not subscribed to him/her or your subscription' });
 })
 
 
@@ -282,7 +280,7 @@ router.get('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ status:404, message: 'User not found' });
     }
 
     //JSON variable to return to the caller
@@ -299,8 +297,7 @@ router.get('/', verify, async (req, res) => {
     };
 
     // We set the header for returning the JSON variable
-    res.setHeader('Content-Type', 'application/json');
-    res.json(JSON_user);
+    return res.status(200).json({ status: 200, user:JSON_user});
 })
 
 router.delete('/', verify, async (req, res) => {
@@ -308,16 +305,16 @@ router.delete('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ status:404, message: 'User not found' });
     }
 
     User.findByIdAndDelete(req.user)
         .then(doc=>{
-            res.send({ message: 'Deleted data' });
+            return res.status(200).json({ status: 200, message:'Deleted data'});
         })
         .catch(err=>{
             console.log(err);
-            res.send({ message: 'Error deleting' });
+            return res.status(404).json({ status: 404, message:'Error updating'});
         });
 
 })
