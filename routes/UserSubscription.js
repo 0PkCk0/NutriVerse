@@ -238,12 +238,33 @@ router.get('/', verify, async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    const JSON_user = {
-        subscriptions: user.subscriptionsId,
+    let response={
+        subscriptions:[],
     };
 
-    res.setHeader('Content-Type', 'application/json');
-    res.json(JSON_user);
+    for (const id of user.subscriptionsId){
+        const userSub=await User.findById(id);
+
+        let insert_push={};
+
+        insert_push.name=userSub.name;
+
+        if (userSub.Profession === 'Nutritionist') {
+            insert_push.profession='N'
+        }else if(userSub.Profession === 'Personal Trainer'){
+            insert_push.profession='P'
+        }else{
+            insert_push.profession='B'
+        }
+
+        // Index for selecting the user image in the main dashboard
+        insert_push.index=1;
+        insert_push.code=userSub.Code;
+
+        response.subscriptions.push(insert_push);
+    }
+
+    return res.status(200).json({ status: 200, subscriptions:response});
 })
 
 

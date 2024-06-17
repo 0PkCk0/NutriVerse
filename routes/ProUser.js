@@ -187,7 +187,6 @@ router.get('/:userID', verify, async (req, res) => {
 
 // Get my subscribers (20)
 router.get('/', verify, async (req, res) => {
-    console.log("User: "+req.user);
     const user = await User.findById(req.user);
 
     //Check if the user exists
