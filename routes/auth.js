@@ -10,18 +10,18 @@ router.post('/', async (req, res) => {
     try {
         // Validate data before logging in
         const { error } = loginValidation(req.body);
-        if (error) return res.status(400).json({ status: 400, message: error.details[0].message });
+        if (error) return res.status(404).json({ status: 404, message: 'Missing user and/or password' });
 
         // Check if the email exists
         const user = await User.findOne({ email: req.body.email });
-        if (!user) return res.status(400).json({ status: 400, message: 'Email not found' });
+        if (!user) return res.status(404).json({ status: 400, message: 'User not found' });
 
         // Check if the user is confirmed
         if (!user.confirmed) return res.status(400).json({ status: 400, message: 'Please confirm your email before logging in' });
 
         // Check if the password is correct
         const validPass = await bcrypt.compare(req.body.password, user.password);
-        if (!validPass) return res.status(400).json({ status: 400, message: 'Invalid password' });
+        if (!validPass) return res.status(401).json({ status: 400, message: 'Incorrect credentials' });
 
         // Create and sign the token
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
