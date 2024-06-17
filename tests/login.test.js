@@ -8,7 +8,7 @@ app.use(express.json());
 app.use('/api/v1/auth', authRoute);
 
 describe('POST /login', () => {
-    it('should respond with 400 status if credentials are missing', async () => {
+    it('should respond with 404 status if credentials are missing', async () => {
         const res = await request(app)
             .post('/api/v1/auth')
             .send({});
@@ -17,7 +17,7 @@ describe('POST /login', () => {
 
     });
 
-    it('should respond with 400 status if only username is provided', async () => {
+    it('should respond with 404 status if only username is provided', async () => {
         const res = await request(app)
             .post('/api/v1/auth')
             .send({ email: 'john.doe@example.com' });
