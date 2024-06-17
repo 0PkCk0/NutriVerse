@@ -212,8 +212,6 @@ router.get('/', verify, async (req, res) => {
     for (const id of user.subscribersId){
         const userSub=await User.findById(id);
 
-        let insert_push={};
-
         insert_push.name=userSub.name;
 
         if (userSub.Profession === 'Nutritionist') {

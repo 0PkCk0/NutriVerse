@@ -9,7 +9,7 @@ const {sendUpdateUser}=require('../config/updateUser');
 router.post('/', verify, async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
-            return res.status(400).send('Invalid Professionist ID');
+            return res.status(400).json({ status: 400, message:'Invalid Professionist ID'});
         }
 
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
@@ -18,18 +18,19 @@ router.post('/', verify, async (req, res) => {
 
         const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
 
-        if (!subscriber) return res.status(400).send('Subscriber not found');
-        if (!professionist) return res.status(400).send('Professionist not found');
+
+        if (!subscriber) return res.status(400).json({ status: 400, message:'Subscriber not found'});
+        if (!professionist) return res.status(400).json({ status: 400, message:'Professionist not found'});
 
         // Check if the professionist is a premium user
         if (professionist.Profession === 'Premium user') {
-            return res.status(400).send('Not a professionist');
+            return res.status(400).json({ status: 400, message:'Not a professionist'});
         }
 
         // Check if the user is already subscribed or has already sent a request
         if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) ||
             (professionist.requestId && professionist.requestId.includes(req.user._id))) {
-            return res.status(400).send('User is already subscribed or has already sent a request');
+            return res.status(400).json({ status: 400, message:'User is already subscribed or has already sent a request'});
         }
 
         // Update the user document using the User model
@@ -45,11 +46,8 @@ router.post('/', verify, async (req, res) => {
             { new: true }
         );
 
-        res.status(200).json({
-            message: 'Request sent to Professionist',
-            updatedUser,
-            updatedProUser
-        });
+        return res.status(200).json({ status: 200, message:'Request sent to Professionist'});
+
     } catch (err) {
         console.error('Error:', err);
         res.status(400).send(err.message || 'An error occurred');
