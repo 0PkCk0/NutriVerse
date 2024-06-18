@@ -1,5 +1,4 @@
 const authRoute = require('../routes/auth');
-
 const request = require('supertest');
 const express = require('express');
 const app = require('../index');
@@ -63,8 +62,8 @@ describe('POST /auth', () => {
 
 describe('DELETE /api/v1/auth', () => {
     it('should clear the auth-token cookie and return 200 status', async () => {
-        const john = User.findOne({ email: 'john.doe@example.com' });
-
+        const query = await User.findOne({ email: 'john.doe@example.com' });
+        const john = query;
         const token = jwt.sign({ _id: john._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
 
         const res = await request(app)

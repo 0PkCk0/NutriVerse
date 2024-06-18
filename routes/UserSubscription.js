@@ -2,43 +2,48 @@ const router = require('express').Router();
 const User = require('../model/UserModel');
 const ProUser = require('../model/ProUserModel');
 const verify = require('../config/verifyToken');
-const mongoose = require('mongoose'); // Ensure mongoose is required
 const {sendUpdateUser}=require('../config/updateUser');
 
 //request to enroll to a professionist
 router.post('/', verify, async (req, res) => {
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
-            return res.status(400).send('Invalid Professionist ID');
+        // Retrieve subscriber (user) information
+        const subscriber = await User.findById(req.user._id);
+
+        if (!subscriber) {
+            return res.status(400).send('Subscriber not found');
         }
 
-        const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
+        // Retrieve professionist information based on email
+        const professionistEmail = req.body.email; // Assuming email is in req.body
+        const query = await ProUser.findOne({ email: professionistEmail });
+        const professionist = query;
 
-        const professionistId = await req.body.subscriptionsId; // Retrieve professionist ID from req.body
+        if (!professionist) {
+            return res.status(400).send('Professionist not found');
+        }
 
-        const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
-
-        if (!subscriber) return res.status(400).send('Subscriber not found');
-        if (!professionist) return res.status(400).send('Professionist not found');
-
-        // Check if the professionist is a premium user
+        // Check if professionist is a premium user (not allowed)
         if (professionist.Profession === 'Premium user') {
             return res.status(400).send('Not a professionist');
         }
 
-        // Check if the user is already subscribed or has already sent a request
+        const professionistId = professionist._id;
+
+        // Check for existing subscription or pending request
         if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) ||
             (professionist.requestId && professionist.requestId.includes(req.user._id))) {
             return res.status(400).send('User is already subscribed or has already sent a request');
         }
 
-        // Update the user document using the User model
+        // Update user document (add professionist ID to subscriptions)
         const updatedUser = await User.findByIdAndUpdate(
             req.user._id,
             { $push: { subscriptionsId: professionistId } },
             { new: true }
         );
 
+        // Update professionist document (add user ID to request list)
         const updatedProUser = await ProUser.findByIdAndUpdate(
             professionistId,
             { $push: { requestId: req.user._id } },
@@ -52,9 +57,10 @@ router.post('/', verify, async (req, res) => {
         });
     } catch (err) {
         console.error('Error:', err);
-        res.status(400).send(err.message || 'An error occurred');
+        res.status(400).send({ message:'An error occurred' });
     }
 });
+
 
 
 // Accept or Deny new subscriber from a user (21)
