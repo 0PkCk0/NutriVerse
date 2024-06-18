@@ -11,7 +11,7 @@ router.post('/', verify, async (req, res) => {
         const subscriber = await User.findById(req.user._id);
 
         if (!subscriber) {
-            return res.status(400).send('Subscriber not found');
+            return res.status(400).send({ message: 'Subscriber not found'});
         }
 
         // Retrieve professionist information based on email
@@ -20,12 +20,12 @@ router.post('/', verify, async (req, res) => {
         const professionist = query;
 
         if (!professionist) {
-            return res.status(400).send('Professionist not found');
+            return res.status(400).send({ message: 'Professionist not found' });
         }
 
         // Check if professionist is a premium user (not allowed)
         if (professionist.Profession === 'Premium user') {
-            return res.status(400).send('Not a professionist');
+            return res.status(400).send({ message: 'Professionist is a Premium user'});
         }
 
         const professionistId = professionist._id;
@@ -33,7 +33,7 @@ router.post('/', verify, async (req, res) => {
         // Check for existing subscription or pending request
         if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) ||
             (professionist.requestId && professionist.requestId.includes(req.user._id))) {
-            return res.status(400).send('User is already subscribed or has already sent a request');
+            return res.status(400).send({ message: 'Subscription already exists or request pending' });
         }
 
         // Update user document (add professionist ID to subscriptions)
