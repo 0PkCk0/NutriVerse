@@ -40,4 +40,21 @@ describe('POST /subscription', () => {
 
         expect(res.status).toEqual(400);
     });
+
+    it('should send a request to a professionist and return 200 status', async () => {
+        const query = await User.findOne({ email: 'john.doe@example.com' });
+        const john = query;
+        
+        const token = jwt.sign({ _id: john._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+
+        const mail = 'john.doe@example.com'; 
+
+        const res = await request(app)
+            .post('/api/v1/subscription')
+            .set('auth-token', `${token}`)
+            .send({ email: mail});
+
+        expect(res.status).toEqual(400);
+        expect(res.body.message).toEqual('Subscription already exists or request pending');
+    });
 });
