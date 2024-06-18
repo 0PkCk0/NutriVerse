@@ -3,6 +3,8 @@ const authRoute = require('../routes/auth');
 const request = require('supertest');
 const express = require('express');
 const app = require('../index');
+const jwt = require('jsonwebtoken');
+const User = require('../model/UserModel');
 
 app.use(express.json());
 app.use('/api/v1/auth', authRoute);
@@ -56,5 +58,33 @@ describe('POST /auth', () => {
             .send({ email: 'john.doe@example.com', password: 'pass123' });
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('token');
+    });
+});
+
+describe('DELETE /api/v1/auth', () => {
+    it('should clear the auth-token cookie and return 200 status', async () => {
+        const john = User.findOne({ email: 'john.doe@example.com' });
+
+        const token = jwt.sign({ _id: john._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+
+        const res = await request(app)
+            .delete('/api/v1/auth')
+            .set('auth-token', `${token}`)
+            .send();
+
+        expect(res.status).toEqual(200);
+        expect(res.body.message).toEqual('Logged out');
+    });
+
+    it('should return 400 status for invalid user', async () => {
+        const token = 'invalid_token'
+
+        const res = await request(app)
+            .delete('/api/v1/auth')
+            .set('auth-token', `${token}`)
+            .send();
+
+        expect(res.status).toEqual(400);
+        expect(res.body.message).toEqual("Invalid token");
     });
 });
