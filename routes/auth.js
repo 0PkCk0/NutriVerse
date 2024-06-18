@@ -69,7 +69,9 @@ router.get('/', async (req, res) => {
 
 //logout
 router.delete('/', verify, async (req, res) => {
-    if (req.body._id !== req.userId) return res.status(400).send({ message: 'Invalid user' });
+    if (req.body._id !== req.userId) {
+        return res.status(400).send({ message: 'Invalid user' });
+    }
     res.clearCookie('auth-token');
     return res.status(200).send({ message: 'Logged out' });
 })
