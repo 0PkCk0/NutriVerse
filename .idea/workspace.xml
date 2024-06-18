@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed name variable" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Pass id instead of the code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +122,7 @@
       <workItem from="1718542266975" duration="2271000" />
       <workItem from="1718544857570" duration="2204000" />
       <workItem from="1718614364040" duration="2529000" />
+      <workItem from="1718719519612" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -456,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718635953633</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Pass id instead of the code">
+      <option name="closed" value="true" />
+      <created>1718636597393</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1718636597393</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed user and prouser" />
     <MESSAGE value="Accept new subscriber from a User" />
     <MESSAGE value="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)" />
     <MESSAGE value="Fixed file and functions managements" />
@@ -511,6 +522,7 @@
     <MESSAGE value="Fixed accept or deny new subscriber" />
     <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed name variable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed name variable" />
+    <MESSAGE value="Pass id instead of the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pass id instead of the code" />
   </component>
 </project>

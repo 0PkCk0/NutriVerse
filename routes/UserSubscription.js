@@ -8,15 +8,12 @@ const {sendUpdateUser}=require('../config/updateUser');
 //request to enroll to a professionist
 router.post('/', verify, async (req, res) => {
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.body.subscriptionsId)) {
-            return res.status(400).json({ status: 400, message:'Invalid Professionist ID'});
-        }
 
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
 
-        const professionistId = await req.body.subscriptionsId; // Retrieve professionist ID from req.body
+        const professionistEmail = await req.body.email; // Retrieve professionist ID from req.body
 
-        const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
+        const professionist = await ProUser.findOne({ email: professionistEmail}); // Use professionistId to find ProUser
 
 
         if (!subscriber) return res.status(400).json({ status: 400, message:'Subscriber not found'});
@@ -28,21 +25,21 @@ router.post('/', verify, async (req, res) => {
         }
 
         // Check if the user is already subscribed or has already sent a request
-        if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) ||
-            (professionist.requestId && professionist.requestId.includes(req.user._id))) {
+        if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistEmail)) ||
+            (professionist.requestId && professionist.requestId.includes(req.user.email))) {
             return res.status(400).json({ status: 400, message:'User is already subscribed or has already sent a request'});
         }
 
         // Update the user document using the User model
         const updatedUser = await User.findByIdAndUpdate(
             req.user._id,
-            { $push: { subscriptionsId: professionistId } },
+            { $push: { subscriptionsId: professionistEmail } },
             { new: true }
         );
 
         const updatedProUser = await ProUser.findByIdAndUpdate(
-            professionistId,
-            { $push: { requestId: req.user._id } },
+            professionist._id.toHexString(),
+            { $push: { requestId: subscriber.email } },
             { new: true }
         );
 
@@ -56,7 +53,7 @@ router.post('/', verify, async (req, res) => {
 
 
 // Accept or Deny new subscriber from a user (21)
-router.put('/:acceptId', verify, async (req, res) => {
+router.put('/:acceptEmail', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
     // Check if the user exists
@@ -72,18 +69,17 @@ router.put('/:acceptId', verify, async (req, res) => {
 
     //Get a boolean value if I accept or deny the request of a user
     const ADRequest = req.body.ADRequest;
-    const userID = req.params.acceptId;
+    const userEmail = req.params.acceptEmail;
 
-    console.log(userID);
-    if (user.requestId.includes(userID)) {
-        if (user.subscribersId.includes(userID)) {
+    if (user.requestId.includes(userEmail)) {
+        if (user.subscribersId.includes(userEmail)) {
             await ProUser.findByIdAndUpdate(req.user,
-                { $pull: { requestId: userID } });
+                { $pull: { requestId: userEmail } });
             return res.status(404).json({ message: 'User already subscribed' });
         } else {
             if (ADRequest) {
                 ProUser.findByIdAndUpdate(req.user,
-                    { $push: { subscribersId: userID }, $pull: { requestId: userID } },
+                    { $push: { subscribersId: userEmail }, $pull: { requestId: userEmail } },
                     { new: true }
                 )
                     .then(doc => {
@@ -97,7 +93,7 @@ router.put('/:acceptId', verify, async (req, res) => {
 
             else {
                 ProUser.findByIdAndUpdate(req.user,
-                    { $pull: { requestId: userID } },
+                    { $pull: { requestId: userEmail } },
                     { new: true }
                 )
                     .then(doc => {
@@ -110,7 +106,6 @@ router.put('/:acceptId', verify, async (req, res) => {
             }
         }
     } else {
-        console.log(user.requestId);
         return res.status(404).json({ message: 'You don\'t have a request from this ID' });
     }
 })
