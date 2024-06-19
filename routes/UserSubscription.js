@@ -175,7 +175,7 @@ router.delete('/:userEmail', verify, async (req, res) => {
 
             const updatedProUser = await ProUser.findByIdAndUpdate(
                 professionist._id.toHexString(),
-                { $pull: { subscribersId: subscriber.email } },
+                { $pull: { subscribersId: subscriber.email, requestId: subscriber.email } },
                 { new: true }
             );
 
