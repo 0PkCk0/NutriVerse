@@ -233,7 +233,7 @@ router.get('/', verify, async (req, res) => {
     }
     
     // Populate requests array
-    for (const id of user.requestId) {
+    for (const mail of user.requestId) {
         const userReq_query = await User.findOne({ email: mail });
         const userReq = userReq_query;
         let insert_push = {};
