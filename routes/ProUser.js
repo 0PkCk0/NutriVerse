@@ -232,7 +232,7 @@ router.get('/', verify, async (req, res) => {
     }
     
     // Populate requests array
-    for (const id of user.requestsId) {
+    for (const id of user.requestId) {
         const userReq = await User.findById(id);
         let insert_push = {};
     
