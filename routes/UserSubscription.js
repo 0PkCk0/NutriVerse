@@ -98,7 +98,7 @@ router.put('/', verify, async (req, res) => {
             }
 
             else {
-                ProUser.findByIdAndUpdate(req.user,
+                await ProUser.findByIdAndUpdate(req.user,
                     { $pull: { requestId: userEmail } },
                     { new: true }
                 );
