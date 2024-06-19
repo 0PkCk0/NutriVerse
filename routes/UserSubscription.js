@@ -247,7 +247,10 @@ router.get('/', verify, async (req, res) => {
 
         let insert_push={};
 
-        insert_push.name=userSub.name;
+        if(userSub.name){
+            insert_push.name=userSub.name;
+        }
+        insert_push.email=userSub.email;
 
         if (userSub.Profession === 'Nutritionist') {
             insert_push.profession='N'

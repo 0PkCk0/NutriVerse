@@ -214,8 +214,11 @@ router.get('/', verify, async (req, res) => {
         const userSub_query = await User.findOne({email: mail});
         const userSub = userSub_query;
         let insert_push = {};
-    
-        insert_push.name = userSub.name;
+        
+        if(userSub.name){
+            insert_push.name = userSub.name;
+        }
+        insert_push.email = userSub.email;
     
         if (userSub.Profession === 'Nutritionist') {
             insert_push.profession = 'N'
@@ -238,7 +241,7 @@ router.get('/', verify, async (req, res) => {
         const userReq = userReq_query;
         let insert_push = {};
     
-        insert_push.name = userReq.name;
+        insert_push.email = userReq.email;
     
         if (userReq.Profession === 'Nutritionist') {
             insert_push.profession = 'N'
