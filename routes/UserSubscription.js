@@ -114,15 +114,15 @@ router.delete('/:userEmail', verify, async (req, res) => {
             // Retrieve the professional's ID from the request user
             const professionalId = req.user._id;
 
-                // Retrieve the user's ID to be disenrolled from req.body
-                const userId = req.params.userEmail;
+            // Retrieve the user's ID to be disenrolled from req.body
+            const userEmail = req.params.userEmail;
 
-                // Update the professional's document to remove the user from subscribers
-                const updatedProUser = await ProUser.findByIdAndUpdate(
-                    professionalId,
-                    { $pull: { subscribersId: userEmail } },
-                    { new: true }
-                );
+            // Update the professional's document to remove the user from subscribers
+            const updatedProUser = await ProUser.findByIdAndUpdate(
+                professionalId,
+                { $pull: { subscribersId: userEmail } },
+                { new: true }
+            );
 
                 // Update the user's document to remove the professional from subscriptions
                 const updatedUser = await User.findOneAndUpdate(
