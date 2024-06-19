@@ -13,19 +13,15 @@ const blackList=require('../model/blackListModel');
 //register
 router.post('/', async (req, res) => {
     try {
-        // Validate data before creating a user
-        console.log("sanitize input");
-        const data = sanitizeInput(req.body);
-        const { error } = await registerValidation(data);
-        if (error) return res.status(400).json({ status: 400, message: 'Missing data' });
-        console.log("exist email");
         // Check if the user is already in the database
         const emailExist = await User.findOne({ email: req.body.email });
         if (emailExist) return res.status(400).json({ status: 400, message: 'Email already exists' });
 
-        //Check if the email is blacklisted
-        const result = await blackList.findOne({ email: req.body.email });
-        if (result!==null) return res.status(400).json({ status: 400, message: 'The email is black listed' });
+        // Validate data before creating a user
+        const data = sanitizeInput(req.body);
+        const { error } = await registerValidation(data);
+        if (error) return res.status(400).json({ status: 400, message: 'Missing data' });
+        console.log("exist email");
 
 
 
