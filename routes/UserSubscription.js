@@ -31,8 +31,8 @@ router.post('/', verify, async (req, res) => {
         const professionistId = professionist._id;
 
         // Check for existing subscription or pending request
-        if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistId)) ||
-            (professionist.requestId && professionist.requestId.includes(req.user._id))) {
+        if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistEmail)) ||
+            (professionist.requestId && professionist.requestId.includes(req.user.email))) {
             return res.status(400).send({ message: 'Subscription already exists or request pending' });
         }
 
