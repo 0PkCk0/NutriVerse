@@ -130,12 +130,12 @@ router.delete('/:userEmail', verify, async (req, res) => {
                     { $pull: { subscriptionsId: requester.email } }, { new: true },
                 );
 
-                return res.status(200).json({
-                    status: 200,
-                    message: 'User disenrolled by Professional',
-                });
-            } else {
-                // If not a professional, proceed with the original function
+            return res.status(200).json({status:200,
+                message: 'User disenrolled by Professional',
+            });
+        }
+
+        // If not a professional, proceed with the original function
 
                 const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
 
@@ -144,13 +144,13 @@ router.delete('/:userEmail', verify, async (req, res) => {
                 // Use professionistId to find ProUser
                 const professionist = await User.findOne({ email: professionistEmail });
 
-                if (!subscriber) return res.status(400).json({ status: 400, message: 'Subscriber not found' });
-                if (!professionist) return res.status(400).json({ status: 400, message: 'Professionist not found' });
+        if (!subscriber) return res.status(400).json({status:400, message: 'Subscriber not found'});
+        if (!professionist) return res.status(400).json({status:400, message: 'Professionist not found'});
 
-                // Check if the user is not subscribed
-                if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistEmail)) {
-                    return res.status(400).send('User is not subscribed');
-                }
+        // Check if the user is not subscribed
+        if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistEmail)) {
+            return res.status(400).json({status:400, message: 'User is not subscribed'});
+        }
 
                 // Update the user document using the User model
                 const updatedUser = await User.findByIdAndUpdate(
@@ -165,16 +165,14 @@ router.delete('/:userEmail', verify, async (req, res) => {
                     { new: true }
                 );
 
-                res.status(200).json({
-                    status: 200,
-                    message: 'User unsubscribed from Professionist',
-                });
-            }
-        } catch (err) {
-            console.error('Error:', err);
-            res.status(400).send({ status: 400, message: err.message });
-        }
-    });
+        res.status(200).json({status:200,
+            message: 'User unsubscribed from Professionist',
+        });
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(400).send({status:400, message:err.message || 'An error occurred'});
+    }
+});
 
 
     // Get subscription or subscriber of the users (14)
