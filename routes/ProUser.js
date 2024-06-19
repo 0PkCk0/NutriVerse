@@ -207,11 +207,12 @@ router.get('/', verify, async (req, res) => {
     let resultJSON = {
         subscribers: [],
         requests: [] // Add the requests array here
-    };
+    }
 
     // Populate subscribers array
-    for (const id of user.subscribersId) {
-        const userSub = await User.findById(id);
+    for (const mail of user.subscribersId) {
+        const userSub_query = await User.findOne({email: mail});
+        const userSub = userSub_query;
         let insert_push = {};
     
         insert_push.name = userSub.name;
@@ -233,7 +234,8 @@ router.get('/', verify, async (req, res) => {
     
     // Populate requests array
     for (const id of user.requestId) {
-        const userReq = await User.findById(id);
+        const userReq_query = await User.findOne({ email: mail });
+        const userReq = userReq_query;
         let insert_push = {};
     
         insert_push.name = userReq.name;
