@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Pass id instead of the code">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed Post and put of a subscription">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
@@ -22,6 +22,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/test" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="test" />
@@ -122,7 +135,10 @@
       <workItem from="1718542266975" duration="2271000" />
       <workItem from="1718544857570" duration="2204000" />
       <workItem from="1718614364040" duration="2529000" />
-      <workItem from="1718719519612" duration="2379000" />
+      <workItem from="1718719519612" duration="4177000" />
+      <workItem from="1718731407019" duration="15000" />
+      <workItem from="1718731683922" duration="60000" />
+      <workItem from="1718807519526" duration="693000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -468,7 +484,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718636597393</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Fixed Post and put of a subscription">
+      <option name="closed" value="true" />
+      <created>1718722315807</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1718722315808</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Accept new subscriber from a User" />
     <MESSAGE value="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)" />
     <MESSAGE value="Fixed file and functions managements" />
     <MESSAGE value="Testing front-end back-end connection" />
@@ -523,6 +546,7 @@
     <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed name variable" />
     <MESSAGE value="Pass id instead of the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pass id instead of the code" />
+    <MESSAGE value="Fixed Post and put of a subscription" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Post and put of a subscription" />
   </component>
 </project>

@@ -116,7 +116,7 @@ router.put('/', verify, async (req, res) => {
     }
 })
 
-router.delete('/:userId', verify, async (req, res) => {
+router.delete('/:userEmail', verify, async (req, res) => {
     try {
 
         const requester = await User.findById(req.user); // Retrieve user by ID from req.user
@@ -127,7 +127,7 @@ router.delete('/:userId', verify, async (req, res) => {
             const professionalId = req.user._id;
 
             // Retrieve the user's ID to be disenrolled from req.body
-            const userId = req.params.userId;
+            const userId = req.params.userEmail;
 
             // Update the professional's document to remove the user from subscribers
             const updatedProUser = await ProUser.findByIdAndUpdate(
@@ -137,9 +137,9 @@ router.delete('/:userId', verify, async (req, res) => {
             );
 
             // Update the user's document to remove the professional from subscriptions
-            const updatedUser = await User.findByIdAndUpdate(
-                userId,
-                { $pull: { subscriptionsId: professionalId } },
+            const updatedUser = await User.findOneAndUpdate(
+                { email: userEmail },
+                { $pull: { subscriptionsId: requester.email } },
                 { new: true }
             );
 
@@ -154,27 +154,28 @@ router.delete('/:userId', verify, async (req, res) => {
 
         const subscriber = await User.findById(req.user._id); // Retrieve user by ID from req.user
 
-        const professionistId = req.params.userId; // Retrieve professionist ID from req.body
+        const professionistEmail = req.params.userEmail; // Retrieve professionist ID from req.body
 
-        const professionist = await ProUser.findById(professionistId); // Use professionistId to find ProUser
+        // Use professionistId to find ProUser
+        const professionist=await User.findOne({email: professionistEmail});
 
         if (!subscriber) return res.status(400).send('Subscriber not found');
         if (!professionist) return res.status(400).send('Professionist not found');
 
         // Check if the user is not subscribed
-        if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistId)) {
+        if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistEmail)) {
             return res.status(400).send('User is not subscribed');
         }
 
         // Update the user document using the User model
         const updatedUser = await User.findByIdAndUpdate(
             req.user._id,
-            { $pull: { subscriptionsId: professionistId } },
+            { $pull: { subscriptionsId: professionistEmail } },
             { new: true }
         );
 
         const updatedProUser = await ProUser.findByIdAndUpdate(
-            professionistId,
+            professionist._id.toHexString(),
             { $pull: { subscribersId: req.user._id } },
             { new: true }
         );
