@@ -8,6 +8,7 @@ const moment = require("moment-timezone");
 const ProUser = require("../model/ProUserModel");
 const transporter = require('../config/transporter');
 const sanitizeInput = require('../config/sanitize');
+const blackList=require('../model/blackListModel');
 
 //register
 router.post('/', async (req, res) => {
@@ -20,6 +21,12 @@ router.post('/', async (req, res) => {
         const data = sanitizeInput(req.body);
         const { error } = await registerValidation(data);
         if (error) return res.status(400).json({ status: 400, message: 'Missing data' });
+        console.log("exist email");
+
+        // Check if the user is in the blacklist
+        const blackListExist_query = await blackList.findOne({ email: req.body.email });
+        const blackListExist = blackListExist_query;
+        if (blackListExist) return res.status(400).json({ status: 400, message: 'You are in the blacklist' });
 
         // Check if the gender is valid
         if (req.body.gender) {
@@ -59,7 +66,7 @@ router.post('/', async (req, res) => {
             to: req.body.email,
             subject: 'Please confirm your email',
             text: `Please confirm your email by clicking on the following link: 
-            \nhttps://www.chess.com/home`
+            \nhttps://nutriverse-b13w.onrender.com?token=${confirmationToken}`
         };
 
         transporter.sendMail(mailOptions, function(err) {
@@ -75,69 +82,30 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:confirmationToken', async (req, res) => {
+    try {
+        // Verify the confirmation token
+        const decoded = jwt.verify(req.params.confirmationToken, process.env.TOKEN_SECRET);
+        if (!decoded) return res.status(400).json({ status: 400, message: 'Invalid token' });
 
-// We add a comment to a specific plan (16)
-router.put('/:PlanID', verify, async (req, res) => {
-    const user = await User.findById(req.user);
+        // Find the user with the decoded ID
+        const user = await User.findById(decoded._id);
+        if (!user) return res.status(404).json({ status: 404, message: 'User not found' });
 
-    const PlanID = req.params.PlanID;
+        // Check if the user has already been confirmed
+        if (user.confirmed) return res.status(400).json({ status: 400, message: 'User already confirmed' });
 
-    URLsplan=user.plansUrl;
+        // Update the user's confirmed status
+        user.confirmed = true;
+        await user.save();
 
-    let pushField={};
-
-    const comment=req.body.comment;
-
-    if (!comment || comment===''){
-        return res.status(404).json({ status: 404, message:'Comment empty'});
-    }else{
-        var time = moment.tz(new Date(), "Europe/Rome");
-        const returnTime=time.format('YYYY/MM/DD HH:mm');
-
-        pushField= {
-            message:comment,
-            date:returnTime
-        };
-    }
-
-    find_one=false;
-
-    if (URLsplan){
-        for (const plan of URLsplan){
-            if (plan._id.toHexString()===PlanID){
-                // We add a comment to the plan
-                find_one=true;
-
-                User.updateOne(
-                    { _id: req.user, "plansUrl._id": plan._id },
-                    { $push: { "plansUrl.$.comment": pushField } }
-
-                )
-                    .then(doc=>{
-
-                    return res.status(200).json({ status: 200, message:'Added the comment'});
-
-                })
-                    .catch(err=>{
-
-                        console.log(err);
-                        return res.status(404).json({ status: 404, message:'Internal error on adding the comment'});
-
-                    });
-            }
-        }
-
-        if (!find_one){
-
-            return res.status(404).json({ status: 404, message:'Didn\'t find the specified plan' });
-
-        }
-    }else{
-        return res.status(500).json({ status: 500, message: 'Internal server error' });
+        // Return a success message
+        return res.status(200).json({ status: 200, message: 'User confirmed successfully' });
+    } catch (err) {
+        console.error('Error confirming user: ', err);
+        return res.status(500).json({ status: 500, message: 'Internal Server Error' });
     }
 });
-
-
 
 // Change basic information of the user (5)
 router.put('/', verify, async (req, res) => {
@@ -145,7 +113,7 @@ router.put('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({  status: 404 ,message: 'User not found' });
     }
 
     const name=req.body.name;
@@ -153,8 +121,7 @@ router.put('/', verify, async (req, res) => {
     const age=req.body.age;
     const height=req.body.height;
     const profession=req.body.profession;
-    const plansUrl=req.body.plansUrl;
-    const confirmed = req.body.confirmed;
+    const gender = req.body.gender;
 
 
     // Update of the fields of the user's schema.
@@ -172,7 +139,7 @@ router.put('/', verify, async (req, res) => {
             { new:true }
         )
             .catch(err=>{
-                res.send({ message: 'Error updating' });
+                return res.status(500).json({ status: 500, message: 'Error updating' });
             });
     }
 
@@ -180,16 +147,14 @@ router.put('/', verify, async (req, res) => {
         updateField.name=name;
     }
 
+    updateField.gender=gender;
+
     if (age!==undefined && age!==''){
         updateField.age=age;
     }
 
     if (height!==undefined && height!==''){
         updateField.height=height;
-    }
-
-    if (confirmed!==undefined && confirmed!==''){
-        updateField.confirmed=confirmed;
     }
 
     if (weigth!==undefined && weigth!==''){
@@ -210,11 +175,11 @@ router.put('/', verify, async (req, res) => {
         { new:true }
     )
         .then(doc=>{
-            res.send({ message: 'Updated data' });
+            return res.status(200).json({ status: 200, message: 'Updated data' });
         })
         .catch(err=>{
             console.log(err);
-            res.send({ message: 'Error updating' });
+            return res.status(500).json({ status: 500, message: 'Error updating' });
         });
 
 })
@@ -257,14 +222,13 @@ router.get('/:subscriptionID', verify, async (req, res) => {
             };
 
             // We set the header for returning the JSON variable
-            res.setHeader('Content-Type', 'application/json');
-            res.json(JSON_user);
+            return res.status(200).json({ status: 200, user:JSON_user});
 
         }
     }
 
     //If we are not subscribed to him/her
-    return res.status(404).json({ message: 'You are not subscribed to him/her or your subscription' });
+    return res.status(404).json({ status:404, message: 'You are not subscribed to him/her or your subscription' });
 })
 
 
@@ -275,7 +239,7 @@ router.get('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ status:404, message: 'User not found' });
     }
 
     //JSON variable to return to the caller
@@ -289,11 +253,11 @@ router.get('/', verify, async (req, res) => {
         userType:user.userType,
         Profession:user.Profession,
         timestap:user.timestamp,
+        code:user._id,
     };
 
     // We set the header for returning the JSON variable
-    res.setHeader('Content-Type', 'application/json');
-    res.json(JSON_user);
+    return res.status(200).json({ status: 200, user:JSON_user});
 })
 
 router.delete('/', verify, async (req, res) => {
@@ -301,16 +265,16 @@ router.delete('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ status:404, message: 'User not found' });
     }
 
     User.findByIdAndDelete(req.user)
         .then(doc=>{
-            res.send({ message: 'Deleted data' });
+            return res.status(200).json({ status: 200, message:'Deleted data'});
         })
         .catch(err=>{
             console.log(err);
-            res.send({ message: 'Error deleting' });
+            return res.status(404).json({ status: 404, message:'Error updating'});
         });
 
 })

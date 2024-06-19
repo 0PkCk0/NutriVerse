@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Modified the UserModel for the comments">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Pass id instead of the code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/UserModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Development" />
+        <entry key="$PROJECT_DIR$" value="test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,6 +119,10 @@
       <workItem from="1716989768498" duration="6805000" />
       <workItem from="1716996784609" duration="765000" />
       <workItem from="1718460038334" duration="3800000" />
+      <workItem from="1718542266975" duration="2271000" />
+      <workItem from="1718544857570" duration="2204000" />
+      <workItem from="1718614364040" duration="2529000" />
+      <workItem from="1718719519612" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -378,7 +380,95 @@
       <option name="project" value="LOCAL" />
       <updated>1718467714795</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Put method to add a comment to a plan">
+      <option name="closed" value="true" />
+      <created>1718472331330</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1718472331330</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Fixed a condition">
+      <option name="closed" value="true" />
+      <created>1718472556747</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1718472556747</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Configuration of the BlackList">
+      <option name="closed" value="true" />
+      <created>1718544139233</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1718544139233</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Show statistics of the user or of the subscriber">
+      <option name="closed" value="true" />
+      <created>1718546799510</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718546799510</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fixed proUser get subscribers">
+      <option name="closed" value="true" />
+      <created>1718630163004</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1718630163004</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed usersubscription">
+      <option name="closed" value="true" />
+      <created>1718631131289</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718631131289</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Fixed send enroll to professionist">
+      <option name="closed" value="true" />
+      <created>1718634208460</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1718634208460</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fixed accept or deny new subscriber">
+      <option name="closed" value="true" />
+      <created>1718634684141</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1718634684141</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718635571600</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1718635571600</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Fixed name variable">
+      <option name="closed" value="true" />
+      <created>1718635953633</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1718635953633</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Pass id instead of the code">
+      <option name="closed" value="true" />
+      <created>1718636597393</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1718636597393</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +485,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Frigo_final" />
+                        <option value="Development" />
                       </list>
                     </value>
                   </entry>
@@ -408,17 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Retrieve of user information and update of them" />
-    <MESSAGE value="Creation of the subscription file" />
-    <MESSAGE value="Modified index and UserSubscription info" />
-    <MESSAGE value="Get subscriptions and fixed weight-time put value inside the user update" />
-    <MESSAGE value="Comments on previous code" />
-    <MESSAGE value="Get user's specific subscription personal information" />
-    <MESSAGE value="Correction post of proUser" />
-    <MESSAGE value="Fixed get subscribers from professionists users" />
-    <MESSAGE value="Fixed update of profession from User" />
-    <MESSAGE value="Fixed user and prouser get subscribers and subscriptions" />
-    <MESSAGE value="Fixed user and prouser" />
     <MESSAGE value="Accept new subscriber from a User" />
     <MESSAGE value="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)" />
     <MESSAGE value="Fixed file and functions managements" />
@@ -433,6 +512,17 @@
     <MESSAGE value="Fixed JSON return for User" />
     <MESSAGE value="JSON return on User and Auth" />
     <MESSAGE value="Modified the UserModel for the comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified the UserModel for the comments" />
+    <MESSAGE value="Put method to add a comment to a plan" />
+    <MESSAGE value="Fixed a condition" />
+    <MESSAGE value="Configuration of the BlackList" />
+    <MESSAGE value="Show statistics of the user or of the subscriber" />
+    <MESSAGE value="Fixed proUser get subscribers" />
+    <MESSAGE value="fixed usersubscription" />
+    <MESSAGE value="Fixed send enroll to professionist" />
+    <MESSAGE value="Fixed accept or deny new subscriber" />
+    <MESSAGE value="Fixed" />
+    <MESSAGE value="Fixed name variable" />
+    <MESSAGE value="Pass id instead of the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pass id instead of the code" />
   </component>
 </project>

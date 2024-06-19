@@ -11,6 +11,7 @@ const ProUserRoute = require('./routes/ProUser');
 const uploadRoute = require('./routes/upload');
 const reportRoute = require('./routes/report');
 const messagesRoute = require('./routes/messages');
+const statisticsRoute=require('./routes/statistics');
 
 dotenv.config();
 
@@ -43,5 +44,6 @@ app.use('/api/v1/subscription',subUser);
 app.use('/api/v1/upload', uploadRoute);
 app.use('/api/v1/report', reportRoute);
 app.use('/api/v1/messages', messagesRoute);
+app.use('/api/v1/statistics',statisticsRoute);
 
 module.exports = app;

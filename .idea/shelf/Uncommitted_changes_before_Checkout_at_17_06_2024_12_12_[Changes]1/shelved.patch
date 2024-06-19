@@ -1,0 +1,21 @@
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"nutriverse\",\r\n  \"version\": \"1.0.0\",\r\n  \"description\": \"Nutriverse backend\",\r\n  \"main\": \"index.js\",\r\n  \"scripts\": {\r\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\r\n    \"start\": \"nodemon index.js\",\r\n    \"dev\": \"nodemon index.js\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"NutriVerse\"\r\n  },\r\n  \"keywords\": [\r\n    \"nutriverse\"\r\n  ],\r\n  \"author\": \"Patrick Cerka\",\r\n  \"license\": \"MIT\",\r\n  \"dependencies\": {\r\n    \"@hapi/joi\": \"^17.1.1\",\r\n    \"bcryptjs\": \"^2.4.3\",\r\n    \"body-parser\": \"^1.20.2\",\r\n    \"cors\": \"^2.8.5\",\r\n    \"dotenv\": \"^16.4.5\",\r\n    \"express\": \"^4.19.2\",\r\n    \"express-validator\": \"^7.1.0\",\r\n    \"jsonwebtoken\": \"^9.0.2\",\r\n    \"moment\": \"^2.30.1\",\r\n    \"moment-timezone\": \"^0.5.45\",\r\n    \"mongodb\": \"^6.6.1\",\r\n    \"mongoose\": \"^8.3.5\",\r\n    \"morgan\": \"^1.10.0\",\r\n    \"nodemailer\": \"^6.9.13\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"nodemon\": \"^3.1.0\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	
++++ b/package.json	
+@@ -4,9 +4,7 @@
+   "description": "Nutriverse backend",
+   "main": "index.js",
+   "scripts": {
+-    "test": "echo \"Error: no test specified\" && exit 1",
+-    "start": "nodemon index.js",
+-    "dev": "nodemon index.js"
++    "test": "jest --coverage"
+   },
+   "repository": {
+     "type": "git",
