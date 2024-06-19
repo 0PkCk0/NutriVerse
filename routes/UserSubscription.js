@@ -59,7 +59,7 @@ router.post('/', verify, async (req, res) => {
 
 
 // Accept or Deny new subscriber from a user (21)
-router.put('/:acceptEmail', verify, async (req, res) => {
+router.put('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
     // Check if the user exists
@@ -75,7 +75,7 @@ router.put('/:acceptEmail', verify, async (req, res) => {
 
     //Get a boolean value if I accept or deny the request of a user
     const ADRequest = req.body.ADRequest;
-    const userEmail = req.params.acceptEmail;
+    const userEmail = req.body.acceptEmail;
 
     if (user.requestId.includes(userEmail)) {
         if (user.subscribersId.includes(userEmail)) {
