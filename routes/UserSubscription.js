@@ -130,10 +130,8 @@ router.delete('/:userEmail', verify, async (req, res) => {
                 { new: true }
             );
 
-            return res.status(200).json({
+            return res.status(200).json({status:200,
                 message: 'User disenrolled by Professional',
-                updatedUser,
-                updatedProUser
             });
         }
 
@@ -146,12 +144,12 @@ router.delete('/:userEmail', verify, async (req, res) => {
         // Use professionistId to find ProUser
         const professionist=await User.findOne({email: professionistEmail});
 
-        if (!subscriber) return res.status(400).send('Subscriber not found');
-        if (!professionist) return res.status(400).send('Professionist not found');
+        if (!subscriber) return res.status(400).json({status:400, message: 'Subscriber not found'});
+        if (!professionist) return res.status(400).json({status:400, message: 'Professionist not found'});
 
         // Check if the user is not subscribed
         if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistEmail)) {
-            return res.status(400).send('User is not subscribed');
+            return res.status(400).json({status:400, message: 'User is not subscribed'});
         }
 
         // Update the user document using the User model
@@ -167,14 +165,12 @@ router.delete('/:userEmail', verify, async (req, res) => {
             { new: true }
         );
 
-        res.status(200).json({
+        res.status(200).json({status:200,
             message: 'User unsubscribed from Professionist',
-            updatedUser,
-            updatedProUser
         });
     } catch (err) {
         console.error('Error:', err);
-        res.status(400).send(err.message || 'An error occurred');
+        res.status(400).send({status:400, message:err.message || 'An error occurred'});
     }
 });
 

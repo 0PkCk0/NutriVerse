@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed Post and put of a subscription">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
-    </list>
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed delete of subscriber or subscription" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +135,7 @@
       <workItem from="1718719519612" duration="4177000" />
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
-      <workItem from="1718807519526" duration="693000" />
+      <workItem from="1718807519526" duration="1106000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes">
       <option name="closed" value="true" />
@@ -492,7 +489,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718722315808</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Fixed delete of subscriber or subscription">
+      <option name="closed" value="true" />
+      <created>1718808605876</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718808605876</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)" />
     <MESSAGE value="Fixed file and functions managements" />
     <MESSAGE value="Testing front-end back-end connection" />
     <MESSAGE value="Trying adding authorizations" />
@@ -547,6 +551,7 @@
     <MESSAGE value="Fixed name variable" />
     <MESSAGE value="Pass id instead of the code" />
     <MESSAGE value="Fixed Post and put of a subscription" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Post and put of a subscription" />
+    <MESSAGE value="Fixed delete of subscriber or subscription" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed delete of subscriber or subscription" />
   </component>
 </project>
