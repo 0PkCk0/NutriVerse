@@ -230,7 +230,7 @@ router.get('/:userID', verify, async (req, res) => {
 
 });
 
-// Get all the user's subscription ids (9)
+// Get all the user's subscription ids and request ids
 router.get('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
@@ -239,34 +239,43 @@ router.get('/', verify, async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    let response={
-        subscriptions:[],
+    let response = {
+        subscriptions: [],
+        requests: [] // Add the requests array here
     };
 
-    for (const id of user.subscriptionsId){
-        const userSub=await User.findById(id);
+    // Populate subscriptions array
+    for (const id of user.subscriptionsId) {
+        const userSub = await User.findById(id);
+        let insert_push = {};
 
-        let insert_push={};
-
-        insert_push.name=userSub.name;
+        insert_push.name = userSub.name;
 
         if (userSub.Profession === 'Nutritionist') {
-            insert_push.profession='N'
-        }else if(userSub.Profession === 'Personal Trainer'){
-            insert_push.profession='P'
-        }else{
-            insert_push.profession='B'
+            insert_push.profession = 'N'
+        } else if(userSub.Profession === 'Personal Trainer') {
+            insert_push.profession = 'P'
+        } else {
+            insert_push.profession = 'B'
         }
 
         // Index for selecting the user image in the main dashboard
-        insert_push.index=1;
-        insert_push.code=userSub.Code;
+        insert_push.index = 1;
+        insert_push.code = userSub.Code;
 
         response.subscriptions.push(insert_push);
     }
 
-    return res.status(200).json({ status: 200, subscriptions:response});
-})
+    // Populate requests array
+    // Assuming user has a requestsId array similar to subscriptionsId
+    for (const id of user.requestsId) {
+        const userReq = await User.findById(id);
+        response.requests.push(userReq);
+    }
 
+    return res.status(200).json({ status: 200, subscriptions: response.subscriptions, requests: response.requests });
+});
+
+module.exports = router;
 
 module.exports = router;
