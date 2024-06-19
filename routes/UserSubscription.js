@@ -242,7 +242,7 @@ router.get('/', verify, async (req, res) => {
     };
 
     for (const mail of user.subscriptionsId){
-        const userSub_query =await User.findOne({email});
+        const userSub_query =await User.findOne({mail});
         const userSub=userSub_query;
 
         let insert_push={};
