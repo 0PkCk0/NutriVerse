@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed await">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,15 +139,7 @@
       <workItem from="1718719519612" duration="4177000" />
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
-      <workItem from="1718807519526" duration="5186000" />
-    </task>
-    <task id="LOCAL-00004" summary="Index Creation">
-      <option name="closed" value="true" />
-      <created>1715855109990</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1715855109990</updated>
+      <workItem from="1718807519526" duration="6005000" />
     </task>
     <task id="LOCAL-00005" summary="Retrieve of user information and update of them">
       <option name="closed" value="true" />
@@ -532,7 +525,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718811389197</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Fixed await">
+      <option name="closed" value="true" />
+      <created>1718813012543</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1718813012543</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -562,7 +563,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Trying adding authorizations" />
     <MESSAGE value="fixed" />
     <MESSAGE value="Index changes" />
     <MESSAGE value="changes" />
@@ -587,6 +587,7 @@
     <MESSAGE value="Fixed return of JSON" />
     <MESSAGE value="Fixed deny of request" />
     <MESSAGE value="Fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed" />
+    <MESSAGE value="Fixed await" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed await" />
   </component>
 </project>
