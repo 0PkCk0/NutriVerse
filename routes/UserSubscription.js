@@ -81,12 +81,9 @@ router.put('/', verify, async (req, res) => {
                         return res.status(200).json({ message: 'Error adding' });
                     });
             }
-    
-            else if (ADRequest == false){
-                const query = await User.findOne({ email: userEmail }); 
-                const basic = query;
-                User.findByIdAndUpdate(basic._id, { $pull: { subscriptionsId: req.user.email } });
-                ProUser.findByIdAndUpdate(req.user,
+
+            else {
+                await ProUser.findByIdAndUpdate(req.user,
                     { $pull: { requestId: userEmail } },
                     { new: true }
                 );

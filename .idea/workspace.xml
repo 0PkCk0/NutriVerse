@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,27 +61,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.13.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.12.12&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/nodejs/node_modules/npm&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;C:/Program Files/nodejs/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;C:\\Program Files\\nodejs\\node_modules\\npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "Node.js.app.js.executor": "Run",
+    "Node.js.index.js.executor": "Run",
+    "Node.js.server.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Development",
+    "javascript.nodejs.core.library.configured.version": "20.13.1",
+    "javascript.nodejs.core.library.typings.version": "20.12.12",
+    "last_opened_file_path": "C:/Program Files/nodejs/node_modules/npm",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Program Files/nodejs/node",
+    "nodejs_package_manager_path": "C:\\Program Files\\nodejs\\node_modules\\npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "ts.external.directory.path": "C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\matte\WebstormProjects\NutriVerse\UI" />
@@ -87,7 +90,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="index.js" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../../../../Program Files/nodejs/node" nameIsGenerated="true" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
+    <configuration name="server.js" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../../../../Program Files/nodejs/node" nameIsGenerated="true" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
       <EXTENSION ID="com.intellij.lang.javascript.buildTools.npm.rc.StartBrowserRunConfigurationExtension">
         <browser name="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" url="http://localhost:3000" />
       </EXTENSION>
@@ -135,23 +138,7 @@
       <workItem from="1718719519612" duration="4177000" />
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
-      <workItem from="1718807519526" duration="3269000" />
-    </task>
-    <task id="LOCAL-00002" summary="Index Creation">
-      <option name="closed" value="true" />
-      <created>1715852060371</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1715852060371</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Index Creation">
-      <option name="closed" value="true" />
-      <created>1715855084067</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1715855084067</updated>
+      <workItem from="1718807519526" duration="5186000" />
     </task>
     <task id="LOCAL-00004" summary="Index Creation">
       <option name="closed" value="true" />
@@ -529,7 +516,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718810609371</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fixed deny of request">
+      <option name="closed" value="true" />
+      <created>1718811207911</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1718811207911</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718811389197</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1718811389197</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,7 +562,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Testing front-end back-end connection" />
     <MESSAGE value="Trying adding authorizations" />
     <MESSAGE value="fixed" />
     <MESSAGE value="Index changes" />
@@ -583,6 +585,7 @@
     <MESSAGE value="Fixed Post and put of a subscription" />
     <MESSAGE value="Fixed delete of subscriber or subscription" />
     <MESSAGE value="Fixed return of JSON" />
+    <MESSAGE value="Fixed deny of request" />
     <MESSAGE value="Fixed" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixed" />
   </component>
