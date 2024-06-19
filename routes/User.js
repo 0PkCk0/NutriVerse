@@ -23,7 +23,10 @@ router.post('/', async (req, res) => {
         if (error) return res.status(400).json({ status: 400, message: 'Missing data' });
         console.log("exist email");
 
-
+        // Check if the user is in the blacklist
+        const blackListExist_query = await blackList.findOne({ email: req.body.email });
+        const blackListExist = blackListExist_query;
+        if (blackListExist) return res.status(400).json({ status: 400, message: 'You are in the blacklist' });
 
         // Check if the gender is valid
         if (req.body.gender) {
@@ -63,7 +66,7 @@ router.post('/', async (req, res) => {
             to: req.body.email,
             subject: 'Please confirm your email',
             text: `Please confirm your email by clicking on the following link: 
-            \nhttps://nutriverse-b13w.onrender.com/${confirmationToken}`
+            \nhttps://nutriverse-b13w.onrender.com?token=${confirmationToken}`
         };
 
         transporter.sendMail(mailOptions, function(err) {
