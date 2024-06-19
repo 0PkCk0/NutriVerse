@@ -95,7 +95,7 @@ router.put('/', verify, async (req, res) => {
                     { new: true }
                 );
 
-                return res.status(200).json({ status: 200, message: 'Deny access' });
+                return res.status(200).json({ status:200,message: 'Deny access' });
             }
         }
     } else {
