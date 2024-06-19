@@ -109,10 +109,10 @@ router.delete('/:userEmail', verify, async (req, res) => {
 
             const requester = await User.findById(req.user); // Retrieve user by ID from req.user
 
-            // Check if the request comes from a professional
-            if (requester.Profession === 'Nutritionist' || requester.Profession === 'Personal Trainer') {
-                // Retrieve the professional's ID from the request user
-                const professionalId = req.user._id;
+        // Check if the request comes from a professional
+        if (requester.Profession === 'Nutritionist' || requester.Profession === 'Personal Trainer') {
+            // Retrieve the professional's ID from the request user
+            const professionalId = req.user._id;
 
                 // Retrieve the user's ID to be disenrolled from req.body
                 const userId = req.params.userEmail;
@@ -170,7 +170,7 @@ router.delete('/:userEmail', verify, async (req, res) => {
         });
     } catch (err) {
         console.error('Error:', err);
-        res.status(400).send({status:400, message:err.message || 'An error occurred'});
+        res.status(400).send({status:400, message:'An error occurred'});
     }
 });
 
