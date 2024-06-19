@@ -241,8 +241,9 @@ router.get('/', verify, async (req, res) => {
         subscriptions:[],
     };
 
-    for (const id of user.subscriptionsId){
-        const userSub=await User.findById(id);
+    for (const mail of user.subscriptionsId){
+        const userSub_query =await User.findOne({email});
+        const userSub=userSub_query;
 
         let insert_push={};
 
