@@ -101,14 +101,16 @@ router.put('/', verify, async (req, res) => {
                 ProUser.findByIdAndUpdate(req.user,
                     { $pull: { requestId: userEmail } },
                     { new: true }
-                )
-                    .then(doc => {
-                        return res.status(200).json({ message: 'User denied' });
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        return res.status(200).json({ message: 'Error denying' });
-                    });
+                );
+
+
+                const updatedUser = await User.findOneAndUpdate(
+                    { email: userEmail },
+                    { $pull: { subscriptionsId: user.email } },
+                    { new: true }
+                );
+
+                return res.status(200).json({ status:200,message: 'Deny access' });
             }
         }
     } else {
