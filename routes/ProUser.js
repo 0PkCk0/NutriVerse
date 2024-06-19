@@ -213,9 +213,9 @@ router.get('/', verify, async (req, res) => {
     for (const id of user.subscribersId) {
         const userSub = await User.findById(id);
         let insert_push = {};
-
+    
         insert_push.name = userSub.name;
-
+    
         if (userSub.Profession === 'Nutritionist') {
             insert_push.profession = 'N'
         } else if(userSub.Profession === 'Personal Trainer') {
@@ -223,18 +223,34 @@ router.get('/', verify, async (req, res) => {
         } else {
             insert_push.profession = 'B'
         }
-
+    
         // Index for selecting the user image in the main dashboard
         insert_push.index = 1;
         insert_push.code = userSub.Code;
-
+    
         resultJSON.subscribers.push(insert_push);
     }
-
+    
     // Populate requests array
     for (const id of user.requestsId) {
-        const request = await User.findById(id);
-        resultJSON.requests.push(request);
+        const userReq = await User.findById(id);
+        let insert_push = {};
+    
+        insert_push.name = userReq.name;
+    
+        if (userReq.Profession === 'Nutritionist') {
+            insert_push.profession = 'N'
+        } else if(userReq.Profession === 'Personal Trainer') {
+            insert_push.profession = 'P'
+        } else {
+            insert_push.profession = 'B'
+        }
+    
+        // Index for selecting the user image in the main dashboard
+        insert_push.index = 1;
+        insert_push.code = userReq.Code;
+    
+        resultJSON.requests.push(insert_push);
     }
 
     return res.status(200).json({ status: 200, subscribers: resultJSON.subscribers, requests: resultJSON.requests });
