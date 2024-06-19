@@ -183,7 +183,7 @@ router.delete('/:userEmail', verify, async (req, res) => {
         });
     } catch (err) {
         console.error('Error:', err);
-        res.status(400).send({status:400, message:'An error occurred'});
+        res.status(400).send({status:400, message:err.message});
     }
 });
 
