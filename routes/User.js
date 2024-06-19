@@ -121,6 +121,7 @@ router.put('/', verify, async (req, res) => {
     const age=req.body.age;
     const height=req.body.height;
     const profession=req.body.profession;
+    const gender = req.body.gender;
 
 
     // Update of the fields of the user's schema.
@@ -145,6 +146,8 @@ router.put('/', verify, async (req, res) => {
     if (name!==undefined && name!==''){
         updateField.name=name;
     }
+
+    updateField.gender=gender;
 
     if (age!==undefined && age!==''){
         updateField.age=age;
