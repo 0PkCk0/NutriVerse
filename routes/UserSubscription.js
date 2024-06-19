@@ -4,18 +4,19 @@ const ProUser = require('../model/ProUserModel');
 const verify = require('../config/verifyToken');
 const {sendUpdateUser}=require('../config/updateUser');
 
-//request to enroll to a professionist
 router.post('/', verify, async (req, res) => {
     try {
-        // Retrieve subscriber (user) information
+        console.log('Request received:', req.body);
+
         const subscriber = await User.findById(req.user._id);
 
         if (!subscriber) {
             return res.status(400).send({ message: 'Subscriber not found'});
         }
 
-        // Retrieve professionist information based on email
-        const professionistEmail = req.body.email; // Assuming email is in req.body
+        const professionistEmail = req.body.email;
+        console.log('Professionist email:', professionistEmail);
+
         const query = await ProUser.findOne({ email: professionistEmail });
         const professionist = query;
 
@@ -23,30 +24,28 @@ router.post('/', verify, async (req, res) => {
             return res.status(400).send({ message: 'Professionist not found' });
         }
 
-        // Check if professionist is a premium user (not allowed)
         if (professionist.Profession === 'Premium user') {
             return res.status(400).send({ message: 'Professionist is a Premium user'});
         }
 
-        // Check for existing subscription or pending request
         if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistEmail)) ||
             (professionist.requestId && professionist.requestId.includes(req.user.email))) {
             return res.status(400).send({ message: 'Subscription already exists or request pending' });
         }
 
-        // Update user document (add professionist ID to subscriptions)
-        const updatedUser = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
             req.user._id,
             { $push: { subscriptionsId: professionistEmail } },
             { new: true }
         );
+        console.log('Updated subscriber:', await User.findById(req.user._id));
 
-        // Update professionist document (add user ID to request list)
-        const updatedProUser = await ProUser.findByIdAndUpdate(
+        await ProUser.findByIdAndUpdate(
             professionist._id.toHexString(),
             { $push: { requestId: subscriber.email } },
             { new: true }
         );
+        console.log('Updated professionist:', await ProUser.findById(professionist._id));
 
         return res.status(200).json({ status: 200, message:'Request sent to Professionist'});
 
@@ -58,60 +57,70 @@ router.post('/', verify, async (req, res) => {
 
 
 
-// Accept or Deny new subscriber from a user (21)
 router.put('/', verify, async (req, res) => {
+    console.log('ADRequest:', req.body.ADRequest);
     const user = await User.findById(req.user);
-
-    // Check if the user exists
+    
     if (!user) {
+        console.log('User not found');
         return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if he/she is a professionist
     if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
+        console.log('User is not a professionist');
         return res.status(400).json({ message: 'User is not a professionist' });
     }
 
-
-    //Get a boolean value if I accept or deny the request of a user
     const ADRequest = req.body.ADRequest;
     const userEmail = req.body.acceptEmail;
+    console.log('User Email:', userEmail);
 
     if (user.requestId.includes(userEmail)) {
+        console.log('User request ID includes user email');
         if (user.subscribersId.includes(userEmail)) {
+            console.log('User subscribers ID includes user email');
             await ProUser.findByIdAndUpdate(req.user,
                 { $pull: { requestId: userEmail } });
             return res.status(404).json({ message: 'User already subscribed' });
         } else {
-            if (ADRequest) {
+            console.log('User subscribers ID does not include user email');
+            if (ADRequest == true) {
+                console.log('ADRequest is true');
                 ProUser.findByIdAndUpdate(req.user,
                     { $push: { subscribersId: userEmail }, $pull: { requestId: userEmail } },
                     { new: true }
                 )
                     .then(doc => {
+                        console.log('User added successfully');
                         return res.status(200).json({ message: 'User added' });
                     })
                     .catch(err => {
-                        console.log(err);
+                        console.log('Error adding user:', err);
                         return res.status(200).json({ message: 'Error adding' });
                     });
             }
-
-            else {
+    
+            else if (ADRequest == false){
+                console.log('ADRequest is false');
+                const query = await User.findOne({ email: userEmail }); 
+                const basic = query;
+                User.findByIdAndUpdate(basic._id, { $pull: { subscriptionsId: req.user.email } });
                 ProUser.findByIdAndUpdate(req.user,
                     { $pull: { requestId: userEmail } },
                     { new: true }
                 )
                     .then(doc => {
+                        console.log('User denied successfully');
                         return res.status(200).json({ message: 'User denied' });
                     })
                     .catch(err => {
-                        console.log(err);
+                        console.log('Error denying user:', err);
                         return res.status(200).json({ message: 'Error denying' });
                     });
             }
         }
     } else {
+        console.log('User request ID does not include user email');
         return res.status(404).json({ message: 'You don\'t have a request from this ID' });
     }
 })
