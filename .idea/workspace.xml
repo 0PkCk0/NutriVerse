@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed await">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed Post and put of a subscription">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
@@ -22,6 +22,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/test" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <favorite-branches>
       <branch-storage>
         <map>
@@ -139,7 +152,39 @@
       <workItem from="1718719519612" duration="4177000" />
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
-      <workItem from="1718807519526" duration="6005000" />
+      <workItem from="1718807519526" duration="693000" />
+    </task>
+    <task id="LOCAL-00001" summary="Testing changes">
+      <option name="closed" value="true" />
+      <created>1715694530424</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715694530424</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Index Creation">
+      <option name="closed" value="true" />
+      <created>1715852060371</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715852060371</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Index Creation">
+      <option name="closed" value="true" />
+      <created>1715855084067</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715855084067</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Index Creation">
+      <option name="closed" value="true" />
+      <created>1715855109990</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715855109990</updated>
     </task>
     <task id="LOCAL-00005" summary="Retrieve of user information and update of them">
       <option name="closed" value="true" />
@@ -461,79 +506,7 @@
       <option name="project" value="LOCAL" />
       <updated>1718722315808</updated>
     </task>
-    <task id="LOCAL-00045" summary="Fixed delete of subscriber or subscription">
-      <option name="closed" value="true" />
-      <created>1718808605876</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1718808605876</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Fixed return of JSON">
-      <option name="closed" value="true" />
-      <created>1718809047183</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1718809047183</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718809400496</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1718809400496</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718809848270</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1718809848270</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718810466018</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1718810466018</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718810609370</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1718810609371</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Fixed deny of request">
-      <option name="closed" value="true" />
-      <created>1718811207911</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1718811207911</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718811389197</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1718811389197</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Fixed await">
-      <option name="closed" value="true" />
-      <created>1718813012543</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1718813012543</updated>
-    </task>
-    <option name="localTasksCounter" value="54" />
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,6 +536,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)" />
+    <MESSAGE value="Fixed file and functions managements" />
+    <MESSAGE value="Testing front-end back-end connection" />
+    <MESSAGE value="Trying adding authorizations" />
     <MESSAGE value="fixed" />
     <MESSAGE value="Index changes" />
     <MESSAGE value="changes" />
@@ -583,11 +560,6 @@
     <MESSAGE value="Fixed name variable" />
     <MESSAGE value="Pass id instead of the code" />
     <MESSAGE value="Fixed Post and put of a subscription" />
-    <MESSAGE value="Fixed delete of subscriber or subscription" />
-    <MESSAGE value="Fixed return of JSON" />
-    <MESSAGE value="Fixed deny of request" />
-    <MESSAGE value="Fixed" />
-    <MESSAGE value="Fixed await" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed await" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Post and put of a subscription" />
   </component>
 </project>
