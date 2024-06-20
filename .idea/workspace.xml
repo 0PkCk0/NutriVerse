@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed dropping of the email also in the requestId of the professionist">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_06_2024_12_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_06_2024_12_22__Changes_.xml" afterDir="false" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed return value of Upgrade and downgrade plan">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,14 +126,7 @@
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
       <workItem from="1718807519526" duration="6005000" />
-    </task>
-    <task id="LOCAL-00005" summary="Retrieve of user information and update of them">
-      <option name="closed" value="true" />
-      <created>1715949320373</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1715949320373</updated>
+      <workItem from="1718872511109" duration="3184000" />
     </task>
     <task id="LOCAL-00006" summary="Creation of the subscription file">
       <option name="closed" value="true" />
@@ -522,7 +512,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718813012543</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Fixed return value of Upgrade and downgrade plan">
+      <option name="closed" value="true" />
+      <created>1718873529122</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1718873529123</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +550,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed" />
     <MESSAGE value="Index changes" />
     <MESSAGE value="changes" />
     <MESSAGE value="Test" />
@@ -577,6 +574,7 @@
     <MESSAGE value="Fixed deny of request" />
     <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed await" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed await" />
+    <MESSAGE value="Fixed return value of Upgrade and downgrade plan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed return value of Upgrade and downgrade plan" />
   </component>
 </project>

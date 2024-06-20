@@ -41,7 +41,7 @@ router.post('/', verify, async (req, res) => {
 
         // Update the user document using the ProUser model with overwriteDiscriminatorKey option
 
-        if (basicUser.Profession === 'Premium user') {
+        if (basicUser.Profession === 'Premium User') {
             updatedUser = await ProUser.findOneAndUpdate({ _id: basicUser._id }, updates, {
                 new: true,
                 runValidators: true,
