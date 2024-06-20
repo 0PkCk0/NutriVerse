@@ -22,12 +22,12 @@ router.post('/', verify, async (req, res) => {
     try {
         const basicUser = await User.findById(req.user._id);
 
-        if (!basicUser) return res.status(400).send('User not found');
+        if (!basicUser) return res.status(400).send({code:400, message:'User not found'});
 
         // Check if the user is already a ProUser
 
         if (basicUser.Profession && (basicUser.Profession.includes('Nutritionist') || basicUser.Profession.includes('Personal Trainer'))) {
-            return res.status(400).send('User is already a Professionist and cannot update');
+            return res.status(400).send({code:400, message:'User is already a Professionist and cannot update'});
         }
 
         // Prepare the update data
@@ -56,18 +56,17 @@ router.post('/', verify, async (req, res) => {
                 overwriteDiscriminatorKey: true
             });
         }
-        console.log('Updated User:', updatedUser);
 
         if (!updatedUser) {
-            return res.status(400).send('Error updating user to ProUser');
+            return res.status(400).send({code:400, message:'Error updating user to ProUser'});
         }
 
         // Generate a new token
         const token = jwt.sign({ _id: updatedUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-        res.status(201).header('auth-token', token).send(token);
+        res.status(201).header('auth-token', token).send({code:201, token:token});
     } catch (err) {
         console.error('Error:', err);
-        res.status(400).send(err);
+        res.status(400).send({code:400, message:err});
     }
 });
 
@@ -76,15 +75,13 @@ router.delete('/', verify, async (req, res) => {
     try {
         const proUser = await ProUser.findById(req.user._id);
 
-        if (!proUser) return res.status(400).send('User not found');
+        if (!proUser) return res.status(400).send({code :400, message:'User not found'});
         if (proUser.userType === 'User') {
-            return res.status(400).send('User is not a ProUser');
+            return res.status(400).send({code :400, message:'User is not a ProUser'});
         }
 
         let updates = {};
         let updatedUser;
-
-        console.log('ProUser:', proUser);
 
         if (proUser.Profession === 'Premium User') {
             // Create a new User instance with the same data as the ProUser instance
@@ -103,14 +100,13 @@ router.delete('/', verify, async (req, res) => {
                 timestamp: proUser.timestamp
             });
 
-            console.log('New User:', newUser);
 
             // Delete the ProUser instance
             await ProUser.findByIdAndDelete(proUser._id);
 
             await newUser.save();
             const token = jwt.sign({ _id: newUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-            res.status(201).header('auth-token', token).send(token);
+            res.status(201).header('auth-token', token).send({code:201, token:token});
 
         } else if (['Nutritionist', 'Personal Trainer'].includes(proUser.Profession)) {
             updates = {
@@ -137,21 +133,20 @@ router.delete('/', verify, async (req, res) => {
         }
 
         if (!updatedUser) {
-            return res.status(400).send('Error updating user');
+            return res.status(400).send({code:400,message:'Error updating user'});
         }
 
         // Hydrate the document to ensure it conforms to the User model schema
         updatedUser = mongoose.model('User').hydrate(updatedUser);
 
-        console.log('Updated User:', updatedUser);
 
         // Generate a new token
         const token = jwt.sign({ _id: updatedUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-        res.status(201).header('auth-token', token).send(token);
+        res.status(201).header('auth-token', token).send({code:201, token:token});
     } catch (err) {
         console.error('Error:', err);
         if (!res.headersSent) {
-            res.status(400).send(err.message || 'An error occurred');
+            res.status(400).send({code:400, message:err.message || 'An error occurred'});
         }
     }
 });
