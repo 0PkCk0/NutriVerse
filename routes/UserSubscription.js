@@ -6,8 +6,6 @@ const {sendUpdateUser}=require('../config/updateUser');
 
 router.post('/', verify, async (req, res) => {
     try {
-        console.log('Request received:', req.body);
-
         const subscriber = await User.findById(req.user._id);
 
         if (!subscriber) {
@@ -15,7 +13,6 @@ router.post('/', verify, async (req, res) => {
         }
 
         const professionistEmail = req.body.email;
-        console.log('Professionist email:', professionistEmail);
 
         const query = await ProUser.findOne({ email: professionistEmail });
         const professionist = query;
@@ -38,70 +35,54 @@ router.post('/', verify, async (req, res) => {
             { $push: { subscriptionsId: professionistEmail } },
             { new: true }
         );
-        console.log('Updated subscriber:', await User.findById(req.user._id));
 
         await ProUser.findByIdAndUpdate(
             professionist._id.toHexString(),
             { $push: { requestId: subscriber.email } },
             { new: true }
         );
-        console.log('Updated professionist:', await ProUser.findById(professionist._id));
 
         return res.status(200).json({ status: 200, message:'Request sent to Professionist'});
 
     } catch (err) {
-        console.error('Error:', err);
         res.status(400).send({ message:'An error occurred' });
     }
 });
 
-
-
 router.put('/', verify, async (req, res) => {
-    console.log('ADRequest:', req.body.ADRequest);
     const user = await User.findById(req.user);
     
     if (!user) {
-        console.log('User not found');
         return res.status(404).json({ message: 'User not found' });
     }
 
     if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
-        console.log('User is not a professionist');
         return res.status(400).json({ message: 'User is not a professionist' });
     }
 
     const ADRequest = req.body.ADRequest;
     const userEmail = req.body.acceptEmail;
-    console.log('User Email:', userEmail);
 
     if (user.requestId.includes(userEmail)) {
-        console.log('User request ID includes user email');
         if (user.subscribersId.includes(userEmail)) {
-            console.log('User subscribers ID includes user email');
             await ProUser.findByIdAndUpdate(req.user,
                 { $pull: { requestId: userEmail } });
             return res.status(404).json({ message: 'User already subscribed' });
         } else {
-            console.log('User subscribers ID does not include user email');
             if (ADRequest == true) {
-                console.log('ADRequest is true');
                 ProUser.findByIdAndUpdate(req.user,
                     { $push: { subscribersId: userEmail }, $pull: { requestId: userEmail } },
                     { new: true }
                 )
                     .then(doc => {
-                        console.log('User added successfully');
                         return res.status(200).json({ message: 'User added' });
                     })
                     .catch(err => {
-                        console.log('Error adding user:', err);
                         return res.status(200).json({ message: 'Error adding' });
                     });
             }
     
             else if (ADRequest == false){
-                console.log('ADRequest is false');
                 const query = await User.findOne({ email: userEmail }); 
                 const basic = query;
                 User.findByIdAndUpdate(basic._id, { $pull: { subscriptionsId: req.user.email } });
@@ -110,17 +91,14 @@ router.put('/', verify, async (req, res) => {
                     { new: true }
                 )
                     .then(doc => {
-                        console.log('User denied successfully');
                         return res.status(200).json({ message: 'User denied' });
                     })
                     .catch(err => {
-                        console.log('Error denying user:', err);
                         return res.status(200).json({ message: 'Error denying' });
                     });
             }
         }
     } else {
-        console.log('User request ID does not include user email');
         return res.status(404).json({ message: 'You don\'t have a request from this ID' });
     }
 })
