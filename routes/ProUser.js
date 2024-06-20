@@ -99,6 +99,7 @@ router.delete('/', verify, async (req, res) => {
                 gender: proUser.gender,
                 subscriptionsId: proUser.subscriptionsId,
                 userType: 'User',
+                confirmed:true,
                 __t: 'User',
                 timestamp: proUser.timestamp
             });
