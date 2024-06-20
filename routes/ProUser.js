@@ -103,8 +103,6 @@ router.delete('/', verify, async (req, res) => {
                 timestamp: proUser.timestamp
             });
 
-            console.log('New User:', newUser);
-
             // Delete the ProUser instance
             await ProUser.findByIdAndDelete(proUser._id);
 

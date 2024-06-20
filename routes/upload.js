@@ -87,26 +87,30 @@ router.put('/:PlanID', verify, async (req, res) => {
   }
 });
 
-//Get specific plan of the user (24)
-router.get('/:PlanID', verify, async (req, res) => {
+router.get('/:proEmail', verify, async (req, res) => {
   const user = await User.findById(req.user);
 
-  //Check if the user exists
+  // Check if the user exists
   if (!user) {
     return res.status(404).json({ status:404, message: 'User not found' });
   }
 
-  URLsplan = user.plansUrl;
-
-  const PlanID = req.params.PlanID;
+  const proEmail = req.params.proEmail;
+  const URLsplan = user.plansUrl;
+  const matchingPlans = [];
 
   if (URLsplan) {
     for (const plan of URLsplan) {
-      if (plan._id.toHexString() === PlanID) {
-        return res.status(200).json({ status: 200, Plans: plan });
+      if (plan.proUserEmail === proEmail) {
+        matchingPlans.push(plan);
       }
     }
-    return res.status(404).json({ status: 404, message: 'Error on searching the specific ID' });
+
+    if (matchingPlans.length > 0) {
+      return res.status(200).json({ status: 200, Plans: matchingPlans });
+    } else {
+      return res.status(404).json({ status: 404, message: 'No plans found for the specified professional user' });
+    }
   } else {
     return res.status(500).json({ status: 500, message: 'Internal server error' });
   }

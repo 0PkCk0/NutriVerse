@@ -50,8 +50,7 @@ const userSchema = new mongoose.Schema({
         min: 18
     },
     gender: {
-        type: String,
-        enum: ["Male", "Female", "Unspecified"]
+        type: String
     },
     timestamp: {
         type: String,
