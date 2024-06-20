@@ -24,6 +24,10 @@ router.post('/', verify, async (req, res) => {
 
         if (!basicUser) return res.status(400).send({code:400, message:'User not found'});
 
+        if (req.body.Profession==="" || !req.body.Profession){
+            return res.status(400).send({code:400, message:'Empty body Profession'});
+        }
+
         // Check if the user is already a ProUser
 
         if (basicUser.Profession && (basicUser.Profession.includes('Nutritionist') || basicUser.Profession.includes('Personal Trainer'))) {
