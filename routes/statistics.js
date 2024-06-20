@@ -4,7 +4,7 @@ const verify = require("../config/verifyToken");
 
 // Return the statistics of the subscriber of a Profession (26)
 router.get('/:userEmail', verify, async (req, res) => {
-    reqEmail = User.findById(req.user._id);
+    reqEmail = await User.findById(req.user._id);
     console.log(reqEmail.email);
     console.log(req.params.userEmail);
     if (reqEmail.email === req.params.userEmail) {
