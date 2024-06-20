@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed gender" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed confirmed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,23 +126,7 @@
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
       <workItem from="1718807519526" duration="6005000" />
-      <workItem from="1718872511109" duration="4700000" />
-    </task>
-    <task id="LOCAL-00010" summary="Get user's specific subscription personal information">
-      <option name="closed" value="true" />
-      <created>1715958690459</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1715958690459</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Correction post of proUser">
-      <option name="closed" value="true" />
-      <created>1716370594914</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1716370594914</updated>
+      <workItem from="1718872511109" duration="5654000" />
     </task>
     <task id="LOCAL-00012" summary="Fixed get subscribers from professionists users">
       <option name="closed" value="true" />
@@ -518,7 +504,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718877067764</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Fixed header">
+      <option name="closed" value="true" />
+      <created>1718877413851</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1718877413851</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Fixed confirmed">
+      <option name="closed" value="true" />
+      <created>1718877561884</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1718877561884</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,8 +550,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed JSON return for token" />
-    <MESSAGE value="Fixed JSON return for User" />
     <MESSAGE value="JSON return on User and Auth" />
     <MESSAGE value="Modified the UserModel for the comments" />
     <MESSAGE value="Put method to add a comment to a plan" />
@@ -573,6 +573,8 @@
     <MESSAGE value="Fixed post upgrade" />
     <MESSAGE value="Fixed id upgrade" />
     <MESSAGE value="Fixed gender" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed gender" />
+    <MESSAGE value="Fixed header" />
+    <MESSAGE value="Fixed confirmed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed confirmed" />
   </component>
 </project>

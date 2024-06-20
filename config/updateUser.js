@@ -1,9 +1,9 @@
 const User = require("../model/UserModel");
 
 
-const sendUpdateUser=async function (res,ID) {
+const sendUpdateUser=async function (res,email) {
     // We get the subscription
-    const subUser = await User.findById(ID);
+    const subUser = await User.findOne({email: email});
 
     //JSON variable to return to the caller
     const JSON_user = {
@@ -18,9 +18,7 @@ const sendUpdateUser=async function (res,ID) {
         subscriptionStartDate: subUser.subscriptionStartDate
     };
 
-    // We set the header for returning the JSON variable
-    res.setHeader('Content-Type', 'application/json');
-    res.json(JSON_user);
+    res.status(200).send({status:200, user:JSON_user});
 }
 
 
