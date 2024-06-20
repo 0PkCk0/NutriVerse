@@ -4,7 +4,7 @@ const ProUser = require("../model/ProUserModel");
 const verify = require("../config/verifyToken");
 
 // Return the statistics of the subscriber of a Profession (26)
-router.get('/:userID', verify, async (req, res) => {
+router.get('/:userEmail', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
     //Check if the user exists
@@ -17,15 +17,19 @@ router.get('/:userID', verify, async (req, res) => {
         return res.status(404).json({ status: 404, message: 'User is not a professionist'});
     }
 
-    const userID = req.params.userID;
+    const userEmail = req.params.userEmail;
 
     //Check if it is one of our subscriber
     for (const id of user.subscribersId){
-        if (id===userID){
-            subscriber=await User.findById(id);
+        if (id===userEmail){
+            subscriber=await User.findOne({email: userEmail});
 
-            // Return the statistics of the specific subscriber
-            return res.status(200).json({status:200, weights:subscriber.weight});
+            if (subscriber){
+                // Return the statistics of the specific subscriber
+                return res.status(200).json({status:200, weights:subscriber.weight});
+            }else{
+                return res.status(400).json({status:400, message:"Can't find the user"});
+            }
         }
     }
 
