@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed await">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed await">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/UserSubscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/UserSubscription.js" afterDir="false" />
     </list>
@@ -95,7 +96,28 @@
     "settings.editor.selected.configurable": "advanced.settings",
     "ts.external.directory.path": "C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "Node.js.app.js.executor": "Run",
+    "Node.js.index.js.executor": "Run",
+    "Node.js.server.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Development",
+    "javascript.nodejs.core.library.configured.version": "20.13.1",
+    "javascript.nodejs.core.library.typings.version": "20.12.12",
+    "last_opened_file_path": "C:/Program Files/nodejs/node_modules/npm",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Program Files/nodejs/node",
+    "nodejs_package_manager_path": "C:\\Program Files\\nodejs\\node_modules\\npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "ts.external.directory.path": "C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
+}]]></component>
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -104,6 +126,7 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="server.js" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../../../../Program Files/nodejs/node" nameIsGenerated="true" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
     <configuration name="server.js" type="NodeJSConfigurationType" path-to-node="$PROJECT_DIR$/../../../../Program Files/nodejs/node" nameIsGenerated="true" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
       <EXTENSION ID="com.intellij.lang.javascript.buildTools.npm.rc.StartBrowserRunConfigurationExtension">
         <browser name="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" url="http://localhost:3000" />
@@ -149,6 +172,10 @@
       <workItem from="1718542266975" duration="2271000" />
       <workItem from="1718544857570" duration="2204000" />
       <workItem from="1718614364040" duration="2529000" />
+      <workItem from="1718719519612" duration="4177000" />
+      <workItem from="1718731407019" duration="15000" />
+      <workItem from="1718731683922" duration="60000" />
+      <workItem from="1718807519526" duration="6005000" />
       <workItem from="1718719519612" duration="4177000" />
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
@@ -547,6 +574,87 @@
       <updated>1718813012543</updated>
     </task>
     <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00044" summary="Fixed Post and put of a subscription">
+      <option name="closed" value="true" />
+      <created>1718722315807</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1718722315808</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Fixed delete of subscriber or subscription">
+      <option name="closed" value="true" />
+      <created>1718808605876</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718808605876</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Fixed return of JSON">
+      <option name="closed" value="true" />
+      <created>1718809047183</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718809047183</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718809400496</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1718809400496</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718809848270</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718809848270</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718810466018</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718810466018</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718810609370</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1718810609371</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Fixed deny of request">
+      <option name="closed" value="true" />
+      <created>1718811207911</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1718811207911</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718811389197</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1718811389197</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Fixed await">
+      <option name="closed" value="true" />
+      <created>1718813012543</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1718813012543</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -595,6 +703,13 @@
     <MESSAGE value="Fixed accept or deny new subscriber" />
     <MESSAGE value="Fixed name variable" />
     <MESSAGE value="Pass id instead of the code" />
+    <MESSAGE value="Fixed Post and put of a subscription" />
+    <MESSAGE value="Fixed delete of subscriber or subscription" />
+    <MESSAGE value="Fixed return of JSON" />
+    <MESSAGE value="Fixed deny of request" />
+    <MESSAGE value="Fixed" />
+    <MESSAGE value="Fixed await" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed await" />
     <MESSAGE value="Fixed Post and put of a subscription" />
     <MESSAGE value="Fixed delete of subscriber or subscription" />
     <MESSAGE value="Fixed return of JSON" />
