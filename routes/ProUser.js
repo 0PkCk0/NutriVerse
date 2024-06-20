@@ -90,7 +90,6 @@ router.delete('/', verify, async (req, res) => {
         if (proUser.Profession === 'Premium User') {
             // Create a new User instance with the same data as the ProUser instance
             const newUser = new User({
-                _id: proUser._id,
                 name: proUser.name,
                 email: proUser.email,
                 password: proUser.password,
