@@ -79,9 +79,9 @@ router.delete('/', verify, async (req, res) => {
     try {
         const proUser = await ProUser.findById(req.user._id);
 
-        if (!proUser) return res.status(400).send({code :400, message:'User not found'});
+        if (!proUser) return res.status(400).json({code :400, message:'User not found'});
         if (proUser.userType === 'User') {
-            return res.status(400).send({code :400, message:'User is not a ProUser'});
+            return res.status(400).json({code :400, message:'User is not a ProUser'});
         }
 
         let updates = {};
@@ -109,7 +109,7 @@ router.delete('/', verify, async (req, res) => {
 
             await newUser.save();
             const token = jwt.sign({ _id: newUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-            res.status(201).header('auth-token', token).send({code:201, token:token});
+            res.status(201).json({code:201, token:token});
 
         } else if (['Nutritionist', 'Personal Trainer'].includes(proUser.Profession)) {
             updates = {
@@ -136,7 +136,7 @@ router.delete('/', verify, async (req, res) => {
         }
 
         if (!updatedUser) {
-            return res.status(400).send({code:400,message:'Error updating user'});
+            return res.status(400).json({code:400,message:'Error updating user'});
         }
 
         // Hydrate the document to ensure it conforms to the User model schema
@@ -145,11 +145,11 @@ router.delete('/', verify, async (req, res) => {
 
         // Generate a new token
         const token = jwt.sign({ _id: updatedUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-        res.status(201).header('auth-token', token).send({code:201, token:token});
+        res.status(201).header('auth-token', token).json({code:201, token:token});
     } catch (err) {
         console.error('Error:', err);
         if (!res.headersSent) {
-            res.status(400).send({code:400, message:err.message || 'An error occurred'});
+            res.status(400).json({code:400, message:err.message || 'An error occurred'});
         }
     }
 });
