@@ -275,6 +275,10 @@ router.get('/', verify, async (req, res) => {
         const userSub_query = await User.findOne({ email: mail });
         const userSub = userSub_query;
 
+        if (!userSub){
+            continue;
+        }
+
         let insert_push = {};
 
         if (userSub.name) {
