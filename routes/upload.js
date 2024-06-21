@@ -6,18 +6,37 @@ const ProUser = require('../model/ProUserModel');
 
 // Route to handle uploading PDF URLs
 router.post('/', verify, async (req, res) => {
-  const { userId, url, type } = req.body;
+  const { clientEmail, url, type } = req.body;
 
-  try {
-    const professionalId = req.user._id;
-    const user = await User.findById(userId);
-    if (!user) {
+  const user = await User.findById(req.user);
+
+  // Check if the user exists
+  if (!user) {
       return res.status(404).json({ status: 404, message: 'User not found' });
+  }
+
+    //Check if the user is a professionist
+    if (!(user.Profession && (user.Profession.includes('Nutritionist') || user.Profession.includes('Personal Trainer')))) {
+        return res.status(404).json({ status: 404, message: 'User not a Professionist' });
     }
 
-    user.plansUrl.push({ professionalId, url, type});
+  try {
 
-    await user.save();
+    const client = await User.findOne({email:clientEmail});
+
+    if (!client) {
+      return res.status(404).json({ status: 404, message: 'Client not found' });
+    }
+
+    const push_element={
+        professionalEmail:user.email,
+        url:url,
+        type:type,
+    }
+
+    client.plansUrl.push(push_element);
+
+    await client.save();
 
     res.status(200).json({ status: 200, message: 'PDF URL uploaded successfully' });
   } catch (error) {
@@ -87,8 +106,8 @@ router.put('/:PlanID', verify, async (req, res) => {
   }
 });
 
-//Get specific plan of the user (24)
-router.get('/:PlanID', verify, async (req, res) => {
+//Get plan made by a professionist (24)
+router.get('/:emailUser', verify, async (req, res) => {
   const user = await User.findById(req.user);
 
   //Check if the user exists
@@ -96,20 +115,20 @@ router.get('/:PlanID', verify, async (req, res) => {
     return res.status(404).json({ status:404, message: 'User not found' });
   }
 
-  URLsplan = user.plansUrl;
+  const emailUser = req.params.emailUser;
 
-  const PlanID = req.params.PlanID;
+  URLsplan=user.plansUrl;
 
-  if (URLsplan) {
-    for (const plan of URLsplan) {
-      if (plan._id.toHexString() === PlanID) {
-        return res.status(200).json({ status: 200, Plans: plan });
+  let plans=[];
+
+  for (const plan of URLsplan){
+      if (plan.professionalEmail === emailUser){
+          plans.push(plan);
       }
-    }
-    return res.status(404).json({ status: 404, message: 'Error on searching the specific ID' });
-  } else {
-    return res.status(500).json({ status: 500, message: 'Internal server error' });
   }
+
+  return res.status(200).json({ status: 200, Plans: plans });
+
 });
 
 

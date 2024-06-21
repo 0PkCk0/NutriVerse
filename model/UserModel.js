@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     plansUrl: [{
-        professionalId: {
+        professionalEmail: {
             type: String
         },
         url: { 
