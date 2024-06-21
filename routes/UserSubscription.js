@@ -24,7 +24,7 @@ router.post('/', verify, async (req, res) => {
         }
 
         // Check if professionist is a premium user (not allowed)
-        if (professionist.Profession === 'Premium user') {
+        if (professionist.Profession === 'Premium User') {
             return res.status(400).send({ message: 'Professionist is a Premium user' });
         }
 
@@ -122,25 +122,6 @@ router.delete('/:userEmail', verify, async (req, res) => {
     try {
 
         const requester = await User.findById(req.user); // Retrieve user by ID from req.user
-
-        // Assuming subscribersId is an array of userEmails
-        const subscribersId = updatedProUser.subscribersId; // This should be fetched from the professional's document
-
-        subscribersId.forEach(async (userEmail) => {
-            try {
-                // Find the user by their email
-                const user = await User.findOne({ email: userEmail });
-                if (user) {
-                    // Assuming the user has a field 'subscriptions' which is an array of professional emails
-                    await User.findByIdAndUpdate(user._id, { $pull: { subscriptions: requester.email } });
-                }
-            } catch (error) {
-                console.error(`Error updating user ${userEmail}: ${error}`);
-                // Handle error appropriately, maybe accumulate errors to respond with or log them
-            }
-        });
-
-        // After the forEach, you might need to handle completion or errors, depending on your application's needs
 
         // Check if the request comes from a professional
         if (requester.Profession === 'Nutritionist' || requester.Profession === 'Personal Trainer') {

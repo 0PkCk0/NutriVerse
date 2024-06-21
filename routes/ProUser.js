@@ -79,6 +79,22 @@ router.delete('/', verify, async (req, res) => {
     try {
         const proUser = await ProUser.findById(req.user._id);
 
+        const subscribersId = updatedProUser.subscribersId; // This should be fetched from the professional's document
+
+        subscribersId.forEach(async (userEmail) => {
+            try {
+                // Find the user by their email
+                const user = await User.findOne({ email: userEmail });
+                if (user) {
+                    // Assuming the user has a field 'subscriptions' which is an array of professional emails
+                    await User.findByIdAndUpdate(user._id, { $pull: { subscriptions: requester.email } });
+                }
+            } catch (error) {
+                console.error(`Error updating user ${userEmail}: ${error}`);
+                // Handle error appropriately, maybe accumulate errors to respond with or log them
+            }
+        });
+
         if (!proUser) return res.status(400).json({code :400, message:'User not found'});
         if (proUser.userType === 'User') {
             return res.status(400).json({code :400, message:'User is not a ProUser'});
