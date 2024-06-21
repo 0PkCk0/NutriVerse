@@ -94,6 +94,7 @@ router.delete('/', verify, async (req, res) => {
                 password: proUser.password,
                 weight: proUser.weight,
                 height: proUser.height,
+                plansUrl:proUser.plansUrl,
                 age: proUser.age,
                 gender: proUser.gender,
                 subscriptionsId: proUser.subscriptionsId,
