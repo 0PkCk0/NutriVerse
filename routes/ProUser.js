@@ -76,27 +76,8 @@ router.post('/', verify, async (req, res) => {
 
 // Downgrade the plan of a ProUser
 router.delete('/', verify, async (req, res) => {
+    const proUser = await ProUser.findById(req.user._id);
     try {
-        const proUser = await ProUser.findById(req.user._id);
-
-        const subscribersId = updatedProUser.subscribersId; // This should be fetched from the professional's document
-
-        if (subscribersId && subscribersId.length > 0) {
-            subscribersId.forEach(async (userEmail) => {
-                try {
-                    // Find the user by their email
-                    const user = await User.findOne({ email: userEmail });
-                    if (user) {
-                        // Assuming the user has a field 'subscriptions' which is an array of professional emails
-                        await User.findByIdAndUpdate(user._id, { $pull: { subscriptions: requester.email } });
-                    }
-                } catch (error) {
-                    console.error(`Error updating user ${userEmail}: ${error}`);
-                    // Handle error appropriately, maybe accumulate errors to respond with or log them
-                }
-            });
-        }
-
         if (!proUser) return res.status(400).json({ code: 400, message: 'User not found' });
         if (proUser.userType === 'User') {
             return res.status(400).json({ code: 400, message: 'User is not a ProUser' });
@@ -131,16 +112,29 @@ router.delete('/', verify, async (req, res) => {
             res.status(201).json({ code: 201, token: token });
 
         } else if (['Nutritionist', 'Personal Trainer'].includes(proUser.Profession)) {
+
             updates = {
                 Profession: 'Premium User',  // Downgrade to Premium User
                 subscribersId: []  // Clear the subscribersId field
             };
 
-            // Remove this ProUser's ID from the subscriptionsId array of every user who is subscribed to them
-            await User.updateMany(
-                { subscriptionsId: proUser._id },
-                { $pull: { subscriptionsId: proUser._id } }
-            );
+            const subscribersId = proUser.subscribersId; // This should be fetched from the professional's document
+
+            if (subscribersId && subscribersId.length > 0) {
+                subscribersId.forEach(async (userEmail) => {
+                    try {
+                        // Find the user by their email
+                        const user = await User.findOne({ email: userEmail });
+                        if (user) {
+                            // Assuming the user has a field 'subscriptions' which is an array of professional emails
+                            await User.findByIdAndUpdate(user._id, { $pull: { subscriptions: requester.email } });
+                        }
+                    } catch (error) {
+                        console.error(`Error updating user ${userEmail}: ${error}`);
+                        // Handle error appropriately, maybe accumulate errors to respond with or log them
+                    }
+                });
+            }
 
             updatedUser = await ProUser.findOneAndUpdate(
                 { _id: proUser._id },
