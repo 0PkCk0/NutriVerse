@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed confirmed">
-      <change afterPath="$PROJECT_DIR$/routes/professionPlan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_06_2024_12_12__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_06_2024_18_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_06_2024_18_21__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_06_2024_18_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_19_06_2024_18_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_06_2024_12_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_06_2024_12_22__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_06_2024_18_07__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_06_2024_18_07__Changes_.xml" afterDir="false" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Change in post and get of plans. Also created professionalPlan get">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/UserModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/professionPlan.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/professionPlan.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,15 +130,7 @@
       <workItem from="1718807519526" duration="6005000" />
       <workItem from="1718872511109" duration="5654000" />
       <workItem from="1718902329601" duration="43000" />
-      <workItem from="1718960051164" duration="4026000" />
-    </task>
-    <task id="LOCAL-00012" summary="Fixed get subscribers from professionists users">
-      <option name="closed" value="true" />
-      <created>1716371712326</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1716371712326</updated>
+      <workItem from="1718960051164" duration="4654000" />
     </task>
     <task id="LOCAL-00013" summary="Fixed update of profession from User">
       <option name="closed" value="true" />
@@ -531,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718877561884</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Change in post and get of plans. Also created professionalPlan get">
+      <option name="closed" value="true" />
+      <created>1718964583409</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1718964583410</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +554,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JSON return on User and Auth" />
     <MESSAGE value="Modified the UserModel for the comments" />
     <MESSAGE value="Put method to add a comment to a plan" />
     <MESSAGE value="Fixed a condition" />
@@ -586,6 +578,7 @@
     <MESSAGE value="Fixed gender" />
     <MESSAGE value="Fixed header" />
     <MESSAGE value="Fixed confirmed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed confirmed" />
+    <MESSAGE value="Change in post and get of plans. Also created professionalPlan get" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change in post and get of plans. Also created professionalPlan get" />
   </component>
 </project>

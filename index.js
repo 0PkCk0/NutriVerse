@@ -12,6 +12,7 @@ const uploadRoute = require('./routes/upload');
 const reportRoute = require('./routes/report');
 const messagesRoute = require('./routes/messages');
 const statisticsRoute=require('./routes/statistics');
+const professionalPlan=require('./routes/professionPlan');
 
 dotenv.config();
 
@@ -45,5 +46,6 @@ app.use('/api/v1/upload', uploadRoute);
 app.use('/api/v1/report', reportRoute);
 app.use('/api/v1/messages', messagesRoute);
 app.use('/api/v1/statistics',statisticsRoute);
+app.use('/api/v1/professionPlan',professionalPlan);
 
 module.exports = app;

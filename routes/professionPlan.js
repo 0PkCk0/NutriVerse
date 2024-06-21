@@ -20,7 +20,7 @@ router.get('/:emailUser', verify, async (req, res) => {
 
     const emailUser = req.params.emailUser;
 
-    client=User.findOne({email:emailUser});
+    client=await User.findOne({email:emailUser});
 
     if (!client){
         return res.status(404).json({ status:404, message: 'Client not found' });
@@ -39,3 +39,5 @@ router.get('/:emailUser', verify, async (req, res) => {
     return res.status(200).json({ status: 200, Plans: plans });
 
 });
+
+module.exports = router;
