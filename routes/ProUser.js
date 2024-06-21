@@ -122,7 +122,7 @@ router.delete('/', verify, async (req, res) => {
                         const user = await User.findOne({ email: userEmail });
                         if (user) {
                             // Assuming the user has a field 'subscriptions' which is an array of professional emails
-                            await User.findByIdAndUpdate(user._id, { $pull: { subscriptionsId: requester.email } });
+                            await User.findByIdAndUpdate(user._id, { $pull: { subscriptionsId: proUser.email } });
                         }
                     } catch (error) {
                         console.error(`Error updating user ${userEmail}: ${error}`);
