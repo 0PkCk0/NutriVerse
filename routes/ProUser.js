@@ -113,12 +113,7 @@ router.delete('/', verify, async (req, res) => {
 
         } else if (['Nutritionist', 'Personal Trainer'].includes(proUser.Profession)) {
 
-            updates = {
-                Profession: 'Premium User',  // Downgrade to Premium User
-                subscribersId: []  // Clear the subscribersId field
-            };
-
-            const subscribersId = proUser.subscribersId; // This should be fetched from the professional's document
+            const subscribersId = proUser.subscribersId; 
 
             if (subscribersId && subscribersId.length > 0) {
                 subscribersId.forEach(async (userEmail) => {
@@ -127,7 +122,7 @@ router.delete('/', verify, async (req, res) => {
                         const user = await User.findOne({ email: userEmail });
                         if (user) {
                             // Assuming the user has a field 'subscriptions' which is an array of professional emails
-                            await User.findByIdAndUpdate(user._id, { $pull: { subscriptions: requester.email } });
+                            await User.findByIdAndUpdate(user._id, { $pull: { subscriptionsId: requester.email } });
                         }
                     } catch (error) {
                         console.error(`Error updating user ${userEmail}: ${error}`);
@@ -135,6 +130,11 @@ router.delete('/', verify, async (req, res) => {
                     }
                 });
             }
+
+            updates = {
+                Profession: 'Premium User',  // Downgrade to Premium User
+                subscribersId: []  // Clear the subscribersId field
+            };
 
             updatedUser = await ProUser.findOneAndUpdate(
                 { _id: proUser._id },
