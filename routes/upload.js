@@ -191,7 +191,7 @@ router.delete('/:emailUser', verify, async (req, res) => {
         return res.status(404).json({ message: 'Plan not found' });
       }
 
-      await User.findOneAndDelete(
+      await User.findOneAndUpdate(
           { email: emailUser },
         { $pull: { plansUrl: { professionalEmail: user.email , type: type} } },
         { new: true }
@@ -204,7 +204,7 @@ router.delete('/:emailUser', verify, async (req, res) => {
         return res.status(404).json({ message: 'Plan not found' });
       }
 
-      await User.findOneAndDelete(
+      await User.findOneAndUpdate(
           { email: user.email },
         { $pull: { plansUrl: { professionalEmail: emailUser , type: type} } },
         { new: true }

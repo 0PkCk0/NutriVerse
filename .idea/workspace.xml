@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed get subscriptions">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,14 +129,7 @@
       <workItem from="1718872511109" duration="5654000" />
       <workItem from="1718902329601" duration="43000" />
       <workItem from="1718960051164" duration="7102000" />
-    </task>
-    <task id="LOCAL-00017" summary="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)">
-      <option name="closed" value="true" />
-      <created>1716972872622</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1716972872622</updated>
+      <workItem from="1718984026000" duration="369000" />
     </task>
     <task id="LOCAL-00018" summary="Fixed file and functions managements">
       <option name="closed" value="true" />
@@ -522,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718979724636</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Fixed">
+      <option name="closed" value="true" />
+      <created>1718981970450</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1718981970450</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,7 +540,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Development" />
+                        <option value="Development" />
                       </list>
                     </value>
                   </entry>
@@ -563,7 +564,6 @@
     <MESSAGE value="Fixed delete of subscriber or subscription" />
     <MESSAGE value="Fixed return of JSON" />
     <MESSAGE value="Fixed deny of request" />
-    <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed await" />
     <MESSAGE value="Fixed return value of Upgrade and downgrade plan" />
     <MESSAGE value="Fixed Premium User" />
@@ -577,6 +577,7 @@
     <MESSAGE value="Fixed server file for using the socket" />
     <MESSAGE value="Add socket.io" />
     <MESSAGE value="Fixed get subscriptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed get subscriptions" />
+    <MESSAGE value="Fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed" />
   </component>
 </project>
