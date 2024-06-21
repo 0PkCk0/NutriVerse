@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed router index">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed server file for using the socket">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/upload.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,14 +130,6 @@
       <workItem from="1718872511109" duration="5654000" />
       <workItem from="1718902329601" duration="43000" />
       <workItem from="1718960051164" duration="7102000" />
-    </task>
-    <task id="LOCAL-00014" summary="Fixed user and prouser get subscribers and subscriptions">
-      <option name="closed" value="true" />
-      <created>1716554608162</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1716554608162</updated>
     </task>
     <task id="LOCAL-00015" summary="Fixed user and prouser">
       <option name="closed" value="true" />
@@ -523,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718965805878</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Fixed server file for using the socket">
+      <option name="closed" value="true" />
+      <created>1718977661169</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1718977661169</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +553,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Put method to add a comment to a plan" />
     <MESSAGE value="Fixed a condition" />
     <MESSAGE value="Configuration of the BlackList" />
     <MESSAGE value="Show statistics of the user or of the subscriber" />
@@ -578,6 +577,7 @@
     <MESSAGE value="Fixed confirmed" />
     <MESSAGE value="Change in post and get of plans. Also created professionalPlan get" />
     <MESSAGE value="Fixed router index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed router index" />
+    <MESSAGE value="Fixed server file for using the socket" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed server file for using the socket" />
   </component>
 </project>

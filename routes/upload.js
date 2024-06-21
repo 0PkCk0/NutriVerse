@@ -160,47 +160,53 @@ router.get('/', verify, async (req, res) => {
 });
 
 
-router.delete('/:planId', verify, async (req, res) => {
+router.delete('/:emailUser', verify, async (req, res) => {
   try {
-    const planId = req.params.planId;
+
+    const type=req.body.type;
+    const emailUser = req.params.emailUser;
     const userId = req.user._id;
 
     // Find the user
     const user = await User.findById(userId);
+
+    const client = await User.findOne({email:emailUser});
+
+    // Check if the user was found
+    if (!client) {
+        return res.status(404).json({ message: 'Client not found' });
+    }
 
     // Check if the user was found
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    console.log(user.Profession);
 
     if (user.Profession && (user.Profession === 'Nutritionist' || user.Profession === 'Personal Trainer')) {
 
-      client = await User.findById(req.body.userId);
-      console.log(client);
-      const planExists = client.plansUrl.some(plan => plan._id.toString() === planId);
+      const planExists = client.plansUrl.some(plan => (plan.professionalEmail.toString() === user.email && plan.type === type));
 
       if (!planExists) {
         return res.status(404).json({ message: 'Plan not found' });
       }
 
-      await User.findByIdAndUpdate(
-        client,
-        { $pull: { plansUrl: { _id: planId } } },
+      await User.findOneAndDelete(
+          { email: emailUser },
+        { $pull: { plansUrl: { professionalEmail: user.email , type: type} } },
         { new: true }
       );
 
     } else {
-      const planExists = user.plansUrl.some(plan => plan._id.toString() === planId);
+      const planExists = user.plansUrl.some(plan => plan.professionalEmail.toString() === emailUser && plan.type === type);
 
       if (!planExists) {
         return res.status(404).json({ message: 'Plan not found' });
       }
 
-      await User.findByIdAndUpdate(
-        userId,
-        { $pull: { plansUrl: { _id: planId } } },
+      await User.findOneAndDelete(
+          { email: user.email },
+        { $pull: { plansUrl: { professionalEmail: emailUser , type: type} } },
         { new: true }
       );
     }
