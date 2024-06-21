@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../model/UserModel'); // Assuming your user model is defined in this file
 const verify = require('../config/verifyToken');
 const ProUser = require('../model/ProUserModel');
+const moment = require('moment-timezone');
 
 // Route to handle uploading PDF URLs
 router.post('/', verify, async (req, res) => {
@@ -28,6 +29,13 @@ router.post('/', verify, async (req, res) => {
       return res.status(404).json({ status: 404, message: 'Client not found' });
     }
 
+    //Check if the user already has a Diet or workout plan
+    for (const plan of client.plansUrl){
+        if (plan.type === type){
+            return res.status(404).json({ status: 404, message: 'You already have a workout or diet plan' });
+        }
+    }
+
     const push_element={
         professionalEmail:user.email,
         url:url,
@@ -46,10 +54,11 @@ router.post('/', verify, async (req, res) => {
 });
 
 // We add a comment to a specific plan (16)
-router.put('/:PlanID', verify, async (req, res) => {
+router.put('/:emailUser', verify, async (req, res) => {
   const user = await User.findById(req.user);
 
-  const PlanID = req.params.PlanID;
+  const type=req.body.type;
+  const emailUser = req.params.emailUser;
 
   URLsplan=user.plansUrl;
 
@@ -73,7 +82,7 @@ router.put('/:PlanID', verify, async (req, res) => {
 
   if (URLsplan){
       for (const plan of URLsplan){
-          if (plan._id.toHexString()===PlanID){
+          if (plan.professionalEmail===emailUser && plan.type===type){
               // We add a comment to the plan
               find_one=true;
 
