@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
-const { id } = require('@hapi/joi/lib/base');
-const { type } = require('@hapi/joi/lib/extend');
 
 const userSchema = new mongoose.Schema({
     name: {

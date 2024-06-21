@@ -6,17 +6,27 @@ const ProUser = require('../model/ProUserModel');
 
 // Route to handle uploading PDF URLs
 router.post('/', verify, async (req, res) => {
-  const { userId, url, type } = req.body;
+  const { userEmail, url, type } = req.body;
 
   try {
-    const professionalId = req.user._id;
-    const user = await User.findById(userId);
+    const professional = await ProUser.findById(req.user._id);
+    const prof_email = professional.email;
+    const user_query = await User.findOne({email: userEmail});
+    const user = user_query;
     if (!user) {
       return res.status(404).json({ status: 404, message: 'User not found' });
     }
 
-    user.plansUrl.push({ professionalId, url, type});
-
+    if (type !== 'Diet' && type !== 'Workout') { return res.status(400).json({ status: 400, message: 'Invalid plan type' }); }
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        user._id,
+        { $push: { plansUrl: { prof_email, url, type } } },
+        { new: true }
+      );
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
     await user.save();
 
     res.status(200).json({ status: 200, message: 'PDF URL uploaded successfully' });
@@ -32,58 +42,58 @@ router.put('/:PlanID', verify, async (req, res) => {
 
   const PlanID = req.params.PlanID;
 
-  URLsplan=user.plansUrl;
+  URLsplan = user.plansUrl;
 
-  let pushField={};
+  let pushField = {};
 
-  const comment=req.body.comment;
+  const comment = req.body.comment;
 
-  if (!comment || comment===''){
-      return res.status(404).json({ status: 404, message:'Comment empty'});
-  }else{
-      var time = moment.tz(new Date(), "Europe/Rome");
-      const returnTime=time.format('YYYY/MM/DD HH:mm');
+  if (!comment || comment === '') {
+    return res.status(404).json({ status: 404, message: 'Comment empty' });
+  } else {
+    var time = moment.tz(new Date(), "Europe/Rome");
+    const returnTime = time.format('YYYY/MM/DD HH:mm');
 
-      pushField= {
-          message:comment,
-          date:returnTime
-      };
+    pushField = {
+      message: comment,
+      date: returnTime
+    };
   }
 
-  find_one=false;
+  find_one = false;
 
-  if (URLsplan){
-      for (const plan of URLsplan){
-          if (plan._id.toHexString()===PlanID){
-              // We add a comment to the plan
-              find_one=true;
+  if (URLsplan) {
+    for (const plan of URLsplan) {
+      if (plan._id.toHexString() === PlanID) {
+        // We add a comment to the plan
+        find_one = true;
 
-              User.updateOne(
-                  { _id: req.user, "plansUrl._id": plan._id },
-                  { $push: { "plansUrl.$.comment": pushField } }
+        User.updateOne(
+          { _id: req.user, "plansUrl._id": plan._id },
+          { $push: { "plansUrl.$.comment": pushField } }
 
-              )
-                  .then(doc=>{
+        )
+          .then(doc => {
 
-                  return res.status(200).json({ status: 200, message:'Added the comment'});
+            return res.status(200).json({ status: 200, message: 'Added the comment' });
 
-              })
-                  .catch(err=>{
+          })
+          .catch(err => {
 
-                      console.log(err);
-                      return res.status(500).json({ status: 500, message:'Internal error on adding the comment'});
+            console.log(err);
+            return res.status(500).json({ status: 500, message: 'Internal error on adding the comment' });
 
-                  });
-          }
+          });
       }
+    }
 
-      if (!find_one){
+    if (!find_one) {
 
-          return res.status(404).json({ status: 404, message:'Didn\'t find the specified plan' });
+      return res.status(404).json({ status: 404, message: 'Didn\'t find the specified plan' });
 
-      }
-  }else{
-      return res.status(500).json({ status: 500, message: 'Internal server error' });
+    }
+  } else {
+    return res.status(500).json({ status: 500, message: 'Internal server error' });
   }
 });
 
@@ -92,7 +102,7 @@ router.get('/:proEmail', verify, async (req, res) => {
 
   // Check if the user exists
   if (!user) {
-    return res.status(404).json({ status:404, message: 'User not found' });
+    return res.status(404).json({ status: 404, message: 'User not found' });
   }
 
   const proEmail = req.params.proEmail;
@@ -123,7 +133,7 @@ router.get('/', verify, async (req, res) => {
 
   //Check if the user exists
   if (!user) {
-    return res.status(404).json({ status:404, message: 'User not found' });
+    return res.status(404).json({ status: 404, message: 'User not found' });
   }
 
   URLsplan = user.plansUrl;

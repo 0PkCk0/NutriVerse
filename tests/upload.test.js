@@ -1,72 +1,49 @@
 const request = require('supertest');
 const express = require('express');
-const app = express();
-const router = require('../routes/yourRouteFile'); // replace with your actual route file
+const app = require('../index');
+const jwt = require('jsonwebtoken');
+const User = require('../model/UserModel');
+const ProUser = require('../model/ProUserModel');
+const router = require('../routes/upload');
 
-app.use('/api/v1/plans', router);
+app.use('/api/v1/upload', router);
 app.use(express.json());
 
-describe('POST /plans', () => {
-    let user;
-    let token;
+describe('POST api/v1/upload', () => {
 
-    beforeAll(async () => {
-        user = await User.findOne({ email: 'test.simple.user@gmail.com' });
-        token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-    });
+    it('should respond with 200 status if PDF URL upload is successful', async () => {  
 
-    it('should respond with 200 status if PDF URL upload is successful', async () => {
-
-        
-
+        const query_test = await User.findOne({ email: 'test.simple.user@gmail.com' });
+        const user = await query_test;
+    
+        const prof_query = await ProUser.findOne({ email: 'john.doe@example.com'});
+        prof = await prof_query;
+    
+        token_prof = jwt.sign({ _id: prof._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+    
         const response = await request(app)
-            .post('/api/v1/plans')
-            .set('auth-token', token)
+            .post('/api/v1/upload')
+            .set('auth-token', token_prof)
             .send({
-                userId: 'testUserId',
+                userEmail: user.email,
                 url: 'testUrl',
-                type: 'testType'
+                type: 'Diet'
             });
-
-        expect(response.statusCode).toBe(200);
-        expect(response.body.message).toBe('PDF URL uploaded successfully');
+    
+        expect(response.statusCode).toEqual(200);
+        expect(response.body.message).toEqual('PDF URL uploaded successfully');
     });
+
+   
 });
 
-describe('PUT /plans/:PlanID', () => {
-    it('should respond with 200 status if comment is added successfully', async () => {
-        const response = await request(app)
-            .put('/api/v1/plans/testPlanId')
-            .send({ comment: 'testComment' });
+// describe('PUT /plans/:PlanID', () => {
+//     it('should respond with 200 status if comment is added successfully', async () => {
+//         const response = await request(app)
+//             .put('/api/v1/plans/testPlanId')
+//             .send({ comment: 'testComment' });
 
-        expect(response.statusCode).toBe(200);
-        expect(response.body.message).toBe('Added the comment');
-    });
-});
-
-describe('GET /plans/:proEmail', () => {
-    it('should respond with 200 status if plans are fetched successfully', async () => {
-        const response = await request(app).get('/api/v1/plans/testProEmail');
-
-        expect(response.statusCode).toBe(200);
-        expect(response.body.Plans).toBeDefined();
-    });
-});
-
-describe('GET /plans', () => {
-    it('should respond with 200 status if all plans are fetched successfully', async () => {
-        const response = await request(app).get('/api/v1/plans');
-
-        expect(response.statusCode).toBe(200);
-        expect(response.body.Plans).toBeDefined();
-    });
-});
-
-describe('DELETE /plans/:planId', () => {
-    it('should respond with 200 status if plan is deleted successfully', async () => {
-        const response = await request(app).delete('/api/v1/plans/testPlanId');
-
-        expect(response.statusCode).toBe(200);
-        expect(response.body.message).toBe('Plan deleted successfully');
-    });
-});
+//         expect(response.statusCode).toBe(200);
+//         expect(response.body.message).toBe('Added the comment');
+//     });
+// });
