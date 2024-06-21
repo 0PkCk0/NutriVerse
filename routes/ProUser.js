@@ -109,7 +109,7 @@ router.delete('/', verify, async (req, res) => {
 
             await newUser.save();
             const token = jwt.sign({ _id: newUser._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-            res.status(201).json({ code: 201, token: token });
+            return res.status(201).json({ code: 201, token: token });
 
         } else if (['Nutritionist', 'Personal Trainer'].includes(proUser.Profession)) {
 

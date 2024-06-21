@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Add socket.io" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed get subscriptions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,14 +129,6 @@
       <workItem from="1718872511109" duration="5654000" />
       <workItem from="1718902329601" duration="43000" />
       <workItem from="1718960051164" duration="7102000" />
-    </task>
-    <task id="LOCAL-00016" summary="Accept new subscriber from a User">
-      <option name="closed" value="true" />
-      <created>1716823812297</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1716823812297</updated>
     </task>
     <task id="LOCAL-00017" summary="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)">
       <option name="closed" value="true" />
@@ -520,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718979091906</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Fixed get subscriptions">
+      <option name="closed" value="true" />
+      <created>1718979724636</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1718979724636</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +539,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Development" />
+                        <option value="origin/Development" />
                       </list>
                     </value>
                   </entry>
@@ -550,7 +552,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Configuration of the BlackList" />
     <MESSAGE value="Show statistics of the user or of the subscriber" />
     <MESSAGE value="Fixed proUser get subscribers" />
     <MESSAGE value="fixed usersubscription" />
@@ -575,6 +576,7 @@
     <MESSAGE value="Fixed router index" />
     <MESSAGE value="Fixed server file for using the socket" />
     <MESSAGE value="Add socket.io" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add socket.io" />
+    <MESSAGE value="Fixed get subscriptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed get subscriptions" />
   </component>
 </project>
