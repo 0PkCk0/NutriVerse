@@ -143,6 +143,16 @@ router.put('/', verify, async (req, res) => {
             });
     }
 
+    if (!(name.length>=6 && name.length<=255)
+        || !(surname.length>=6 && surname.length<=255)
+        || weigth<30
+        || height<0
+        || age<18){
+
+        return res.status(400).json({ status: 400, message: 'Values don\'t follow the standard' });
+
+    }
+
     if (name!==undefined && name!==''){
         updateField.name=name;
     }

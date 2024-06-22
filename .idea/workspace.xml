@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed plansUrl from Premium User to User">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/User.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,15 +130,8 @@
       <workItem from="1718872511109" duration="5654000" />
       <workItem from="1718902329601" duration="43000" />
       <workItem from="1718960051164" duration="7102000" />
-      <workItem from="1718984026000" duration="1593000" />
-    </task>
-    <task id="LOCAL-00019" summary="Testing front-end back-end connection">
-      <option name="closed" value="true" />
-      <created>1716978927672</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1716978927672</updated>
+      <workItem from="1718984026000" duration="2391000" />
+      <workItem from="1719057951284" duration="839000" />
     </task>
     <task id="LOCAL-00020" summary="Trying adding authorizations">
       <option name="closed" value="true" />
@@ -523,7 +517,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718984652246</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Fixed plansUrl from Premium User to User">
+      <option name="closed" value="true" />
+      <created>1718985839253</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1718985839253</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Show statistics of the user or of the subscriber" />
     <MESSAGE value="Fixed proUser get subscribers" />
     <MESSAGE value="fixed usersubscription" />
     <MESSAGE value="Fixed send enroll to professionist" />
@@ -578,6 +579,7 @@
     <MESSAGE value="Add socket.io" />
     <MESSAGE value="Fixed get subscriptions" />
     <MESSAGE value="Fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed" />
+    <MESSAGE value="Fixed plansUrl from Premium User to User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed plansUrl from Premium User to User" />
   </component>
 </project>
