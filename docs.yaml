@@ -6,7 +6,7 @@ info:
 servers:
   - url: http://nutriverse.onrender.com/api/v1/
 paths:
-  /auth:
+/auth:
     post:
       summary: Login a user
       requestBody:
@@ -62,7 +62,6 @@ paths:
                   message:
                     type: string
                     example: Missing user and/or password
-  /auth:
     get:
       summary: Confirm user email
       parameters:
@@ -103,7 +102,6 @@ paths:
                   message:
                     type: string
                     example: Internal Server Error
-  /auth:
     delete:
       summary: Logout a user
       requestBody:
@@ -207,7 +205,7 @@ paths:
                     type: string
                     example: Internal Server Error
 
-  /user/{confirmationToken}:
+/user/{confirmationToken}:
     put:
       summary: Confirm user registration
       parameters:
@@ -245,7 +243,7 @@ paths:
                     type: string
                     example: Invalid token
 
-  /user:
+/user:
     get:
       summary: Get user profile
       responses:
@@ -296,7 +294,7 @@ paths:
                     type: string
                     example: User not found
 
-  /user/{subscriptionID}:
+/user/{subscriptionID}:
     get:
       summary: Get subscription profile
       parameters:
@@ -352,7 +350,7 @@ paths:
                     type: string
                     example: You are not subscribed to this user or subscription ID not found
 
-  /user:
+/user:
     put:
       summary: Update user profile
       requestBody:
@@ -402,8 +400,6 @@ paths:
                   message:
                     type: string
                     example: User not found
-
-  /user:
     delete:
       summary: Delete user profile
       responses:
@@ -433,7 +429,7 @@ paths:
                   message:
                     type: string
                     example: User not found
-  /messages:
+/messages:
     post:
       summary: Send a message
       description: Endpoint to send a message from one user to another.
@@ -488,7 +484,6 @@ paths:
                   message:
                     type: string
                     example: Internal Server Error
-  /messages
     get:
       summary: Get messages with a user
       description: Endpoint to retrieve all messages exchanged with a specific user.
@@ -547,7 +542,7 @@ paths:
                   message:
                     type: string
                     example: Internal Server Error
-  /professionPlan/{emailUser}:
+/professionPlan/{emailUser}:
     get:
       summary: Get plans created by a user
       description: Retrieve fitness plans created by a user (nutritionist or personal trainer) for another user.
@@ -615,3 +610,804 @@ paths:
                   message:
                     type: string
                     example: Internal Server Error
+/prouser:
+    post:
+      summary: Update a user to ProUser
+      description: Update a basic user to a ProUser (Nutritionist or Personal Trainer).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Profession:
+                  type: string
+                  example: Nutritionist
+              required:
+                - Profession
+      responses:
+        '201':
+          description: User updated successfully
+          headers:
+            auth-token:
+              schema:
+                type: string
+              description: Token for authenticated user
+        '400':
+          description: User not found, already a Professionist, or error updating user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found or User is already a Professionist and cannot update
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+    delete:
+      summary: Downgrade the plan of a ProUser
+      description: Downgrade a ProUser's plan to a regular user or to Premium User.
+      responses:
+        '201':
+          description: User downgraded successfully
+          headers:
+            auth-token:
+              schema:
+                type: string
+              description: Token for authenticated user
+        '400':
+          description: User not found, not a ProUser, or error downgrading user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found or User is not a ProUser
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+    get/:subscriberID:
+      summary: Get subscribers of the ProUser
+      description: Retrieve subscribers and subscription requests of a ProUser (Nutritionist or Personal Trainer).
+      responses:
+        '200':
+          description: Subscribers and requests retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  subscribers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          example: subscriber@example.com
+                        profession:
+                          type: string
+                          example: N
+                        index:
+                          type: integer
+                          example: 1
+                        code:
+                          type: string
+                          example: 60cf0c85e207d143a8c4e2ab
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          example: request@example.com
+                        profession:
+                          type: string
+                          example: P
+                        index:
+                          type: integer
+                          example: 1
+                        code:
+                          type: string
+                          example: 60cf0c85e207d143a8c4e2ab
+        '400':
+          description: User not found, not a ProUser, or error retrieving subscribers/requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found or User is not a ProUser
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+    get:
+      summary: Get requests for subscription
+      description: Retrieve pending requests for subscription to a ProUser (Nutritionist or Personal Trainer).
+      responses:
+        '200':
+          description: Requests retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          example: request@example.com
+                        profession:
+                          type: string
+                          example: N
+                        index:
+                          type: integer
+                          example: 1
+                        code:
+                          type: string
+                          example: 60cf0c85e207d143a8c4e2ab
+        '400':
+          description: User not found, not a ProUser, or error retrieving requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found or User is not a ProUser
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+/report:
+    post:
+      summary: Send a report email
+      description: |
+        Allows authenticated users to send a report email to a designated recipient. This endpoint is useful for reporting issues, providing feedback, or contacting administrators or support teams.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Content of the report to send.
+              required:
+                - text
+      responses:
+        '200':
+          description: Report email sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Report email has been sent successfully
+        '400':
+          description: Bad request or user not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: User not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: Failed to send report email
+/statistics/{userID}:
+    get:
+      summary: Return statistics of a subscriber
+      description: |
+        Retrieves the weight statistics of a subscriber identified by their userID. This endpoint is accessible only to Nutritionists and Personal Trainers.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+          description: ID of the subscriber whose statistics are to be fetched
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  weights:
+                    type: number
+                    example: 70.5
+        '404':
+          description: User not found or specified ID not found among subscribers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: Couldn't find the specified ID
+      tags:
+        - Statistics
+
+/statistics:
+    get:
+      summary: Return statistics of the authenticated user
+      description: |
+        Retrieves the weight statistics of the authenticated user. This endpoint is accessible to all users.
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  weights:
+                    type: number
+                    example: 65.2
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: User not found
+/plans:
+    get:
+      summary: Retrieve all plans of the authenticated user
+      description: |
+        Returns all plans (PDF URLs) associated with the authenticated user.
+        Plans are categorized by type (Diet or Workout) and linked to the professional user who created them.
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  Plans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        prof_email:
+                          type: string
+                          description: Email of the professional user who created the plan
+                          example: nutritionist@example.com
+                        url:
+                          type: string
+                          description: URL of the PDF plan
+                          example: http://example.com/plan.pdf
+                        type:
+                          type: string
+                          description: Type of plan (Diet or Workout)
+                          example: Diet
+        '404':
+          description: User not found or internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: User not found
+
+    post:
+      summary: Upload a PDF URL for a user's plan
+      description: |
+        Uploads a PDF URL for a plan associated with a specific user.
+        The plan type (Diet or Workout) and the professional user's email are provided in the request body.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userEmail:
+                  type: string
+                  example: user@example.com
+                url:
+                  type: string
+                  example: http://example.com/plan.pdf
+                type:
+                  type: string
+                  enum:
+                    - Diet
+                    - Workout
+                  example: Diet
+      responses:
+        '200':
+          description: PDF URL uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: PDF URL uploaded successfully
+        '400':
+          description: Invalid plan type or internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: Invalid plan type
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: Internal Server Error
+
+/plans/{proEmail}:
+    get:
+      summary: Retrieve plans associated with a specific professional user
+      description: |
+        Returns all plans (PDF URLs) associated with the specified professional user.
+        Plans are filtered by the professional user's email address.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: proEmail
+          required: true
+          schema:
+            type: string
+          description: Email address of the professional user
+      responses:
+        '200':
+          description: Plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  Plans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        prof_email:
+                          type: string
+                          description: Email of the professional user who created the plan
+                          example: nutritionist@example.com
+                        url:
+                          type: string
+                          description: URL of the PDF plan
+                          example: http://example.com/plan.pdf
+                        type:
+                          type: string
+                          description: Type of plan (Diet or Workout)
+                          example: Diet
+        '404':
+          description: No plans found for the specified professional user or internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: No plans found for the specified professional user
+
+/plans/{PlanID}:
+    put:
+      summary: Add a comment to a specific plan
+      description: |
+        Adds a comment to the specified plan identified by PlanID.
+        Comments are timestamped and added to the existing comments array for the plan.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: PlanID
+          required: true
+          schema:
+            type: string
+          description: ID of the plan to add a comment to
+        - in: body
+          name: comment
+          required: true
+          schema:
+            type: object
+            properties:
+              comment:
+                type: string
+                example: "This is a comment about the plan."
+      responses:
+        '200':
+          description: Comment added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Added the comment
+        '404':
+          description: Plan not found or internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: Plan not found
+
+/plans/{planId}:
+    delete:
+      summary: Delete a specific plan
+      description: |
+        Deletes the plan identified by planId from the authenticated user's plans.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: planId
+          required: true
+          schema:
+            type: string
+          description: ID of the plan to delete
+      responses:
+        '200':
+          description: Plan deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Plan deleted successfully
+        '404':
+          description: Plan not found or internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Plan not found
+/subscriptions:
+    post:
+      summary: Request subscription to a professional user
+      description: |
+        Initiates a subscription request from the authenticated user to a professional user.
+        Requires the email of the professional user in the request body.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: professional@example.com
+      responses:
+        '200':
+          description: Request sent to professional user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Request sent to Professionist
+        '400':
+          description: Subscriber not found, professional not found, already subscribed, or request pending
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Subscriber not found
+        '500':
+          description: An error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: An error occurred
+
+    put:
+      summary: Accept or deny subscription request from a user
+      description: |
+        Accepts or denies a subscription request from a user identified by their email.
+        The authenticated professional user can accept or deny a subscription request.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ADRequest:
+                  type: boolean
+                  example: true
+                acceptEmail:
+                  type: string
+                  format: email
+                  example: subscriber@example.com
+      responses:
+        '200':
+          description: Subscription request handled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User added
+        '400':
+          description: User not found, user is not a professional, user not subscribed, or internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found
+        '404':
+          description: You don't have a request from this ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: You don't have a request from this ID
+
+    delete:
+      summary: Unsubscribe from a professional user
+      description: |
+        Removes the authenticated user's subscription to a professional user identified by their email.
+        Professionals can disenroll users from their subscriptions.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: userEmail
+          required: true
+          schema:
+            type: string
+            format: email
+          description: Email address of the user to unsubscribe
+      responses:
+        '200':
+          description: User disenrolled by Professional
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: User disenrolled by Professional
+        '400':
+          description: Subscriber not found, professional not found, user not subscribed, or internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Subscriber not found
+
+/subscriptions/{userID}:
+    get:
+      summary: Retrieve subscription details of a user
+      description: |
+        Retrieves subscription details (name, email, profession) of a user identified by their email or subscription ID.
+        The authenticated user's subscriptions and subscribers are checked.
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+            format: email
+          description: Email address of the user to retrieve subscription details for
+      responses:
+        '200':
+          description: Subscription details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  subscriptions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: John Doe
+                        email:
+                          type: string
+                          format: email
+                          example: user@example.com
+                        profession:
+                          type: string
+                          enum:
+                            - N
+                            - P
+                            - B
+                          example: N
+                        index:
+                          type: integer
+                          example: 1
+                        code:
+                          type: string
+                          example: XYZ123
+        '404':
+          description: User not found, ID not found, or not subscribed to the user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: You are not subscribed to him/her or your subscription
