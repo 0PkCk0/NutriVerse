@@ -36,14 +36,3 @@ describe('POST api/v1/upload', () => {
 
    
 });
-
-// describe('PUT /plans/:PlanID', () => {
-//     it('should respond with 200 status if comment is added successfully', async () => {
-//         const response = await request(app)
-//             .put('/api/v1/plans/testPlanId')
-//             .send({ comment: 'testComment' });
-
-//         expect(response.statusCode).toBe(200);
-//         expect(response.body.message).toBe('Added the comment');
-//     });
-// });
