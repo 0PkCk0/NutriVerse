@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 
-const messageSchema = mongoose.Schema({
+const messageSchema = new mongoose.Schema({
     clientA: {
         type: String,
         required: true,
