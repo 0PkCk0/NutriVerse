@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed update with standards" />
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed messages.js">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_06_2024_18_07_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_06_2024_18_07__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,14 +134,8 @@
       <workItem from="1718872511109" duration="6291000" />
       <workItem from="1718890542412" duration="729000" />
       <workItem from="1719070708163" duration="182000" />
-    </task>
-    <task id="LOCAL-00014" summary="Fixed user and prouser get subscribers and subscriptions">
-      <option name="closed" value="true" />
-      <created>1716554608162</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1716554608162</updated>
+      <workItem from="1719071443657" duration="546000" />
+      <workItem from="1719073585505" duration="387000" />
     </task>
     <task id="LOCAL-00015" summary="Fixed user and prouser">
       <option name="closed" value="true" />
@@ -523,7 +521,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719070864401</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Fixed messages.js">
+      <option name="closed" value="true" />
+      <created>1719071675291</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1719071675292</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +559,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Put method to add a comment to a plan" />
     <MESSAGE value="Fixed a condition" />
     <MESSAGE value="Configuration of the BlackList" />
     <MESSAGE value="Show statistics of the user or of the subscriber" />
@@ -578,6 +583,7 @@
     <MESSAGE value="Fixed confirmed" />
     <MESSAGE value="Fixed get right click" />
     <MESSAGE value="Fixed update with standards" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed update with standards" />
+    <MESSAGE value="Fixed messages.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed messages.js" />
   </component>
 </project>

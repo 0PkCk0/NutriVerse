@@ -13,6 +13,10 @@ router.post('/', verify, async (req, res) => {
 
     const receiver = req.body.receiver;
 
+    if (receiver === user.email){
+        return res.status(400).json({status:400, message:'Users are the same'});
+    }
+
     const message=req.body.message;
 
     var ordinate = [receiver.toString(), user.email.toString()].sort();
@@ -23,6 +27,7 @@ router.post('/', verify, async (req, res) => {
 
 
         if (mes){
+            console.log("Found");
             const newMessage={
                 sender:user.email,
                 text:message,
@@ -33,6 +38,7 @@ router.post('/', verify, async (req, res) => {
             await mes.save();
             res.status(200).json({status:200,message:"sent"});
         }else{
+            console.log("New");
             const newChat=new Message({
                 clientA:ordinate[0],
                 clientB:ordinate[1],
