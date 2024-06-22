@@ -18,7 +18,7 @@ router.post('/', verify, async (req, res) => {
     let [first, second] = [user.email, receiver].sort((a, b) => a.localeCompare(b));
 
     try {
-        mes=await Message.findOne({clientA:first, clientB:second});
+        mes=await Message.findOne({clientA:first.toString(), clientB:second.toString()});
 
 
         if (mes){

@@ -7,6 +7,7 @@ const cors = require("cors"); // Importa cors
 app.use(cors());
 const server = http.createServer(app);
 
+// link https://nutriverse-b13w.onrender.com
 const io = socketio(server, {
     cors: {
         origin: "*",
@@ -29,7 +30,7 @@ io.on("connection", (socket) => {
     socket.on("sendMessage", (message) => {
         const room = [message.senderId, message.receiverId].sort().join("_");
         console.log(message.payload);
-        io.to(room).emit("receiveMessage", message);
+        socket.to(room).emit("receiveMessage", message);
     });
 
     socket.on("disconnect", () => {
