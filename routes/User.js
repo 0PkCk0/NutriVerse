@@ -3,12 +3,12 @@ const User = require('../model/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const verify = require('../config/verifyToken');
-const {registerValidation }= require('../config/validation');
+const { registerValidation } = require('../config/validation');
 const moment = require("moment-timezone");
 const ProUser = require("../model/ProUserModel");
 const transporter = require('../config/transporter');
 const sanitizeInput = require('../config/sanitize');
-const blackList=require('../model/blackListModel');
+const blackList = require('../model/blackListModel');
 
 //register
 router.post('/', async (req, res) => {
@@ -69,7 +69,7 @@ router.post('/', async (req, res) => {
             \nhttps://nutriverse-b13w.onrender.com?token=${confirmationToken}`
         };
 
-        transporter.sendMail(mailOptions, function(err) {
+        transporter.sendMail(mailOptions, function (err) {
             if (err) {
                 console.error('Error sending email: ', err);
                 return res.status(500).json({ status: 500, message: 'Technical Issue!, Please click on resend for verify your email.' });
@@ -113,20 +113,20 @@ router.put('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({  status: 404 ,message: 'User not found' });
+        return res.status(404).json({ status: 404, message: 'User not found' });
     }
 
-    const name=req.body.name;
-    const weigth=req.body.weight;
-    const age=req.body.age;
-    const height=req.body.height;
-    const profession=req.body.profession;
+    const name = req.body.name;
+    const weigth = req.body.weight;
+    const age = req.body.age;
+    const height = req.body.height;
+    const profession = req.body.profession;
     const gender = req.body.gender;
 
 
     // Update of the fields of the user's schema.
-    const updateField={};
-    const pushField={};
+    const updateField = {};
+    const pushField = {};
 
     // Next we are going to check if the variables sent
     // in the body are empty or with some data:
@@ -147,7 +147,7 @@ router.put('/', verify, async (req, res) => {
         updateField.name=name;
     }
 
-    updateField.gender=gender;
+    updateField.gender = gender;
 
     if (age!==undefined && age!=='' && age>=18){
         updateField.age=age;
@@ -160,24 +160,24 @@ router.put('/', verify, async (req, res) => {
     if (weigth!==undefined && weigth!=='' && weigth>=30){
 
         var time = moment.tz(new Date(), "Europe/Rome");
-        const returnTime=time.format('YYYY/MM/DD HH:mm');
+        const returnTime = time.format('YYYY/MM/DD HH:mm');
 
-        pushField.weight={
-            value:parseInt(weigth, 10),
-            date:returnTime
+        pushField.weight = {
+            value: parseInt(weigth, 10),
+            date: returnTime
         };
         console.log(pushField);
     }
 
     // We update or push the data on the schema
     User.findByIdAndUpdate(req.user,
-        {$set:updateField,$push: pushField },
-        { new:true }
+        { $set: updateField, $push: pushField },
+        { new: true }
     )
-        .then(doc=>{
+        .then(doc => {
             return res.status(200).json({ status: 200, message: 'Updated data' });
         })
-        .catch(err=>{
+        .catch(err => {
             console.log(err);
             return res.status(500).json({ status: 500, message: 'Error updating' });
         });
@@ -197,38 +197,38 @@ router.get('/:subscriptionID', verify, async (req, res) => {
     const subscriptionID = req.params.subscriptionID;
 
     //Check if we get the subscriptionId in the request parameters
-    if (!subscriptionID){
+    if (!subscriptionID) {
         return res.status(404).json({ message: 'Id not found' });
     }
 
 
     //Check if we are subscribed to the user
-    for (const id of user.subscriptionsId){
-        if (id===subscriptionID){
+    for (const id of user.subscriptionsId) {
+        if (id === subscriptionID) {
             // We get the subscription
             const subUser = await User.findById(subscriptionID);
 
             //JSON variable to return to the caller
-            const JSON_user= {
-                name:subUser.name,
-                weight:subUser.weight,
-                height:subUser.height,
-                age:subUser.age,
-                gender:subUser.gender,
-                timestap:subUser.timestamp,
-                Profession:subUser.Profession,
-                subscriptionEndDate:subUser.subscriptionEndDate,
-                subscriptionStartDate:subUser.subscriptionStartDate
+            const JSON_user = {
+                name: subUser.name,
+                weight: subUser.weight,
+                height: subUser.height,
+                age: subUser.age,
+                gender: subUser.gender,
+                timestap: subUser.timestamp,
+                Profession: subUser.Profession,
+                subscriptionEndDate: subUser.subscriptionEndDate,
+                subscriptionStartDate: subUser.subscriptionStartDate
             };
 
             // We set the header for returning the JSON variable
-            return res.status(200).json({ status: 200, user:JSON_user});
+            return res.status(200).json({ status: 200, user: JSON_user });
 
         }
     }
 
     //If we are not subscribed to him/her
-    return res.status(404).json({ status:404, message: 'You are not subscribed to him/her or your subscription' });
+    return res.status(404).json({ status: 404, message: 'You are not subscribed to him/her or your subscription' });
 })
 
 
@@ -239,25 +239,25 @@ router.get('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ status:404, message: 'User not found' });
+        return res.status(404).json({ status: 404, message: 'User not found' });
     }
 
     //JSON variable to return to the caller
-    const JSON_user= {
-        name:user.name,
-        email:user.email,
-        weight:user.weight,
-        height:user.height,
-        age:user.age,
-        gender:user.gender,
-        userType:user.userType,
-        Profession:user.Profession,
-        timestap:user.timestamp,
-        code:user._id,
+    const JSON_user = {
+        name: user.name,
+        email: user.email,
+        weight: user.weight,
+        height: user.height,
+        age: user.age,
+        gender: user.gender,
+        userType: user.userType,
+        Profession: user.Profession,
+        timestap: user.timestamp,
+        code: user._id,
     };
 
     // We set the header for returning the JSON variable
-    return res.status(200).json({ status: 200, user:JSON_user});
+    return res.status(200).json({ status: 200, user: JSON_user });
 })
 
 router.delete('/', verify, async (req, res) => {
@@ -265,16 +265,16 @@ router.delete('/', verify, async (req, res) => {
 
     //Check if the user exists
     if (!user) {
-        return res.status(404).json({ status:404, message: 'User not found' });
+        return res.status(404).json({ status: 404, message: 'User not found' });
     }
 
     User.findByIdAndDelete(req.user)
-        .then(doc=>{
-            return res.status(200).json({ status: 200, message:'Deleted data'});
+        .then(doc => {
+            return res.status(200).json({ status: 200, message: 'Deleted data' });
         })
-        .catch(err=>{
+        .catch(err => {
             console.log(err);
-            return res.status(404).json({ status: 404, message:'Error updating'});
+            return res.status(404).json({ status: 404, message: 'Error updating' });
         });
 
 })

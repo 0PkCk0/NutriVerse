@@ -60,25 +60,25 @@ router.put('/:emailUser', verify, async (req, res) => {
   const type=req.body.type;
   const emailUser = req.params.emailUser;
 
-  URLsplan=user.plansUrl;
+  URLsplan = user.plansUrl;
 
-  let pushField={};
+  let pushField = {};
 
-  const comment=req.body.comment;
+  const comment = req.body.comment;
 
-  if (!comment || comment===''){
-      return res.status(404).json({ status: 404, message:'Comment empty'});
-  }else{
-      var time = moment.tz(new Date(), "Europe/Rome");
-      const returnTime=time.format('YYYY/MM/DD HH:mm');
+  if (!comment || comment === '') {
+    return res.status(404).json({ status: 404, message: 'Comment empty' });
+  } else {
+    var time = moment.tz(new Date(), "Europe/Rome");
+    const returnTime = time.format('YYYY/MM/DD HH:mm');
 
-      pushField= {
-          message:comment,
-          date:returnTime
-      };
+    pushField = {
+      message: comment,
+      date: returnTime
+    };
   }
 
-  find_one=false;
+  find_one = false;
 
   if (URLsplan){
       for (const plan of URLsplan){
@@ -86,32 +86,32 @@ router.put('/:emailUser', verify, async (req, res) => {
               // We add a comment to the plan
               find_one=true;
 
-              User.updateOne(
-                  { _id: req.user, "plansUrl._id": plan._id },
-                  { $push: { "plansUrl.$.comment": pushField } }
+        User.updateOne(
+          { _id: req.user, "plansUrl._id": plan._id },
+          { $push: { "plansUrl.$.comment": pushField } }
 
-              )
-                  .then(doc=>{
+        )
+          .then(doc => {
 
-                  return res.status(200).json({ status: 200, message:'Added the comment'});
+            return res.status(200).json({ status: 200, message: 'Added the comment' });
 
-              })
-                  .catch(err=>{
+          })
+          .catch(err => {
 
-                      console.log(err);
-                      return res.status(500).json({ status: 500, message:'Internal error on adding the comment'});
+            console.log(err);
+            return res.status(500).json({ status: 500, message: 'Internal error on adding the comment' });
 
-                  });
-          }
+          });
       }
+    }
 
-      if (!find_one){
+    if (!find_one) {
 
-          return res.status(404).json({ status: 404, message:'Didn\'t find the specified plan' });
+      return res.status(404).json({ status: 404, message: 'Didn\'t find the specified plan' });
 
-      }
-  }else{
-      return res.status(500).json({ status: 500, message: 'Internal server error' });
+    }
+  } else {
+    return res.status(500).json({ status: 500, message: 'Internal server error' });
   }
 });
 
@@ -119,9 +119,9 @@ router.put('/:emailUser', verify, async (req, res) => {
 router.get('/:emailUser', verify, async (req, res) => {
   const user = await User.findById(req.user);
 
-  //Check if the user exists
+  // Check if the user exists
   if (!user) {
-    return res.status(404).json({ status:404, message: 'User not found' });
+    return res.status(404).json({ status: 404, message: 'User not found' });
   }
 
   const emailUser = req.params.emailUser;
@@ -147,7 +147,7 @@ router.get('/', verify, async (req, res) => {
 
   //Check if the user exists
   if (!user) {
-    return res.status(404).json({ status:404, message: 'User not found' });
+    return res.status(404).json({ status: 404, message: 'User not found' });
   }
 
   URLsplan = user.plansUrl;

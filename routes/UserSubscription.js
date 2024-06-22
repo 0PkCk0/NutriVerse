@@ -3,19 +3,19 @@ const User = require('../model/UserModel');
 const ProUser = require('../model/ProUserModel');
 const verify = require('../config/verifyToken');
 const { sendUpdateUser } = require('../config/updateUser');
+const { sendUpdateUser } = require('../config/updateUser');
 
-//request to enroll to a professionist
 router.post('/', verify, async (req, res) => {
     try {
-        // Retrieve subscriber (user) information
         const subscriber = await User.findById(req.user._id);
 
         if (!subscriber) {
             return res.status(400).send({ message: 'Subscriber not found' });
+            return res.status(400).send({ message: 'Subscriber not found' });
         }
 
-        // Retrieve professionist information based on email
-        const professionistEmail = req.body.email; // Assuming email is in req.body
+        const professionistEmail = req.body.email;
+
         const query = await ProUser.findOne({ email: professionistEmail });
         const professionist = query;
 
@@ -28,26 +28,24 @@ router.post('/', verify, async (req, res) => {
             return res.status(400).send({ message: 'Professionist is a Premium user' });
         }
 
-        // Check for existing subscription or pending request
         if ((subscriber.subscriptionsId && subscriber.subscriptionsId.includes(professionistEmail)) ||
             (professionist.requestId && professionist.requestId.includes(req.user.email))) {
             return res.status(400).send({ message: 'Subscription already exists or request pending' });
         }
 
-        // Update user document (add professionist ID to subscriptions)
-        const updatedUser = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
             req.user._id,
             { $push: { subscriptionsId: professionistEmail } },
             { new: true }
         );
 
-        // Update professionist document (add user ID to request list)
-        const updatedProUser = await ProUser.findByIdAndUpdate(
+        await ProUser.findByIdAndUpdate(
             professionist._id.toHexString(),
             { $push: { requestId: subscriber.email } },
             { new: true }
         );
 
+        return res.status(200).json({ status: 200, message: 'Request sent to Professionist' });
         return res.status(200).json({ status: 200, message: 'Request sent to Professionist' });
 
     } catch (err) {
@@ -56,24 +54,17 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
-
-
-// Accept or Deny new subscriber from a user (21)
 router.put('/', verify, async (req, res) => {
     const user = await User.findById(req.user);
 
-    // Check if the user exists
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if he/she is a professionist
     if (user.Profession !== 'Nutritionist' && user.Profession !== 'Personal Trainer') {
         return res.status(400).json({ message: 'User is not a professionist' });
     }
 
-
-    //Get a boolean value if I accept or deny the request of a user
     const ADRequest = req.body.ADRequest;
     const userEmail = req.body.acceptEmail;
 
@@ -92,7 +83,6 @@ router.put('/', verify, async (req, res) => {
                         return res.status(200).json({ message: 'User added' });
                     })
                     .catch(err => {
-                        console.log(err);
                         return res.status(200).json({ message: 'Error adding' });
                     });
             }
@@ -102,7 +92,6 @@ router.put('/', verify, async (req, res) => {
                     { $pull: { requestId: userEmail } },
                     { new: true }
                 );
-
 
                 const updatedUser = await User.findOneAndUpdate(
                     { email: userEmail },
@@ -117,6 +106,7 @@ router.put('/', verify, async (req, res) => {
         return res.status(404).json({ message: 'You don\'t have a request from this ID' });
     }
 })
+
 
 router.delete('/:userEmail', verify, async (req, res) => {
     try {
@@ -141,14 +131,16 @@ router.delete('/:userEmail', verify, async (req, res) => {
             // Update the user's document to remove the professional from subscriptions
             const updatedUser = await User.findOneAndUpdate(
                 { email: userEmail },
-                { $pull: { subscriptionsId: requester.email } },
-                { new: true }
+                { $pull: { subscriptionsId: requester.email } }, { new: true },
             );
 
             return res.status(200).json({
                 status: 200,
+            return res.status(200).json({
+                status: 200,
                 message: 'User disenrolled by Professional',
             });
+        } else {
         } else {
             // If not a professional, proceed with the original function
 
@@ -158,12 +150,16 @@ router.delete('/:userEmail', verify, async (req, res) => {
 
             // Use professionistId to find ProUser
             const professionist = await User.findOne({ email: professionistEmail });
+            const professionist = await User.findOne({ email: professionistEmail });
 
+            if (!subscriber) return res.status(400).json({ status: 400, message: 'Subscriber not found' });
+            if (!professionist) return res.status(400).json({ status: 400, message: 'Professionist not found' });
             if (!subscriber) return res.status(400).json({ status: 400, message: 'Subscriber not found' });
             if (!professionist) return res.status(400).json({ status: 400, message: 'Professionist not found' });
 
             // Check if the user is not subscribed
             if (!subscriber.subscriptionsId || !subscriber.subscriptionsId.includes(professionistEmail)) {
+                return res.status(400).json({ status: 400, message: 'User is not subscribed' });
                 return res.status(400).json({ status: 400, message: 'User is not subscribed' });
             }
 
@@ -176,10 +172,12 @@ router.delete('/:userEmail', verify, async (req, res) => {
 
             const updatedProUser = await ProUser.findByIdAndUpdate(
                 professionist._id.toHexString(),
-                { $pull: { subscribersId: subscriber.email, requestId: subscriber.email } },
+                { $pull: { subscribersId: subscriber.email } },
                 { new: true }
             );
 
+            res.status(200).json({
+                status: 200,
             res.status(200).json({
                 status: 200,
                 message: 'User unsubscribed from Professionist',
@@ -187,6 +185,7 @@ router.delete('/:userEmail', verify, async (req, res) => {
         }
     } catch (err) {
         console.error('Error:', err);
+        res.status(400).send({ status: 400, message: err.message });
         res.status(400).send({ status: 400, message: err.message });
     }
 });
@@ -269,6 +268,8 @@ router.get('/', verify, async (req, res) => {
 
     let response = {
         subscriptions: [],
+    let response = {
+        subscriptions: [],
     };
 
     for (const mail of user.subscriptionsId) {
@@ -280,13 +281,22 @@ router.get('/', verify, async (req, res) => {
         }
 
         let insert_push = {};
+        let insert_push = {};
 
+        if (userSub.name) {
+            insert_push.name = userSub.name;
         if (userSub.name) {
             insert_push.name = userSub.name;
         }
         insert_push.email = userSub.email;
+        insert_push.email = userSub.email;
 
         if (userSub.Profession === 'Nutritionist') {
+            insert_push.profession = 'N'
+        } else if (userSub.Profession === 'Personal Trainer') {
+            insert_push.profession = 'P'
+        } else {
+            insert_push.profession = 'B'
             insert_push.profession = 'N'
         } else if (userSub.Profession === 'Personal Trainer') {
             insert_push.profession = 'P'
@@ -297,12 +307,16 @@ router.get('/', verify, async (req, res) => {
         // Index for selecting the user image in the main dashboard
         insert_push.index = 1;
         insert_push.code = userSub.Code;
+        insert_push.index = 1;
+        insert_push.code = userSub.Code;
 
         response.subscriptions.push(insert_push);
     }
 
     return res.status(200).json({ status: 200, subscriptions: response });
+    return res.status(200).json({ status: 200, subscriptions: response });
 })
+
 
 
 module.exports = router;
