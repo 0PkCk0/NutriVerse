@@ -302,91 +302,6 @@ paths:
                     type: string
                     example: User not found
 
-    put:
-      summary: Update user profile
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: John Doe
-                weight:
-                  type: number
-                  example: 75.5
-                height:
-                  type: number
-                  example: 180
-                age:
-                  type: integer
-                  example: 31
-                profession:
-                  type: string
-                  example: Nutritionist
-                gender:
-                  type: string
-                  example: male
-      responses:
-        '200':
-          description: User profile updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: Updated data
-        '400':
-          description: User not found or error updating profile
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: User not found
-
-    delete:
-      summary: Delete user profile
-      responses:
-        '200':
-          description: User profile deleted successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: Deleted data
-        '404':
-          description: User not found or error deleting profile
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: 404
-                  message:
-                    type: string
-                    example: User not found
-
   /user/{subscriptionID}:
     get:
       summary: Get subscription profile
@@ -754,7 +669,7 @@ paths:
                 message:
                   type: string
                   example: Unauthorized
-
+/prouser/userID:
   get:
     summary: Get requests for subscribers
     description: Retrieve subscribers and subscription requests of a ProUser (Nutritionist or Personal Trainer).
