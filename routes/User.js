@@ -133,41 +133,31 @@ router.put('/', verify, async (req, res) => {
 
     // We check if the request parameter profession does exist, we check if the user is a prouser
     // and we check if the variable "profession" is a Nutritionist or Personal trainer
-    if ((profession && profession!=='') && user.Profession && (profession==='Nutritionist' || profession==='Personal Trainer')){
+    if ((profession && profession!=='') && user.Profession && (profession==='Nutritionist' || profession==='Personal Trainer')) {
         ProUser.findByIdAndUpdate(req.user,
-            {$set: {Profession:profession}},
-            { new:true }
+            {$set: {Profession: profession}},
+            {new: true}
         )
-            .catch(err=>{
-                return res.status(500).json({ status: 500, message: 'Error updating' });
+            .catch(err => {
+                return res.status(500).json({status: 500, message: 'Error updating'});
             });
     }
 
-    if (!(name.length>=6 && name.length<=255)
-        || !(surname.length>=6 && surname.length<=255)
-        || weigth<30
-        || height<0
-        || age<18){
-
-        return res.status(400).json({ status: 400, message: 'Values don\'t follow the standard' });
-
-    }
-
-    if (name!==undefined && name!==''){
+    if (name !== '' && name.length >= 6 && name.length<=255){
         updateField.name=name;
     }
 
     updateField.gender=gender;
 
-    if (age!==undefined && age!==''){
+    if (age!==undefined && age!=='' && age>=18){
         updateField.age=age;
     }
 
-    if (height!==undefined && height!==''){
+    if (height!==undefined && height!=='' && height>=0){
         updateField.height=height;
     }
 
-    if (weigth!==undefined && weigth!==''){
+    if (weigth!==undefined && weigth!=='' && weigth>=30){
 
         var time = moment.tz(new Date(), "Europe/Rome");
         const returnTime=time.format('YYYY/MM/DD HH:mm');
