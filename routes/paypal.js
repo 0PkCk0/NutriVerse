@@ -55,6 +55,10 @@ const createOrder = async (productType) => {
                 },
             },
         ],
+        application_context: {
+            return_url: "https://nutriverse-b13w.onrender.com/",
+            cancel_url: "https://nutriverse-b13w.onrender.com/",
+        },
     };
 
     const response = await axios.post(url, payload, {
@@ -81,7 +85,7 @@ const captureOrder = async (orderID) => {
     return handleResponse(response);
 };
 
-router.post("/", async (req, res) => {
+router.post("/", verify,async (req, res) => {
     const { productType } = req.body;
     try {
         const { jsonResponse, httpStatusCode } = await createOrder(productType);
@@ -92,7 +96,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.post("/:orderID", async (req, res) => {
+router.post("/:orderID", verify,async (req, res) => {
     const orderID = req.params.orderID;
     try {
         const { jsonResponse, httpStatusCode } = await captureOrder(orderID);
