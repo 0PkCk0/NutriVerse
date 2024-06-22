@@ -15,10 +15,11 @@ router.post('/', verify, async (req, res) => {
 
     const message=req.body.message;
 
-    let [first, second] = [user.email, receiver].sort((a, b) => a.localeCompare(b));
+    var ordinate = [receiver.toString(), user.email.toString()].sort();
+
 
     try {
-        let mes=await Message.findOne({clientA:first.toString(), clientB:second.toString()});
+        let mes=await Message.findOne({clientA:ordinate[0].toString(), clientB:ordinate[1].toString()});
 
 
         if (mes){
@@ -33,8 +34,8 @@ router.post('/', verify, async (req, res) => {
             res.status(200).json({status:200,message:"sent"});
         }else{
             const newChat=new Message({
-                clientA:first,
-                clientB:second,
+                clientA:ordinate[0],
+                clientB:ordinate[1],
                 messages:[
                     {
                         sender:user.email,
