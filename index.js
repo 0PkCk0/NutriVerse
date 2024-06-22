@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const YAML = require('yamljs');
-const path = require('path');
 
 // Import routes
 const authRoute = require('./routes/auth');
@@ -37,10 +35,6 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "*");
     next();
 });
-
-const swaggerDocument = YAML.load(path.join(__dirname, 'docs.yaml'));
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route Middleware
 app.use('/api/v1/user', UserRoute);
