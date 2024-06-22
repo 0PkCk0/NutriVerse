@@ -9,7 +9,7 @@ const server = http.createServer(app);
 
 const io = socketio(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://nutriverse-b13w.onrender.com",
         methods: ["GET", "POST"],
     },
 });

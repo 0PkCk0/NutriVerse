@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed plansUrl from Premium User to User">
+    <list default="true" id="7f6901be-5a8f-4225-9390-5f72d60007e4" name="Changes" comment="Fixed get right click">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/User.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,29 +48,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.server.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.13.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.12.12&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/nodejs/node_modules/npm&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;C:/Program Files/nodejs/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;C:\\Program Files\\nodejs\\node_modules\\npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "Node.js.app.js.executor": "Run",
+    "Node.js.index.js.executor": "Run",
+    "Node.js.server.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Development",
+    "javascript.nodejs.core.library.configured.version": "20.13.1",
+    "javascript.nodejs.core.library.typings.version": "20.12.12",
+    "last_opened_file_path": "C:/Users/matte/WebstormProjects/NutriVerse",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Program Files/nodejs/node",
+    "nodejs_package_manager_path": "C:\\Program Files\\nodejs\\node_modules\\npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "ts.external.directory.path": "C:\\Users\\matte\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\matte\WebstormProjects\NutriVerse" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\matte\WebstormProjects\NutriVerse\UI" />
       <recent name="C:\Users\matte\WebstormProjects\NutriVerse" />
@@ -127,11 +129,64 @@
       <workItem from="1718731407019" duration="15000" />
       <workItem from="1718731683922" duration="60000" />
       <workItem from="1718807519526" duration="6005000" />
-      <workItem from="1718872511109" duration="5654000" />
-      <workItem from="1718902329601" duration="43000" />
-      <workItem from="1718960051164" duration="7102000" />
-      <workItem from="1718984026000" duration="2391000" />
-      <workItem from="1719057951284" duration="839000" />
+      <workItem from="1718872511109" duration="6291000" />
+      <workItem from="1718890542412" duration="729000" />
+    </task>
+    <task id="LOCAL-00013" summary="Fixed update of profession from User">
+      <option name="closed" value="true" />
+      <created>1716386847872</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716386847872</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fixed user and prouser get subscribers and subscriptions">
+      <option name="closed" value="true" />
+      <created>1716554608162</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716554608162</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed user and prouser">
+      <option name="closed" value="true" />
+      <created>1716811103087</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716811103087</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Accept new subscriber from a User">
+      <option name="closed" value="true" />
+      <created>1716823812297</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1716823812297</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixed Prouser and UserSubscription manage of get id of User (product backlog 14 and 23)">
+      <option name="closed" value="true" />
+      <created>1716972872622</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716972872622</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed file and functions managements">
+      <option name="closed" value="true" />
+      <created>1716974415935</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1716974415935</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Testing front-end back-end connection">
+      <option name="closed" value="true" />
+      <created>1716978927672</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1716978927672</updated>
     </task>
     <task id="LOCAL-00020" summary="Trying adding authorizations">
       <option name="closed" value="true" />
@@ -461,71 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718877561884</updated>
     </task>
-    <task id="LOCAL-00061" summary="Change in post and get of plans. Also created professionalPlan get">
+    <task id="LOCAL-00061" summary="Fixed get right click">
       <option name="closed" value="true" />
-      <created>1718964583409</created>
+      <created>1718887567773</created>
       <option name="number" value="00061" />
       <option name="presentableId" value="LOCAL-00061" />
       <option name="project" value="LOCAL" />
-      <updated>1718964583410</updated>
+      <updated>1718887567773</updated>
     </task>
-    <task id="LOCAL-00062" summary="Fixed router index">
-      <option name="closed" value="true" />
-      <created>1718965805878</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1718965805878</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Fixed server file for using the socket">
-      <option name="closed" value="true" />
-      <created>1718977661169</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1718977661169</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Add socket.io">
-      <option name="closed" value="true" />
-      <created>1718979091906</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1718979091906</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Fixed get subscriptions">
-      <option name="closed" value="true" />
-      <created>1718979724636</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1718979724636</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718981970450</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1718981970450</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Fixed">
-      <option name="closed" value="true" />
-      <created>1718984652246</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1718984652246</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Fixed plansUrl from Premium User to User">
-      <option name="closed" value="true" />
-      <created>1718985839253</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1718985839253</updated>
-    </task>
-    <option name="localTasksCounter" value="69" />
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,7 +541,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Development" />
+                        <option value="testMessage" />
                       </list>
                     </value>
                   </entry>
@@ -555,6 +554,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Modified the UserModel for the comments" />
+    <MESSAGE value="Put method to add a comment to a plan" />
+    <MESSAGE value="Fixed a condition" />
+    <MESSAGE value="Configuration of the BlackList" />
+    <MESSAGE value="Show statistics of the user or of the subscriber" />
     <MESSAGE value="Fixed proUser get subscribers" />
     <MESSAGE value="fixed usersubscription" />
     <MESSAGE value="Fixed send enroll to professionist" />
@@ -565,6 +569,7 @@
     <MESSAGE value="Fixed delete of subscriber or subscription" />
     <MESSAGE value="Fixed return of JSON" />
     <MESSAGE value="Fixed deny of request" />
+    <MESSAGE value="Fixed" />
     <MESSAGE value="Fixed await" />
     <MESSAGE value="Fixed return value of Upgrade and downgrade plan" />
     <MESSAGE value="Fixed Premium User" />
@@ -573,13 +578,7 @@
     <MESSAGE value="Fixed gender" />
     <MESSAGE value="Fixed header" />
     <MESSAGE value="Fixed confirmed" />
-    <MESSAGE value="Change in post and get of plans. Also created professionalPlan get" />
-    <MESSAGE value="Fixed router index" />
-    <MESSAGE value="Fixed server file for using the socket" />
-    <MESSAGE value="Add socket.io" />
-    <MESSAGE value="Fixed get subscriptions" />
-    <MESSAGE value="Fixed" />
-    <MESSAGE value="Fixed plansUrl from Premium User to User" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed plansUrl from Premium User to User" />
+    <MESSAGE value="Fixed get right click" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed get right click" />
   </component>
 </project>
