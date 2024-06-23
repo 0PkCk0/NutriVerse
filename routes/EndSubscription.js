@@ -2,6 +2,7 @@ const ProUser = require('../model/ProUserModel');
 const moment = require('moment-timezone');
 const express = require('express');
 const app = express();
+const verify = require("../config/verifyToken");
 
 app.get('/', verify, async (req, res) => {
     date = req.body;
