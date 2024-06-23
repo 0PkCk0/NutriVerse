@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const verify = require("../config/verifyToken");
 
-app.get('/', verify, async (req, res) => {
+app.post('/', verify, async (req, res) => {
     date = req.body;
 
     const prouser = await ProUser.findById(req.user);
