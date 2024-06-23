@@ -8,6 +8,10 @@ app.get('/', verify, async (req, res) => {
 
     const prouser = await ProUser.findById(req.user);
 
+    if (!prouser) {
+        return res.status(400).json({ status: 400, message: 'ProUser not found' });
+    }
+
     // Assuming prouser.subscriptionEndDate is a string in 'YYYY/MM/DD HH:mm' format
     const date1 = moment.tz("Europe/Rome");
     const date2 = moment.tz(prouser.subscriptionEndDate, "YYYY/MM/DD HH:mm", "Europe/Rome");
