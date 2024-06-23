@@ -4,9 +4,8 @@ const express = require('express');
 const app = express();
 const verify = require("../config/verifyToken");
 
-app.post('/', verify, async (req, res) => {
-    date = req.body;
-
+app.get('/', verify, async (req, res) => {
+    const date = moment();
     const prouser = await ProUser.findById(req.user);
 
     const date1 = moment.tz(date, "Europe/Rome");
