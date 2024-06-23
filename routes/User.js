@@ -244,7 +244,7 @@ router.get('/', verify, async (req, res) => {
 
     const JSON_user = {};
 
-    if (user.Profession == 'Nutritionist' || user.Profession == 'Personal Trainer' || user.Profession == 'Premium User') {
+    if (user.userType === 'ProUser') {
         //JSON variable to return to the caller
         JSON_user = {
             name: user.name,
