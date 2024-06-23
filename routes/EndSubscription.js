@@ -7,10 +7,13 @@ const verify = require("../config/verifyToken");
 app.get('/', verify, async (req, res) => {
 
     const prouser = await ProUser.findById(req.user);
-    const date = moment.tz("Europe/Rome").format("YYYY-MM-DD HH:mm");
+
+    const date1 = moment.tz("Europe/Rome");
     const date2 = moment.tz(prouser, "YYYY-MM-DD HH:mm", "Europe/Rome");
 
-    const isDate1AfterDate2 = date.isAfter(date2);
+    const formattedDate2 = date2.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
+
+    const isDate1AfterDate2 = date1.isAfter(formattedDate2);
 
     if (isDate1AfterDate2) {
         return res.status(200).json({ status: 200, message: 'Subscription ended' });
