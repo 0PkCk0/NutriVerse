@@ -133,31 +133,31 @@ router.put('/', verify, async (req, res) => {
 
     // We check if the request parameter profession does exist, we check if the user is a prouser
     // and we check if the variable "profession" is a Nutritionist or Personal trainer
-    if ((profession && profession!=='') && user.Profession && (profession==='Nutritionist' || profession==='Personal Trainer')) {
+    if ((profession && profession !== '') && user.Profession && (profession === 'Nutritionist' || profession === 'Personal Trainer')) {
         ProUser.findByIdAndUpdate(req.user,
-            {$set: {Profession: profession}},
-            {new: true}
+            { $set: { Profession: profession } },
+            { new: true }
         )
             .catch(err => {
-                return res.status(500).json({status: 500, message: 'Error updating'});
+                return res.status(500).json({ status: 500, message: 'Error updating' });
             });
     }
 
-    if (name !== '' && name.length >= 6 && name.length<=255){
-        updateField.name=name;
+    if (name !== '' && name.length >= 6 && name.length <= 255) {
+        updateField.name = name;
     }
 
     updateField.gender = gender;
 
-    if (age!==undefined && age!=='' && age>=18){
-        updateField.age=age;
+    if (age !== undefined && age !== '' && age >= 18) {
+        updateField.age = age;
     }
 
-    if (height!==undefined && height!=='' && height>=0){
-        updateField.height=height;
+    if (height !== undefined && height !== '' && height >= 0) {
+        updateField.height = height;
     }
 
-    if (weigth!==undefined && weigth!=='' && weigth>=30){
+    if (weigth !== undefined && weigth !== '' && weigth >= 30) {
 
         var time = moment.tz(new Date(), "Europe/Rome");
         const returnTime = time.format('YYYY/MM/DD HH:mm');
@@ -242,19 +242,39 @@ router.get('/', verify, async (req, res) => {
         return res.status(404).json({ status: 404, message: 'User not found' });
     }
 
-    //JSON variable to return to the caller
-    const JSON_user = {
-        name: user.name,
-        email: user.email,
-        weight: user.weight,
-        height: user.height,
-        age: user.age,
-        gender: user.gender,
-        userType: user.userType,
-        Profession: user.Profession,
-        timestap: user.timestamp,
-        code: user._id,
-    };
+    const JSON_user = {};
+
+    if (user.Profession == 'Nutritionist' || user.Profession == 'Personal Trainer' || user.Profession == 'Premium User') {
+        //JSON variable to return to the caller
+        JSON_user = {
+            name: user.name,
+            email: user.email,
+            weight: user.weight,
+            height: user.height,
+            age: user.age,
+            gender: user.gender,
+            userType: user.userType,
+            Profession: user.Profession,
+            timestap: user.timestamp,
+            code: user._id,
+            subscriptionEndDate: user.subscriptionEndDate,
+            subscriptionStartDate: user.subscriptionStartDate
+        };
+    } else {
+        //JSON variable to return to the caller
+        JSON_user = {
+            name: user.name,
+            email: user.email,
+            weight: user.weight,
+            height: user.height,
+            age: user.age,
+            gender: user.gender,
+            userType: user.userType,
+            Profession: user.Profession,
+            timestap: user.timestamp,
+            code: user._id,
+        };
+    }
 
     // We set the header for returning the JSON variable
     return res.status(200).json({ status: 200, user: JSON_user });
