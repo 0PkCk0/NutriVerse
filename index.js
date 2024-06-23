@@ -14,6 +14,7 @@ const messagesRoute = require('./routes/messages');
 const statisticsRoute=require('./routes/statistics');
 const professionalPlan=require('./routes/professionPlan');
 const paypalRoute = require('./routes/paypal.js');
+const endSubscriptionRoute = require('./routes/EndSubscription');
 
 dotenv.config();
 
@@ -49,5 +50,6 @@ app.use('/api/v1/messages', messagesRoute);
 app.use('/api/v1/statistics',statisticsRoute);
 app.use('/api/v1/professionPlan',professionalPlan);
 app.use('/api/v1/paypal', paypalRoute);
+app.use('/api/v1/endSubscription', endSubscriptionRoute);
 
 module.exports = app;
