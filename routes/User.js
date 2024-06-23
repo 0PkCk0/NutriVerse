@@ -66,7 +66,7 @@ router.post('/', async (req, res) => {
             to: req.body.email,
             subject: 'Please confirm your email',
             text: `Please confirm your email by clicking on the following link: 
-            \nhttps://nutriverse-b13w.onrender.com?token=${confirmationToken}`
+            \nhttps://nutriverse-b13w.onrender.com?token_email=${confirmationToken}`
         };
 
         transporter.sendMail(mailOptions, function (err) {
