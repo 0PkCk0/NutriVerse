@@ -242,7 +242,7 @@ router.get('/', verify, async (req, res) => {
         return res.status(404).json({ status: 404, message: 'User not found' });
     }
 
-    const JSON_user = {};
+    let JSON_user = {};
 
     if (user.userType === 'ProUser') {
         //JSON variable to return to the caller
