@@ -20,3 +20,5 @@ app.get('/', verify, async (req, res) => {
         return res.status(400).json({ status: 400, message: 'Subscription not ended' });
     }
 });
+
+module.exports = app;
