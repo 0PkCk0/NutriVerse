@@ -105,15 +105,6 @@ paths:
 
     delete:
       summary: Logout a user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                _id:
-                  type: string
       responses:
         '200':
           description: Successfully logged out
@@ -254,6 +245,13 @@ paths:
 
     get:
       summary: Get user profile
+      parameters:
+        - in: path
+          name: confirmationToken
+          schema:
+            type: string
+          required: true
+          description: Token for email confirmation
       responses:
         '200':
           description: User profile retrieved successfully
@@ -302,7 +300,7 @@ paths:
                     type: string
                     example: User not found
 
-  /user/subscriptions/{subscriptionID}:
+  /subscriptions/{subscriptionID}:
     get:
       summary: Get subscription profile
       parameters:
@@ -747,8 +745,6 @@ paths:
       summary: Send a report email
       description: |
         Allows authenticated users to send a report email to a designated recipient. This endpoint is useful for reporting issues, providing feedback, or contacting administrators or support teams.
-      security:
-        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -807,8 +803,6 @@ paths:
       summary: Return statistics of a subscriber
       description: |
         Retrieves the weight statistics of a subscriber identified by their userID. This endpoint is accessible only to Nutritionists and Personal Trainers.
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: userID
@@ -853,8 +847,6 @@ paths:
       summary: Return statistics of the authenticated user
       description: |
         Retrieves the weight statistics of the authenticated user. This endpoint is accessible to all users.
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: Statistics retrieved successfully
@@ -889,8 +881,6 @@ paths:
       description: |
         Returns all plans (PDF URLs) associated with the authenticated user.
         Plans are categorized by type (Diet or Workout) and linked to the professional user who created them.
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: Plans retrieved successfully
@@ -938,8 +928,6 @@ paths:
       description: |
         Uploads a PDF URL for a plan associated with a specific user.
         The plan type (Diet or Workout) and the professional user's email are provided in the request body.
-      security:
-        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1006,8 +994,6 @@ paths:
       description: |
         Returns all plans (PDF URLs) associated with the specified professional user.
         Plans are filtered by the professional user's email address.
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: proEmail
@@ -1063,8 +1049,6 @@ paths:
       description: |
         Adds a comment to the specified plan identified by PlanID.
         Comments are timestamped and added to the existing comments array for the plan.
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: PlanID
@@ -1072,15 +1056,6 @@ paths:
           schema:
             type: string
           description: ID of the plan to add a comment to
-        - in: body
-          name: comment
-          required: true
-          schema:
-            type: object
-            properties:
-              comment:
-                type: string
-                example: "This is a comment about the plan."
       responses:
         '200':
           description: Comment added successfully
@@ -1113,11 +1088,9 @@ paths:
       summary: Delete a specific plan
       description: |
         Deletes the plan identified by planId from the authenticated user's plans.
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
-          name: planId
+          name: PlanID
           required: true
           schema:
             type: string
@@ -1144,14 +1117,20 @@ paths:
                     type: string
                     example: Plan not found
   
-  /subscriptions:
+  /subscriptions/{userEmail}:
     post:
       summary: Request subscription to a professional user
+      parameters:
+        - in: path
+          name: userEmail
+          required: true
+          schema:
+            type: string
+            format: email
+          description: Email address of the user to unsubscribe
       description: |
         Initiates a subscription request from the authenticated user to a professional user.
         Requires the email of the professional user in the request body.
-      security:
-        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1200,11 +1179,17 @@ paths:
   
     put:
       summary: Accept or deny subscription request from a user
+      parameters:
+        - in: path
+          name: userEmail
+          required: true
+          schema:
+            type: string
+            format: email
+          description: Email address of the user to unsubscribe
       description: |
         Accepts or denies a subscription request from a user identified by their email.
         The authenticated professional user can accept or deny a subscription request.
-      security:
-        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -1256,8 +1241,6 @@ paths:
       description: |
         Removes the authenticated user's subscription to a professional user identified by their email.
         Professionals can disenroll users from their subscriptions.
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: userEmail
@@ -1297,8 +1280,6 @@ paths:
       description: |
         Retrieves subscription details (name, email, profession) of a user identified by their email or subscription ID.
         The authenticated user's subscriptions and subscribers are checked.
-      security:
-        - BearerAuth: []
       parameters:
         - in: path
           name: userID
